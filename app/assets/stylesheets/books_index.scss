@@ -1,0 +1,23 @@
+.book-list-container {
+    margin: 10px 50px;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+}
+.book-list-container ul{
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+.book-list-container h2 {
+    font-size: 20px;
+    padding: 10px;
+
+    font-weight: bold;
+}
+.book-list-container ul > a, .book-list-container ul > li{
+    display: inline-block;
+    width: 20%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+

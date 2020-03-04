@@ -1,0 +1,82 @@
+.shelf-form {
+    border-radius: 3px;
+    border: 1px solid #EBE8D5;
+    display: flex;
+    // padding:5px;
+    box-sizing: border-box;
+    margin-right: 15px;
+
+
+}
+.status-bar {
+    flex-grow: 1;
+}
+
+.status-bar p {
+    padding:5px;
+    font-size: 13px;
+}
+
+.status-bar .added{
+    background-color: #f2f2f2;  
+}
+
+.status-bar .unadded {
+    background-color: #409D69;
+    columns: white;
+}
+
+.add-shelf {
+    width: 27px;
+    position: relative;
+}
+
+.shelf-trigger {
+    height: 23px;
+    position: relative;
+    background-color: #409D69;
+    border-radius: 0 3px 3px 0;
+}
+
+.arrow-down{
+    width: 0;
+    border-top: 5px white solid;
+    border-left: 5px solid transparent;
+    border-right:  5px solid transparent;
+    margin:  auto;
+    position: absolute;
+    top: 40% ;
+    left: 30%;
+
+}
+.shelf-drop-down {
+    display: none;
+    border:1px solid #EBE8D5;
+    border-radius: 3px;
+    padding: 3px;
+    font-size: 13px;
+    right:0;
+    width: 150px;
+}
+.shelf-drop-down li {
+    display: block;
+    padding: 3px;
+}
+.shelf-drop-down.show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    z-index: 2;
+}
+
+.shelf-drop-down.show button{
+    font-weight: bold;
+}
+
+.shelf-drop-down.show input {
+    padding: 2px;
+    border-radius: 3px;
+    border: 1px solid #EBE8D5;
+    width: 100%;
+    box-sizing: border-box;
+}

@@ -1,0 +1,49 @@
+.session-form {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    padding: 5px 0;
+
+}
+
+nav .session-form label, .home-page-signup label{
+    display: none;
+}
+
+.session-form div {
+    margin: 5px 2px
+}
+
+.session-form input {
+    padding: 5px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    border: #DCD6CC 1px solid;
+    color: #333333;
+}
+
+.signin-form {
+    display: flex;
+    font-size: 13px;
+    margin-right: 20px;
+}
+
+.signin-form input {
+    width: 120px;
+}
+
+.home-page-signup .session-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.home-page-signup .signup-form {
+    align-self: flex-end;
+    margin: 15px 30px;
+}
+
+.session-form button {
+    border-radius: 4px;
+    border: 0;
+    padding: 8px;
+    background-color: #fdd05f;
+    margin-left: 3px;
+}
