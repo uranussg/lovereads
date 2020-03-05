@@ -3,7 +3,6 @@ export const fetchBookshelves = () => {
     return $.ajax({
         method: "GET",
         url: "/api/bookshelves",
-        error: err => console.log(err)
     })
 }
 

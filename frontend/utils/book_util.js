@@ -4,7 +4,6 @@ export const fetchBooks = () => {
         method: "GET",
         url: "/api/books",
   
-        error: err => console.log(err)
     })
 }
 
