@@ -6,7 +6,7 @@ import {fetchReviews} from  '../../actions/review_actions'
 
 const mapStateToProps = (state, ownProps) => 
 { 
-    // debugger
+    
 return ({
     book: state.entities.books[ownProps.match.params.bookId] || {},
     reviews: Object.values(state.entities.reviews)

@@ -11,17 +11,17 @@ class BookShelf extends React.Component {
     }
 
     componentDidMount(){
-        // debugger
+        
         this.props.fetchBookshelves()
     }
 
     handleUpdate(e){
-        // debugger
+        
         this.props.fetchBookshelf(e.target.value)
     }
 
     render() {
-        // debugger
+        
         const {titles, books} = this.props
         const titlelist = titles.map(title=> (
         <li> <button onClick={this.handleUpdate} value={title}>{title}</button>  </li>
@@ -29,7 +29,7 @@ class BookShelf extends React.Component {
         const bookList = books.map(book => (
             <BookIndexItem book={book} key={book.id}/>
         ))
-        // debugger
+        
         return (
             <div className="shelf-show">
                 <div className="shelf-nav">

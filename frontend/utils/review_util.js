@@ -6,7 +6,7 @@ export const fetchReviews = (bookId) => {
 
 
 export const createReview = (bookId, review) => {
-    // debugger
+    
     return $.ajax ({
         method: "POST",
         url: `/api/books/${bookId}/reviews`,
@@ -22,7 +22,7 @@ export const fetchReview = (reviewId) => {
 }
 
 export const updateReview = (review) => {
-    debugger
+
     return $.ajax ({
         method: "Patch",
         url: `/api/reviews/${review.bookId}`,

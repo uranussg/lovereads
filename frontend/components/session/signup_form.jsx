@@ -22,7 +22,7 @@ class SignupForm extends React.Component {
         e.preventDefault()
         this.props.clearErrors()
         this.props.processForm(this.state)
-        // debugger
+        
         this.setState({
             username: "",
             password: ""

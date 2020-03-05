@@ -17,7 +17,7 @@ class SessionForm extends React.Component {
         e.preventDefault()
         this.props.clearErrors()
         this.props.processForm(this.state)
-        // debugger
+        
         this.setState({
             username: "",
             password: ""
@@ -32,7 +32,7 @@ class SessionForm extends React.Component {
             email:"song1",
             password: 111111
         })
-        // debugger
+        
         this.setState({
             username: "",
             password: ""
@@ -51,7 +51,7 @@ class SessionForm extends React.Component {
         if (Object.keys(this.props.errors).length> 0)
             { 
                 errorMessage = this.props.errors.signin}
-            // debugger
+            
         return (<div className="session-form">
             <form className="signin-form">
                 <div>

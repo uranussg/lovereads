@@ -8,7 +8,7 @@ class ReviewIndex extends React.Component {
     }
 
     componentDidMount(){
-        // debugger
+        
         this.props.fetchReviews(this.props.match.params.bookId)
     }
 
@@ -21,7 +21,7 @@ class ReviewIndex extends React.Component {
             <ReviewListItem  key={review.id} review={review}/>
             ))
             
-            // debugger
+            
         return(
             <div className="review-container"> 
                 <label>

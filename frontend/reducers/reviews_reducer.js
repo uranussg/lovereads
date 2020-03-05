@@ -6,15 +6,15 @@ export default (state = {}, action) => {
     Object.freeze(state)
     switch (action.type) {
         case RECEIVE_REVIEWS:
-            // debugger
+            
             return action.reviews
          
         case RECEIVE_REVIEW:
-            // debugger
+            
             newState[action.review.id] = action.review
             return newState
         case REMOVE_REVIEW:
-            //debugger
+            
             newState[action.review.id] = undefined
 
         default:

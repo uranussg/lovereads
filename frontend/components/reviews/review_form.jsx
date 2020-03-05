@@ -13,13 +13,13 @@ class ReviewForm extends React.Component {
 
     handleSubmit(e){
         e.preventDefault()
-        // debugger
+        
         this.props.rate ? this.props.createReview(this.state): this.props.updateReview(this.state)
         .then(()=> this.setState({
             rate: 0,
             body: ""
         }))
-        // debugger
+        
         this.props.history.push(`/benches/${this.props.benchId}`)
     }
 

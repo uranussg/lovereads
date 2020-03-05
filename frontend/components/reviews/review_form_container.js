@@ -4,7 +4,7 @@ import { createReview,updateReview } from "../../actions/review_actions";
 import ReiviewForm from './review_form'
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger
+    
 return ({
     bookId: ownProps.match.params.bookId,
     book: state.entities.books[ownProps.match.params.bookId],

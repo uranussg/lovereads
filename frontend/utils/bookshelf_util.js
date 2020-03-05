@@ -1,5 +1,5 @@
 export const fetchBookshelves = () => {
-    // debugger
+    
     return $.ajax({
         method: "GET",
         url: "/api/bookshelves",
@@ -9,7 +9,7 @@ export const fetchBookshelves = () => {
 
 
 export const createBookshelf = (bookshelf) => {
-    // debugger
+    
     return $.ajax ({
         method: "POST",
         url: "/api/bookshelves",
@@ -18,7 +18,7 @@ export const createBookshelf = (bookshelf) => {
 }
 
 export const editBookshelf = (bookshelfId, bookshelf) => {
-    debugger
+
     return $.ajax ({
         method: "Patch",
         url: `/api/bookshelves/${bookshelfId}`,
@@ -27,7 +27,7 @@ export const editBookshelf = (bookshelfId, bookshelf) => {
 }
 
 export const fetchBookshelf = (title) => {
-    // debugger
+    
     return $.ajax ({
         method: "GET",
         url: `/api/bookshelves/${title}`,

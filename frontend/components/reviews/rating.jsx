@@ -15,16 +15,16 @@ class Rating extends React.Component {
 
     componentDidMount(){
        const num=parseInt(this.state.rate)
-    //    debugger
+
         let stars = document.getElementsByClassName("stars")
-        // debugger
+        
 
         for (let i = (5-num); i < 5; i++){
-            // debugger
+            
             stars[i].classList.add("stared")
         }
         // stars= stats.slice(0,num)
-        // debugger
+        
         // stars.forEach(star =>  (star.classList.add("stared")))
             
     
@@ -32,7 +32,7 @@ class Rating extends React.Component {
 
     handleSubmit(e){
         e.preventDefault()
-        debugger
+
         this.setState({rate: e.target.getAttribute('value')}, () => this.props.rate ? this.props.updateReview(this.state): this.props.createReview(this.state.book_id, this.state))
     }
 

@@ -15,7 +15,7 @@ class BookshelfForm extends React.Component {
     }
 
     handleSubmit(e){
-        // debugger
+        
         this.setState({title:e.target.innerText},
             ()=> (this.props.read? this.props.editBookshelf(this.props.bookshelf.id, this.state)
             .then((e)=>this.toggleClass(e)):
@@ -26,7 +26,7 @@ class BookshelfForm extends React.Component {
     }
 
     handleUpdate(e){
-        // debugger
+        
         this.setState({title:e.target.value})
     }
 
@@ -35,7 +35,7 @@ class BookshelfForm extends React.Component {
         dropdown.classList.toggle("show")
     }
     render() {
-        // debugger
+        
         return (
         <div className="shelf-form">
             <div className='status-bar'>

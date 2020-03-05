@@ -1,5 +1,5 @@
 export const fetchBooks = () => {
-    // debugger
+    
     return $.ajax({
         method: "GET",
         url: "/api/books",
@@ -11,7 +11,7 @@ export const fetchBooks = () => {
 
 
 export const fetchBook = (bookId) => {
-    // debugger
+    
     return $.ajax ({
         method: "GET",
         url: `/api/books/${bookId}`,
@@ -25,7 +25,7 @@ export const fetchReviews = (bookId) => {
 }
 
 export const createReview = (bookId, review) => {
-    // debugger
+    
     return $.ajax ({
         method: "POST",
         url: `/api/books/${bookId}/reviews`,

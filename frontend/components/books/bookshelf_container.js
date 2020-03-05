@@ -4,7 +4,7 @@ import Bookshelf from './bookshelf'
 
 
 const ms = (state, ownProps) => {
-    // debugger
+    
     return ({
         books: Object.values(state.entities.books) || {},
         titles: state.entities.users[state.session.id].bookshelves || []

@@ -21,7 +21,7 @@ export const receiveErrors = (errors) => ({
 })
 
 export const fetchBooks = () => dispatch => {
-    // debugger
+    
     return APIUtil.fetchBooks()
     .then(books => dispatch(receiveBooks(books)),
     errors => dispatch(receiveErrors(errors.responseJSON)) )
@@ -29,7 +29,7 @@ export const fetchBooks = () => dispatch => {
 
 
 export const fetchBook = (bookId) => dispatch => {
-    // debugger
+    
     return APIUtil.fetchBook(bookId)
     .then(book => dispatch(receiveBook(book)),
     errors => dispatch(receiveErrors(errors.responseJSON)) )

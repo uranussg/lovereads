@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) =>
 
 {
    
-    // debugger
+    
     return ({
     userId: state.session.id,
     bookId: ownProps.match.params.bookId,

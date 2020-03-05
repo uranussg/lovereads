@@ -4,7 +4,7 @@ import {createBookshelf, editBookshelf} from '../../actions/bookshelf_action'
 import {withRouter} from 'react-router-dom'
 
 const ms = (state, ownProps) => {
-    // debugger
+    
 return {
     read: (state.entities.bookshelves[ownProps.match.params.bookId] ? state.entities.bookshelves[ownProps.match.params.bookId].title : null),
     bookId: ownProps.match.params.bookId,

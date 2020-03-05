@@ -1,7 +1,7 @@
 class Api::ReviewsController < ApplicationController
     def index
         @reviews = Review.where(book_id: params[:book_id])
-        # debugger
+        
     end
 
     def show
@@ -13,7 +13,7 @@ class Api::ReviewsController < ApplicationController
         @review.user_id = current_user.id 
         @review.book_id = params[:book_id]
         if @review.save
-            # debugger
+            
             render partial: 'api/reviews/review', object: @review
         else 
             render json: @review.errors.full_messages, status: 422
@@ -22,9 +22,9 @@ class Api::ReviewsController < ApplicationController
 
     def update
         @review =Review.find_by({user_id: review_params[:user_id], book_id: review_params[:book_id] })
-        # debugger
+        
         if @review.update(review_params)
-            # debugger
+            
             render partial: 'api/reviews/review', object: @review
         else 
             render json: @review.errors.full_messages, status: 422

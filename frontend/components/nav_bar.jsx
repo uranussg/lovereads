@@ -23,7 +23,7 @@ class NavBar extends React.Component {
         profile.classList.toggle("darken-background")
     }
   render () {
-    //   debugger
+
     if (this.props.currentUser){
         return (
             <header>
