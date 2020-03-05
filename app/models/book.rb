@@ -26,4 +26,6 @@ class Book < ApplicationRecord
         end
         ret
     end
+
+    has_one_attached :cover
 end
