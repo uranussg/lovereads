@@ -57,7 +57,7 @@ class NavBar extends React.Component {
     }
     else {
         return (
-        <header>
+        <header className='unlogged'>
             <div className='nav-bg'>
             <nav> 
 
@@ -65,10 +65,15 @@ class NavBar extends React.Component {
                 <SigninFormContainer />
             </nav>
             </div>
-            <div className="home-page-signup">
-            
+            <div className="masthead">
+                <dir className='headline'>
+                    <div className='headline-content'></div>
+                    <img src="assets/signup-headline.png" alt=""/>
+                </dir>
+                <div className='new-to-here'>
+                    <h2>Create a free account!</h2>
                 <SignupFormContainer />
-
+                </div>
             </div>
         </header>
         )

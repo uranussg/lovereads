@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import Rating from './rating'
 import {withRouter} from 'react-router-dom'
 import { createReview, updateReview } from "../../actions/review_actions";
+import RatingForm from "./rating_form";
 
 
 const mapStateToProps = (state, ownProps) => 
@@ -24,4 +24,4 @@ const mapDispatchToProps = dispatch => ({
 })
 
 
-export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Rating))
+export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(RatingForm))

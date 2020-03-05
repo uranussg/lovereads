@@ -1,7 +1,7 @@
 .session-form {
     font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
     padding: 20px;
-    width: 230px;
+    width: 300px;
     margin: 0 auto;
     margin-top: 50px;
     border: 1px solid #EBE8D5;
@@ -24,15 +24,28 @@
 }
 
 .session-form input {
-    padding: 5px;
+    padding: 10px 5px;
     background: #FFFFFF;
     border-radius: 3px;
     border: #DCD6CC 1px solid;
     color: #333333;
+    width: 250px;;
 }   
 
 
-nav .session-form, .home-page-signup .signup-form{
+// nav .session-form, .masthead .signup-form{
+//     padding: 5px 0;
+//     width: auto;
+//     margin-top: 0;
+//     margin-right: 20px;
+//     border: none;
+//     position: relative;
+
+// }
+
+.unlogged .session-form{
+
+    border: none;
     padding: 5px 0;
     width: auto;
     margin-top: 0;
@@ -40,11 +53,15 @@ nav .session-form, .home-page-signup .signup-form{
     border: none;
     position: relative;
 
+
 }
 
-nav .session-form label, .home-page-signup label{
+
+nav .session-form label, .masthead label{
     display: none;
 }
+
+
 nav .signin-form {
     display: flex;
     font-size: 13px;
@@ -53,20 +70,21 @@ nav .signin-form {
 
 nav .signin-form input {
     width: 120px;
+    padding: 5px;
 }
 
-.home-page-signup .session-form {
+.masthead .session-form {
     margin-top: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: 100%;
-    box-shadow: 0 -1px -2px rgba(0,0,0,0.15);
+    // box-shadow: 0 -1px -2px rgba(0,0,0,0.15);
     border: 0;
 
 }
 
-.home-page-signup .signup-form {
+.masthead .signup-form {
     align-self: flex-end;
     margin: 15px 50px;
     position: relative;

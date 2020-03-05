@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-class Rating extends React.Component {
+class RatingForm extends React.Component {
     constructor(props){
         super(props)
         this.handleSubmit=this.handleSubmit.bind(this)
@@ -38,7 +38,7 @@ class Rating extends React.Component {
 
     render() {
         return (
-            <div className='rating'>
+            <div className='rating-form'>
                 {/* <select onClick={this.handleSubmit} className='hidden-select-form'>
 
                     <option value="1" id='1-star'></option>
@@ -61,4 +61,4 @@ class Rating extends React.Component {
 
 }
 
-export default Rating
+export default RatingForm

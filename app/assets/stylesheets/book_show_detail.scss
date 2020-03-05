@@ -5,13 +5,17 @@
     margin-top: 10px;
     box-sizing: border-box;
     margin: 0 auto;
-
+    display: grid;
+    grid-template-columns: 3fr 1fr;
 }
 
 .book-info {
+    grid-column: 1;
     display: grid;
-    grid-template-columns: 1fr 3fr 2fr;
+    grid-template-columns: 1fr 3fr;
     width: 100%;
+    padding: 3px 0;
+    // border-bottom:  1px solid #EBE8D5;
 }
 
 .book-info-col-1{
@@ -54,4 +58,38 @@
     line-height: 21px;
     font-family: "Merriweather", "Georgia", serif;
     font-size: 14px;
+}
+
+.reviews {
+    grid-column: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
+
+.reviews h2 {
+    padding: 5px 0;
+    width: auto;
+    // height: 24px;
+    // margin-bottom: 0;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #EBE8D5;
+}
+
+.reviews .rating-review-form {
+    display: flex;
+    padding: 10px 0;
+}
+
+.reviews a {
+    border-radius: 3px;
+    border: 1px solid #D6D0C4;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 14px;
+    color: #333333;
+    background-color: #F4F1EA;
+    line-height: 1;
+    padding: 8px 12px;
 }

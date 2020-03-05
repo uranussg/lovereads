@@ -44,9 +44,10 @@ class BookShow extends React.Component {
                 </div>
                 <div className='reviews'>
                     <h2>Reviews </h2>
+                    <div className='rating-review-form'>
                     <RatingContainer/>
                     <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
-                    
+                    </div>
                     <ReviewIndex fetchReviews={this.props.fetchReviews} reviews={this.props.reviews} book={book}/>
                 </div>
             </div>

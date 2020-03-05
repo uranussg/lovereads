@@ -443,13 +443,15 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/",
     component: _nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "homepage-main-content"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/",
-    component: _books_book_index_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
+    render: function render(props) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "homepage-main-content"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_6__["default"], props));
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     exact: true,
     path: "/books/:bookId",
     component: _books_book_show_container__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -706,9 +708,11 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         className: "book-info-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "by ", book.writer_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, book.description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reviews"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Reviews "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_rating_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Reviews "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rating-review-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_rating_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/books/".concat(book.id, "/reviews")
-      }, "Write Review"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, "Write Review")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_4__["default"], {
         fetchReviews: this.props.fetchReviews,
         reviews: this.props.reviews,
         book: book
@@ -1174,13 +1178,24 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           onClick: this.handleSubmit
         }, "Sign out")) : null))));
       } else {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+          className: "unlogged"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "nav-bg"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
           id: "title"
         }, "Love", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Reads"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signin_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "home-page-signup"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+          className: "masthead"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("dir", {
+          className: "headline"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "headline-content"
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "assets/signup-headline.png",
+          alt: ""
+        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "new-to-here"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Create a free account!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null))));
       }
     }
   }]);
@@ -1226,10 +1241,51 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/reviews/rating.jsx":
-/*!************************************************!*\
-  !*** ./frontend/components/reviews/rating.jsx ***!
-  \************************************************/
+/***/ "./frontend/components/reviews/rating_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/reviews/rating_container.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _rating_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rating_form */ "./frontend/components/reviews/rating_form.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    userId: state.session.id,
+    bookId: ownProps.match.params.bookId,
+    rate: state.entities.users[state.session.id].rate[ownProps.match.params.bookId]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    createReview: function createReview(bookId, formReview) {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__["createReview"])(bookId, formReview));
+    },
+    updateReview: function updateReview(bookId, formReview) {
+      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_2__["updateReview"])(bookId, formReview));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_rating_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
+
+/***/ }),
+
+/***/ "./frontend/components/reviews/rating_form.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/reviews/rating_form.jsx ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1257,15 +1313,15 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Rating = /*#__PURE__*/function (_React$Component) {
-  _inherits(Rating, _React$Component);
+var RatingForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(RatingForm, _React$Component);
 
-  function Rating(props) {
+  function RatingForm(props) {
     var _this;
 
-    _classCallCheck(this, Rating);
+    _classCallCheck(this, RatingForm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Rating).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(RatingForm).call(this, props));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.state = {
       user_id: _this.props.userId,
@@ -1276,7 +1332,7 @@ var Rating = /*#__PURE__*/function (_React$Component) {
     return _this;
   }
 
-  _createClass(Rating, [{
+  _createClass(RatingForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var num = parseInt(this.state.rate);
@@ -1304,7 +1360,7 @@ var Rating = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "rating"
+        className: "rating-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "stars-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1336,51 +1392,10 @@ var Rating = /*#__PURE__*/function (_React$Component) {
     }
   }]);
 
-  return Rating;
+  return RatingForm;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Rating);
-
-/***/ }),
-
-/***/ "./frontend/components/reviews/rating_container.js":
-/*!*********************************************************!*\
-  !*** ./frontend/components/reviews/rating_container.js ***!
-  \*********************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _rating__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rating */ "./frontend/components/reviews/rating.jsx");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
-
-
-
-
-
-var mapStateToProps = function mapStateToProps(state, ownProps) {
-  return {
-    userId: state.session.id,
-    bookId: ownProps.match.params.bookId,
-    rate: state.entities.users[state.session.id].rate[ownProps.match.params.bookId]
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    createReview: function createReview(bookId, formReview) {
-      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_3__["createReview"])(bookId, formReview));
-    },
-    updateReview: function updateReview(bookId, formReview) {
-      return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_3__["updateReview"])(bookId, formReview));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_rating__WEBPACK_IMPORTED_MODULE_1__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (RatingForm);
 
 /***/ }),
 
