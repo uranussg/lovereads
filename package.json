@@ -12,7 +12,7 @@
     "postinstall": "webpack"
   },
   "engines": {
-    "node": "6.2.2",
+    "node": "10.13.0",
     "npm": "3.5.2"
   },
   "keywords": [],
