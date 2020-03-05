@@ -2,12 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { createStore, applyMiddleware } from "redux"
 import thunk from "redux-thunk"
+import logger from 'redux-logger'
 import rootReducer from './reducers/root_reducer'
 import Root from './components/root'
 
 
 const configureStore = (preloadState = {}) => 
-  createStore(rootReducer, preloadState, applyMiddleware(thunk))
+  createStore(rootReducer, preloadState, applyMiddleware(thunk, logger))
 
 
 document.addEventListener('DOMContentLoaded', () => {
