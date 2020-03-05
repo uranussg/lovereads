@@ -22,9 +22,9 @@ class Api::ReviewsController < ApplicationController
 
     def update
         @review =Review.find_by({user_id: review_params[:user_id], book_id: review_params[:book_id] })
-        debugger
+        # debugger
         if @review.update(review_params)
-            debugger
+            # debugger
             render partial: 'api/reviews/review', object: @review
         else 
             render json: @review.errors.full_messages, status: 422

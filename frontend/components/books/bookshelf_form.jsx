@@ -15,7 +15,7 @@ class BookshelfForm extends React.Component {
     }
 
     handleSubmit(e){
-        debugger
+        // debugger
         this.setState({title:e.target.innerText},
             ()=> (this.props.read? this.props.editBookshelf(this.props.bookshelf.id, this.state)
             .then((e)=>this.toggleClass(e)):

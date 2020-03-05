@@ -42,14 +42,14 @@ export const fetchReview = (reviewId) => dispatch => {
 
 
 export const createReview = (bookId,formReview) => dispatch => {
-    debugger
+    // debugger
     return APIUtil.createReview(bookId, formReview)
     .then((review) => dispatch(receiveReview(review)),
     errors=> dispatch(receiveErrors(errors.responseJSON)))
 }
 
 export const updateReview = (formReview) => dispatch => {
-    debugger
+    // debugger
     return APIUtil.updateReview(formReview)
     .then((review) => dispatch(receiveReview(review)),
     errors=> dispatch(receiveErrors(errors.responseJSON)))
