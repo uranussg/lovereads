@@ -10,7 +10,7 @@
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
-!/log/.keep
+/log/.keep
 !/tmp/.keep
 
 # Ignore uploaded files in development
@@ -22,6 +22,10 @@
 
 /public/assets
 .byebug_history
+.DS_Store
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+npm-debug.log
+/yarn-error.log/public/assets
