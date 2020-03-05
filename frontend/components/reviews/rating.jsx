@@ -14,7 +14,7 @@ class Rating extends React.Component {
     }
 
     componentDidMount(){
-       const num=parseInt(this.props.rate)
+       const num=parseInt(this.state.rate)
     //    debugger
         let stars = document.getElementsByClassName("stars")
         // debugger
