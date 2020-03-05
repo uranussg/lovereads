@@ -5,7 +5,7 @@ const NotFound = (props) => {
     if (props.match.url === '/signup' || props.match.url ==='/login'){ 
         return null
     }
-debugger
+
     return( 
         <div className='not-found'>
         <div>

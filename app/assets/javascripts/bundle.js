@@ -636,7 +636,7 @@ var BookIndexItem = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "book-list-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "assets/demo_book_cover.jpg",
+        src: window.demoCover,
         alt: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, this.props.book.title)));
     }
@@ -708,9 +708,7 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "toggleDetail",
     value: function toggleDetail() {
-      // debugger
-      var detail = document.getElementsByClassName("more-detail"); // debugger
-
+      var detail = document.getElementsByClassName("more-detail");
       detail[0].classList.toggle("hidden");
       detail[1].classList.toggle("hidden");
     }
@@ -725,7 +723,7 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "assets/demo_book_cover.jpg"
+        src: window.demoCover
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bookshelf_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1308,7 +1306,6 @@ var NotFound = function NotFound(props) {
     return null;
   }
 
-  debugger;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "not-found"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "There's no Books Here...")));
@@ -1647,7 +1644,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-book-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "assets/demo_book_cover.jpg"
+        src: window.demoCover
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-book-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, book.writer_id))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {

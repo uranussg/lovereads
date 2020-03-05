@@ -21,9 +21,9 @@ class BookShow extends React.Component {
     }
 
     toggleDetail(){
-        // debugger
+    
         let detail = document.getElementsByClassName("more-detail")
-        // debugger
+ 
         detail[0].classList.toggle("hidden")
         detail[1].classList.toggle("hidden")
         
@@ -37,7 +37,7 @@ class BookShow extends React.Component {
                 <div className="book-info">
                     <div className="book-info-col-1">
 
-                    <img src="assets/demo_book_cover.jpg"/>
+                    <img src={window.demoCover}/>
                     <BookshelfFormContainer/>
 
                     </div>
