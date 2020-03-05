@@ -27,9 +27,14 @@ class NavBar extends React.Component {
     if (this.props.currentUser){
         return (
             <header>
+                <div className='nav-bg'>
                 <nav>
                     <Link to="/"><h1 id="title">Love<strong>Reads</strong> </h1></Link>
-                    
+
+                    <div className='navbar-links'>
+                    <Link to='/bookshelf'><div>My Books</div>  </Link>
+                    </div>
+
                     <div className="user-profile" onClick={this.handleDropdown}>
                     <div className='user-profile-picture'></div>
                     {
@@ -45,6 +50,7 @@ class NavBar extends React.Component {
                     </div>
 
                 </nav>
+                </div>
             </header>
         
         )
@@ -52,17 +58,18 @@ class NavBar extends React.Component {
     else {
         return (
         <header>
+            <div className='nav-bg'>
             <nav> 
 
                 <h1 id="title">Love<strong>Reads</strong> </h1>
                 <SigninFormContainer />
             </nav>
+            </div>
             <div className="home-page-signup">
             
                 <SignupFormContainer />
 
             </div>
-
         </header>
         )
     }

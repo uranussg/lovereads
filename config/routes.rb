@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     resources :users
     resource :session, only: [:create, :destroy, :new]
     resources :books, only: [:index, :show] do 
-      resources :reviews, only: [:index, :create]
+      resources :reviews, only: [:index,:create]
     end
+    resources :reviews, only: [:show, :update, :destroy]
 
     resources :bookshelves, only: [:index, :show, :create, :update]
   end

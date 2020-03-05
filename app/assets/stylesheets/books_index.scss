@@ -1,8 +1,19 @@
+.homepage-main-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+
 .book-list-container {
-    margin: 10px 50px;
+    padding:20px ;
     font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    grid-column: 1;
+    box-sizing: border-box;
 }
 .book-list-container ul{
+
     display: flex;
 
     flex-wrap: wrap;
@@ -10,7 +21,7 @@
 
 .book-list-container h2 {
     font-size: 20px;
-    padding: 10px;
+    padding: 10px 0;
 
     font-weight: bold;
 }
@@ -18,6 +29,22 @@
     display: inline-block;
     width: 20%;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 10px ;
 }
 
+
+.book-list-item {
+    // display: inline-flex;
+    // padding: 100%;
+    // flex-direction: column;
+    // height: auto;
+}
+.book-list-item img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.book-list-item label {
+    padding: 5px;
+    margin: 5px;
+}

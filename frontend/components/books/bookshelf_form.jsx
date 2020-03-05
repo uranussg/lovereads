@@ -11,12 +11,17 @@ class BookshelfForm extends React.Component {
         }
         this.handleSubmit=this.handleSubmit.bind(this)
         this.handleUpdate =this.handleUpdate.bind(this)
+        this.toggleClass = this.toggleClass.bind(this)
     }
 
     handleSubmit(e){
-        // debugger
+        debugger
         this.setState({title:e.target.innerText},
-            ()=> (this.props.read? this.props.editBookshelf(this.props.bookshelf.id, this.state):this.props.createBookshelf(this.state)))
+            ()=> (this.props.read? this.props.editBookshelf(this.props.bookshelf.id, this.state)
+            .then((e)=>this.toggleClass(e)):
+            this.props.createBookshelf(this.state)
+            .then((e)=>this.toggleClass(e))
+            ))
         
     }
 
@@ -36,7 +41,10 @@ class BookshelfForm extends React.Component {
             <div className='status-bar'>
                 {this.props.read? 
                 <div className="added">
-                    <p>{this.props.read}</p></div>:<div className="unadded"> <p> Want To Read</p></div>
+                    <div className="check-mark"><i className="fas fa-check-circle"></i></div>
+                    <p>{this.props.read}</p>
+                    </div>:
+                    <div className="unadded"> <p> Want To Read</p></div>
                 }
             </div >
             <div className="add-shelf">

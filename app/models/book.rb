@@ -12,4 +12,18 @@ class Book < ApplicationRecord
 
     has_many :bookshelves
     # belongs_to :writer
+    has_many :reviews
+
+    def rate
+        self.reviews.map(&:rate).sum * 1.0 / self.reviews.length
+    end
+
+    def rate_detail
+        ret = {}
+        (1..5).each do |rate|
+         num = self.reviews.where(rate: rate).count
+         ret[rate] = num
+        end
+        ret
+    end
 end

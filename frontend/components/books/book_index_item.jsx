@@ -10,6 +10,7 @@ class BookIndexItem extends React.Component {
         return (
             <Link to={`books/${this.props.book.id}`}>
                 <li className="book-list-item">
+                    <img src="assets/demo_book_cover.jpg" alt=""/>
                     <label>{this.props.book.title}</label>
                 </li>
             </Link>

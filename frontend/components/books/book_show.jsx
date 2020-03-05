@@ -1,6 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import BookshelfFormContainer from './bookshelf_form_container'
+import { ProtectedRoute} from '../../utils/route_util.js'
+// import { ReviewFormContainer } from "../reviews/review_form_container";
+import ReviewIndex from '../reviews/review_index'
+import RatingContainer from '../reviews/rating_container';
+
+
 
 
 class BookShow extends React.Component {
@@ -22,7 +28,7 @@ class BookShow extends React.Component {
                 <div className="book-info">
                     <div className="book-info-col-1">
 
-                    <img src="" alt=""/>
+                    <img src="assets/demo_book_cover.jpg"/>
                     <BookshelfFormContainer/>
 
                     </div>
@@ -35,6 +41,13 @@ class BookShow extends React.Component {
                     </div>
 
 
+                </div>
+                <div className='reviews'>
+                    <h2>Reviews </h2>
+                    <RatingContainer/>
+                    <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
+                    
+                    <ReviewIndex fetchReviews={this.props.fetchReviews} reviews={this.props.reviews} book={book}/>
                 </div>
             </div>
         )

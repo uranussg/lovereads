@@ -1,19 +1,30 @@
 .book-show-page {
-    width: 100%;
+    // width: 100%;
     max-width: 1000px;
     padding: 10px;
-    
+    margin-top: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+
 }
 
 .book-info {
     display: grid;
     grid-template-columns: 1fr 3fr 2fr;
+    width: 100%;
 }
 
 .book-info-col-1{
     grid-column: 1;
     padding-right: 10px;
     box-sizing: border-box;
+
+}
+
+.book-info-col-1 img {
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow:  #ddd 0px 5px 5px;
 }
 
 .book-info-col-2{

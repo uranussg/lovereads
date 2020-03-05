@@ -11,9 +11,16 @@ class SignupForm extends React.Component {
         this.handleSubmit= this.handleSubmit.bind(this)
         this.handleUpdate = this.handleUpdate.bind(this)
     }
+
+    componentDidMount(){
+        if (this.props.errors){
+            this.props.clearErrors()
+        }
+    }
     
     handleSubmit(e) {
         e.preventDefault()
+        this.props.clearErrors()
         this.props.processForm(this.state)
         // debugger
         this.setState({
@@ -31,7 +38,7 @@ class SignupForm extends React.Component {
 
     }
     render() {
-        let errorMessage = ""
+        let errorMessage 
         if (Object.keys(this.props.errors).length> 0)
             { errorMessage = this.props.errors.signup}
         return (<div className="session-form">
@@ -60,7 +67,7 @@ class SignupForm extends React.Component {
                 </div>
                 <button className="submit" onClick={this.handleSubmit}>Sign up</button>
             </form>
-            <div className="error-message">{errorMessage}</div>
+            {errorMessage?<div className="error-messages">{errorMessage}</div> : null }
      
         </div>)
     }

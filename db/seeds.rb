@@ -22,6 +22,12 @@ b5 = Book.create(title:"yourbook4", writer_id: 4, description:"must be a good bo
 
 
 s1 =Bookshelf.create(user_id: u1.id, book_id:b1.id, title: "Read")
-s1 =Bookshelf.create(user_id: u1.id, book_id:b2.id, title: "Reading")
-s1 =Bookshelf.create(user_id: u1.id, book_id:b3.id, title: "Read")
-s1 =Bookshelf.create(user_id: u1.id, book_id:b4.id, title: "Want to Read")
+s2 =Bookshelf.create(user_id: u1.id, book_id:b2.id, title: "Reading")
+s3 =Bookshelf.create(user_id: u1.id, book_id:b3.id, title: "Read")
+s4 =Bookshelf.create(user_id: u1.id, book_id:b4.id, title: "Want to Read")
+
+r1 = Review.create(user_id: u1.id, book_id:b1.id, rate: 4, body:"very good!")
+r2 = Review.create(user_id: u1.id, book_id:b2.id, rate: 5, body:"good!")
+r3 = Review.create(user_id: u1.id, book_id:b3.id, rate: 2)
+r4 = Review.create(user_id: u1.id, book_id:b4.id, rate: 3)
+r5 = Review.create(user_id: u2.id, book_id:b1.id, rate: 5)

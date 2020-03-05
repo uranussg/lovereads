@@ -15,6 +15,7 @@ class SessionForm extends React.Component {
     
     handleSubmit(e) {
         e.preventDefault()
+        this.props.clearErrors()
         this.props.processForm(this.state)
         // debugger
         this.setState({
@@ -46,7 +47,7 @@ class SessionForm extends React.Component {
 
     }
     render() {
-        let errorMessage = ""
+        let errorMessage
         if (Object.keys(this.props.errors).length> 0)
             { 
                 errorMessage = this.props.errors.signin}
@@ -71,7 +72,7 @@ class SessionForm extends React.Component {
                 <button className="submit" onClick={this.handleSubmit}>Sign in</button>
                 <button className="demouser" onClick ={this.demoUser}>Demo</button>
             </form>
-            <div className="error-messages">{errorMessage}</div>
+            {errorMessage?<div className="error-messages">{errorMessage}</div> : null }
      
         </div>)
     }

@@ -8,7 +8,12 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack --watch --mode=development"
+    "webpack": "webpack --watch --mode=development",
+    "postinstall": "webpack"
+  },
+  "engines": {
+    "node": "8.10.0",
+    "npm": "3.5.2"
   },
   "keywords": [],
   "author": "",

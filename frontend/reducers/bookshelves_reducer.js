@@ -9,7 +9,7 @@ export default (state = {}, action) => {
     switch (action.type) {
 
         case RECEIVE_CURRENT_USER:
-                return action.user.bookshelves
+                return action.user.bookshelves || state
         case RECEIVE_BOOKSHELF:
             debugger
             const newState = Object.assign({}, state)

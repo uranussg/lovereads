@@ -1,0 +1,25 @@
+.stars-container{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+
+.stars{
+    width: 15px;
+    height: 15px;
+    margin:3px;
+    background-color: green;
+}
+
+.stared {
+    background-color: purple;
+}
+
+
+.stars-container:hover > div {
+    background-color: green;
+}
+div.stars:hover, .stars:hover ~ div {
+    background-color:purple;
+}

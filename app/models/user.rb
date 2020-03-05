@@ -44,7 +44,10 @@ class User < ApplicationRecord
     has_many :books_on_shelves,
         through: :bookshelves,
         source: :book   
-
+    has_many :reviews
+    has_many :reviewed_books,
+      through: :reviews,
+      source: :book
 
     def shelf_titles
       self.bookshelves.pluck(:title).uniq

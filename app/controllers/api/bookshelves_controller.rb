@@ -29,9 +29,9 @@ class Api::BookshelvesController < ApplicationController
 
     def update       
          @bookshelf = Bookshelf.find(params[:id])
-        debugger
+        # debugger
         if @bookshelf.update(bookshelf_params)
-            debugger
+            # debugger
             render partial: 'api/bookshelves/bookshelf', object: @bookshelf
         else 
             render @bookshelf.errors.full_messages

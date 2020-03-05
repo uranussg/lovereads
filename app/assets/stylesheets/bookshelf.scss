@@ -1,6 +1,6 @@
 .shelf-show{
     max-width: 1000px;;
-    padding: 20px 5px;
+    padding: 20px 10px;
     margin: 0 auto;
     box-sizing: border-box;
 
@@ -55,4 +55,8 @@
     padding: 0;
     border: 0;
     color:#00635d
+}
+
+.shelf-show .book-list-container {
+    grid-column: 2;
 }
