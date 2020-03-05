@@ -12,8 +12,25 @@ class RatingForm extends React.Component {
         }
         this.handleSubmit= this.handleSubmit.bind(this)
     }
+    componentDidUpdate(){
+        
+        const num=parseInt(this.state.rate)
+        if(num!==this.props.rate){
 
+            let stars = document.getElementsByClassName("stars")
+            
+            for (let i =0; i< 5; i++){
+                stars[i].classList.remove("stared")
+            }
+            for (let i = (5-num); i < 5; i++){
+                
+                stars[i].classList.add("stared")
+            }
+
+        }
+    }
     componentDidMount(){
+        
        const num=parseInt(this.state.rate)
 
         let stars = document.getElementsByClassName("stars")
@@ -37,6 +54,7 @@ class RatingForm extends React.Component {
     }
 
     render() {
+        
         return (
             <div className='rating-form'>
                 {/* <select onClick={this.handleSubmit} className='hidden-select-form'>

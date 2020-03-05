@@ -7,6 +7,8 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 3fr 1fr;
+    position: relative;
+    z-index: 3;
 }
 
 .book-info {
@@ -16,12 +18,14 @@
     width: 100%;
     padding: 3px 0;
     // border-bottom:  1px solid #EBE8D5;
+    position: relative;
 }
 
 .book-info-col-1{
     grid-column: 1;
     padding-right: 10px;
     box-sizing: border-box;
+    position: relative;
 
 }
 
@@ -33,8 +37,9 @@
 
 .book-info-col-2{
     grid-column: 2;
-    padding-left: 10px;
+    margin-left: 10px;
     box-sizing: border-box;
+    
 
 }
 
@@ -60,11 +65,19 @@
     font-size: 14px;
 }
 
+.book-basic-info {
+    border-bottom:  1px solid #EBE8D5;
+    padding-bottom: 5px;;
+}
+
+
 .reviews {
     grid-column: 1;
     display: flex;
     flex-direction: column;
     padding: 5px 0;
+    position: relative;
+    z-index: 1;
 }
 
 .reviews h2 {
@@ -81,6 +94,7 @@
 .reviews .rating-review-form {
     display: flex;
     padding: 10px 0;
+    align-items: center;
 }
 
 .reviews a {
@@ -92,4 +106,49 @@
     background-color: #F4F1EA;
     line-height: 1;
     padding: 8px 12px;
+    margin: 0 5px;
+}
+
+.book-more-detail {
+    padding: 5px 0;
+}
+
+.book-more-detail li{
+    padding: 3px 0;
+    display: block;
+    min-height: 10px;
+}
+
+.book-more-detail .attr {
+    color: #382110;
+    font-weight: bold;
+    width: 25%;
+    float: left;
+    margin: 1px 0px;
+    display: block;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 12px;
+}
+
+.book-more-detail .value {
+    float: left;
+    min-width: 10px;
+    width: 75%;
+    margin: 1px 0px;
+    display: block;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 12px;
+}
+
+.more-detail.hidden{
+    display:none;
+}
+
+.book-more-detail a {
+    margin-right: 5px;
+    line-height: 2;
+    color: #00635d;
+    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    float: left;
+    font-size: 12px;
 }

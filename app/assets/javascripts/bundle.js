@@ -418,6 +418,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _books_book_show_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./books/book_show_container */ "./frontend/components/books/book_show_container.js");
 /* harmony import */ var _books_bookshelf_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./books/bookshelf_container */ "./frontend/components/books/bookshelf_container.js");
 /* harmony import */ var _reviews_review_form_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./reviews/review_form_container */ "./frontend/components/reviews/review_form_container.js");
+/* harmony import */ var _not_found__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./not_found */ "./frontend/components/not_found.jsx");
+
 
 
 
@@ -435,11 +437,19 @@ var App = function App() {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     exact: true,
     path: "/signup",
-    component: _session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"]
+    component: function component(props) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "single-page-session"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], props));
+    }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["AuthRoute"], {
     exact: true,
     path: "/login",
-    component: _session_signin_form_container__WEBPACK_IMPORTED_MODULE_3__["default"]
+    component: function component(props) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "single-page-session"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_signin_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], props));
+    }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/",
     component: _nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -463,6 +473,9 @@ var App = function App() {
     exact: true,
     path: "/books/:bookId/reviews",
     component: _reviews_review_form_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    path: "*",
+    component: _not_found__WEBPACK_IMPORTED_MODULE_10__["default"]
   })));
 };
 
@@ -693,6 +706,15 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
       this.props.fetchBook(this.props.match.params.bookId);
     }
   }, {
+    key: "toggleDetail",
+    value: function toggleDetail() {
+      // debugger
+      var detail = document.getElementsByClassName("more-detail"); // debugger
+
+      detail[0].classList.toggle("hidden");
+      detail[1].classList.toggle("hidden");
+    }
+  }, {
     key: "render",
     value: function render() {
       var book = this.props.book;
@@ -706,7 +728,34 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         src: "assets/demo_book_cover.jpg"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bookshelf_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-2"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "by ", book.writer_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, book.description))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-basic-info"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "by ", book.writer_id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, book.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-more-detail"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: this.toggleDetail,
+        className: "more-detail"
+      }, "...More Detail"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "more-detail hidden"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "attr"
+      }, "ISBN"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value"
+      }, book.isbn)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "attr"
+      }, "Edition Language"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value"
+      }, book.language)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "attr"
+      }, "House"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value"
+      }, book.house)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "attr"
+      }, "Published Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value"
+      }, book.publish_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: this.toggleDetail
+      }, "...Less Detail"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reviews"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Reviews "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rating-review-form"
@@ -1241,6 +1290,100 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/not_found.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/components/not_found.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var NotFound = function NotFound(props) {
+  if (props.match.url === '/signup' || props.match.url === '/login') {
+    return null;
+  }
+
+  debugger;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "not-found"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "There's no Books Here...")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (NotFound);
+
+/***/ }),
+
+/***/ "./frontend/components/reviews/rating-show.jsx":
+/*!*****************************************************!*\
+  !*** ./frontend/components/reviews/rating-show.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var RatingShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(RatingShow, _React$Component);
+
+  function RatingShow(props) {
+    _classCallCheck(this, RatingShow);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(RatingShow).call(this, props));
+  }
+
+  _createClass(RatingShow, [{
+    key: "render",
+    value: function render() {
+      var rate = parseInt(this.props.rate);
+      var star_list = [0, 1, 2, 3, 4].map(function (id) {
+        return id >= 5 - rate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "stars-show stared",
+          "for": "5-star"
+        }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "stars-show",
+          "for": "5-star"
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "stars-container"
+      }, star_list);
+    }
+  }]);
+
+  return RatingShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (RatingShow);
+
+/***/ }),
+
 /***/ "./frontend/components/reviews/rating_container.js":
 /*!*********************************************************!*\
   !*** ./frontend/components/reviews/rating_container.js ***!
@@ -1253,7 +1396,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
-/* harmony import */ var _rating_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./rating_form */ "./frontend/components/reviews/rating_form.jsx");
+/* harmony import */ var _rating_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./rating_form */ "./frontend/components/reviews/rating_form.jsx");
 
 
 
@@ -1278,7 +1421,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_rating_form__WEBPACK_IMPORTED_MODULE_4__["default"])));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_rating_form__WEBPACK_IMPORTED_MODULE_3__["default"])));
 
 /***/ }),
 
@@ -1333,6 +1476,23 @@ var RatingForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(RatingForm, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      var num = parseInt(this.state.rate);
+
+      if (num !== this.props.rate) {
+        var stars = document.getElementsByClassName("stars");
+
+        for (var i = 0; i < 5; i++) {
+          stars[i].classList.remove("stared");
+        }
+
+        for (var _i = 5 - num; _i < 5; _i++) {
+          stars[_i].classList.add("stared");
+        }
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var num = parseInt(this.state.rate);
@@ -1636,6 +1796,8 @@ var ReviewIndex = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _rating_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rating-show */ "./frontend/components/reviews/rating-show.jsx");
+
 
 
 var ReviewIndexItem = function ReviewIndexItem(_ref) {
@@ -1646,9 +1808,12 @@ var ReviewIndexItem = function ReviewIndexItem(_ref) {
     className: "review-item-nav"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "review-author"
-  }, "By: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, review.user_id)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "rating"
-  }, "Rate: ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, review.rate))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, review.user)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "rated it"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "rating-show"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating_show__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    key: review.id,
+    rate: review.rate
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "review-body"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, review.body)));
 };
@@ -1680,7 +1845,7 @@ var Root = function Root(_ref) {
   var store = _ref.store;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_1__["Provider"], {
     store: store
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_app__WEBPACK_IMPORTED_MODULE_3__["default"], null))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Root);

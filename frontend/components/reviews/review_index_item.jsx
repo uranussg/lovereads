@@ -1,13 +1,15 @@
 import React from 'react'
+import RatingShow from './rating-show'
 
  const ReviewIndexItem = ({review}) => (
      <li className="review-list-item">
          <div className="review-item-nav">
             <div className="review-author">
-                By: <span>{review.user_id}</span>
+                <span>{review.user}</span>
             </div>
-            <div className="rating">
-                 Rate: <span>{review.rate}</span>
+            <p>rated it</p>
+            <div className="rating-show">
+                <RatingShow key={review.id} rate={review.rate}/>
             </div>
         </div>
         <div className='review-body'><p>{review.body}</p></div>

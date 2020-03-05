@@ -1,0 +1,25 @@
+.not-found{
+    background: url(asset_path("not_found_bg.jpeg"));
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+.not-found div {
+    height: 1000px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.not-found  div h1 {
+    font-weight: bold;
+    position: absolute;
+    font-size: 40px;
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+    display: block;
+    // margin-top: 50px;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+
+}

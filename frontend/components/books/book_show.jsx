@@ -20,6 +20,15 @@ class BookShow extends React.Component {
         
     }
 
+    toggleDetail(){
+        // debugger
+        let detail = document.getElementsByClassName("more-detail")
+        // debugger
+        detail[0].classList.toggle("hidden")
+        detail[1].classList.toggle("hidden")
+        
+    }
+
     render() {
         const {book} = this.props
 
@@ -33,11 +42,24 @@ class BookShow extends React.Component {
 
                     </div>
                     <div className="book-info-col-2">
-                    <h2>{book.title}</h2>
-                    <h3>by {book.writer_id}</h3>
-                    <p>
-                        {book.description}
-                    </p>
+                        <div className="book-basic-info">
+                            <h2>{book.title}</h2>
+                            <h3>by {book.writer_id}</h3>
+                            <p>
+                                {book.description}
+                            </p>
+                        </div>
+                        <div className='book-more-detail'>
+                            <a onClick={this.toggleDetail} className='more-detail'>...More Detail</a>
+                            <ul className="more-detail hidden">
+        <li><span className='attr'>ISBN</span><span className='value'>{book.isbn}</span></li>
+        <li><span className='attr'>Edition Language</span><span className='value'>{book.language}</span></li>
+        <li><span className='attr'>House</span><span className='value'>{book.house}</span></li>
+        <li><span className='attr'>Published Time</span><span className='value'>{book.publish_at}</span></li>
+
+                            <a onClick={this.toggleDetail}>...Less Detail</a>
+                            </ul>
+                        </div>
                     </div>
 
 

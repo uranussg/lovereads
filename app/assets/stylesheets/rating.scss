@@ -2,24 +2,34 @@
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
+    margin-right: 3px;
 }
 
 
-.stars{
-    width: 15px;
-    height: 15px;
-    margin:3px;
-    background-color: green;
+.stars, .stars-show{
+    width: 20px;
+    height: 20px;
+    // padding: 2px;
+    // background-color: green;
+    // background-size: 80% 80%;
+    background-image: url(asset_path('moon-regular.png'));
+    background-size: contain;
 }
 
 .stared {
-    background-color: purple;
+    // background-color: purple;
+    background-image: url(asset_path('moon-solid.png'));
+
 }
 
 
-.stars-container:hover > div {
-    background-color: green;
+.stars-container:hover  .stars {
+    // background-color: green;
+    background-image: url(asset_path('moon-regular.png'));
+
 }
-div.stars:hover, .stars:hover ~ div {
-    background-color:purple;
+.stars-container .stars:hover, .stars:hover ~ .stars {
+    // background-color:purple;
+    background-image: url(asset_path('moon-solid.png'));
+
 }

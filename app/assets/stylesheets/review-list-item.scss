@@ -1,0 +1,24 @@
+.review-item-nav{
+    display:flex;
+    padding: 3px 0;
+    font-size: 14px;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    align-items: center;
+}
+
+.review-author {
+    color: #00635d;
+    font-weight: bold;
+    padding-right: 3px;
+}
+.review-item-nav p{
+    padding-right: 3px;;
+}
+
+.review-body{
+    margin: 10px 0;
+    font-family: "Merriweather", "Georgia", serif;
+    line-height: 21px;
+    font-size: 14px;
+}
+

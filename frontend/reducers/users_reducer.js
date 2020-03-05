@@ -21,7 +21,7 @@ export default (state = {}, action) => {
             }
             return newState
         case RECEIVE_REVIEW:
-
+            
             const user_id = action.review.user_id
                 if (!(Object.keys(newState[user_id].rate).includes(action.review.book_id)))
                 {

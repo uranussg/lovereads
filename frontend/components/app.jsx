@@ -8,14 +8,23 @@ import BookIndexContainer from './books/book_index_container'
 import BookShowContainer from './books/book_show_container'
 import BookShelfContainer from './books/bookshelf_container'
 import ReviewFormContainer from './reviews/review_form_container'
+import NotFound from './not_found';
 
 const App = () => (
     <div className="bg">
         
 
         <Switch>
-            <AuthRoute exact path="/signup" component={SignupFormContainer}/>
-            <AuthRoute exact path="/login" component={SigninFormContainer}/>
+            <AuthRoute exact path="/signup" component={(props) => 
+            <div className="single-page-session">
+                <SignupFormContainer {...props} />
+            </div> 
+            }/>
+            <AuthRoute exact path="/login" component={(props) => 
+            <div className="single-page-session">
+                <SigninFormContainer {...props} />
+            </div> 
+            }/>
             <Route path="/" component={NavBarContainer}/>
         </Switch>
 
@@ -25,13 +34,12 @@ const App = () => (
                 <BookIndexContainer {...props} />
             </div> 
             }/>
-            {/* <div className="homepage-main-content">
-            <Route exact path='/' component={BookIndexContainer}/>
-            </div> */}
+
             <ProtectedRoute exact path='/books/:bookId' component={BookShowContainer}/>
             <ProtectedRoute exact path='/bookshelf' component={BookShelfContainer}/>
             <ProtectedRoute exact path="/books/:bookId/reviews" component={ReviewFormContainer} />
-            {/* <Route path='*' component= 'not fountd'/> */}
+
+            <Route path="*" component={NotFound}/>           
 
         
         </Switch>

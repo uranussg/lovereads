@@ -3,7 +3,7 @@
     padding: 20px;
     width: 300px;
     margin: 0 auto;
-    margin-top: 50px;
+    // margin-top: 50px;
     border: 1px solid #EBE8D5;
     border-radius: 3px;
     max-width: 1000px;
@@ -15,7 +15,7 @@
     padding: 3px 0;
     margin: 5px 0;
     box-sizing: border-box;
-
+    display: block;
 }
 
 
@@ -107,4 +107,21 @@ nav .signin-form input {
   right: 50px; 
   top: 50px;
   background-color:white;
+}
+
+
+.single-page-session {
+    background-image: url(asset_path('bg-texture.jpg'));
+    background-repeat: repeat;
+    position: relative;
+    width: 100%;
+    height: 800px;
+}
+
+.single-page-session .session-form {
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

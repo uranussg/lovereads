@@ -7,41 +7,28 @@ class RatingShow extends React.Component {
 
     }
 
-    componentDidMount(){
-       const num=parseInt(this.props.rate)
 
-        let stars = document.getElementsByClassName("stars")
-        
-
-        for (let i = (5-num); i < 5; i++){
-            
-            stars[i].classList.add("stared")
-        }
-            
-    
-    }
 
 
 
     render() {
-        return (
-            <div className='rating-show'>
-                {/* <select onClick={this.handleSubmit} className='hidden-select-form'>
+        const rate = parseInt(this.props.rate)
+        const star_list = [0,1,2,3,4].map(id=>(
+            id >= (5- rate)? <div className='stars-show stared' for='5-star'></div> : <div className='stars-show' for='5-star'></div>
+            ))
 
-                    <option value="1" id='1-star'></option>
-                    <option value="2" id='2-star'></option>
-                    <option value="3" id='3-star'></option>
-                    <option value="4" id='4-star'></option>
-                    <option value="5" id='5-star'></option>
-                </select> */}
+        return (
+
+
                 <div className='stars-container'>
-                    <div className='stars' for='5-star'></div>
-                    <div className='stars' for='4-star'></div>
-                    <div className='stars' for='3-star'></div>
-                    <div className='stars' for='2-star'></div>
-                    <div className='stars' for='1-star'></div>
+                    {/* <div className='stars-show' for='5-star'></div>
+                    <div className='stars-show' for='4-star'></div>
+                    <div className='stars-show' for='3-star'></div>
+                    <div className='stars-show' for='2-star'></div>
+                    <div className='stars-show' for='1-star'></div> */}
+                {star_list}
                 </div>
-            </div>
+
         )
     }
 
