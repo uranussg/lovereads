@@ -40,13 +40,17 @@ class SignupForm extends React.Component {
     render() {
         let errorMessage 
         if (Object.keys(this.props.errors).length> 0)
-            { errorMessage = this.props.errors.signup}
+            { errorMessage = this.props.errors.signup.map( error => (
+            
+            <li>{error}</li>
+                
+            ))}
         return (<div className="session-form">
             <form className="signup-form">
                 <div>
                     <label >Username</label> 
                     <input type="text" 
-                    placeholder="Userame"
+                    placeholder="Username"
                     value={this.state.username}
                     onChange={this.handleUpdate("username")}/>
                 </div>
@@ -60,14 +64,14 @@ class SignupForm extends React.Component {
                 <div>
                     <label>Password</label> 
                     <input type="text" 
-                    placeholder="password"
+                    placeholder="Password"
                     value={this.state.password}
                     onChange={this.handleUpdate("password")}/>
 
                 </div>
                 <button className="submit" onClick={this.handleSubmit}>Sign up</button>
             </form>
-            {errorMessage?<div className="error-messages">{errorMessage}</div> : null }
+            {errorMessage?<div className="error-messages"> <ul> {errorMessage}</ul></div> : null }
      
         </div>)
     }

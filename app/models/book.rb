@@ -11,7 +11,7 @@ class Book < ApplicationRecord
 
 
     has_many :bookshelves
-    # belongs_to :writer
+    belongs_to :writer
     has_many :reviews
 
     def rate

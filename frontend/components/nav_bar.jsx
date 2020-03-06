@@ -30,7 +30,7 @@ class NavBar extends React.Component {
             <header>
                 <div className='nav-bg'>
                 <nav>
-                    <Link to="/"><h1 id="title">Love<strong>Reads</strong> </h1></Link>
+                    <Link to="/"><h1 id="title">Love<strong>reads</strong> </h1></Link>
 
                     <div className='navbar-links'>
                     <Link to='/bookshelf'><div>My Books</div>  </Link>
@@ -63,7 +63,7 @@ class NavBar extends React.Component {
             <div className='nav-bg'>
             <nav> 
 
-                <h1 id="title">Love<strong>Reads</strong> </h1>
+                <h1 id="title">Love<strong>reads</strong> </h1>
                 <SigninFormContainer />
             </nav>
             </div>

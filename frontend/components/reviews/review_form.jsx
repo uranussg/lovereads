@@ -56,7 +56,7 @@ class ReviewForm extends React.Component {
                     </div>
                     <div className='review-book-info'>
                          <div className='title'>{book.title}</div>
-                         <div className='author'>by {book.writer_id}</div>
+                         <div className='author'>by {book.writer}</div>
                     </div>
                 </div>
 

@@ -53,7 +53,7 @@ class BookShow extends React.Component {
                     <div className="book-info-col-2">
                         <div className="book-basic-info">
                             <h2>{book.title}</h2>
-                            <h3>by {book.writer_id}</h3>
+                            <h3>by {book.writer}</h3>
                             <p>
                                 {book.description}
                             </p>
