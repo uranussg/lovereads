@@ -1,13 +1,20 @@
+
+
 import React from 'react'
-import BookIndexItem from './book_index_item'
+import { Link } from 'react-router-dom'
+import BookIndexItem from '../books/book_index_item'
 
-class BookIndex extends React.Component {
-    constructor(props){
+
+class SearchShow extends React.Component {
+    constructor(props) {
         super(props)
-    }
+        this.state = {
+            body:this.props.match.params.body
+        }
 
-    componentDidMount() {
-        // if (this.props.books.length === 0)
+    }
+    componentDidUpdate() {
+        if (this.props.body !== this.props.match.params.body)
          {this.props.fetchBooks()}
     }
 
@@ -19,7 +26,7 @@ class BookIndex extends React.Component {
 
         return (
             <div className="book-list-container">
-                <h2>New Books</h2>
+                <h2>Search Results</h2>
                 <ul>
                     {bookList}
                 </ul>
@@ -29,4 +36,4 @@ class BookIndex extends React.Component {
     }
 }
 
-export default BookIndex
+export default SearchShow

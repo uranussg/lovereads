@@ -14,8 +14,17 @@ class BookShow extends React.Component {
         super(props)
     }
 
-    componentDidMount(){
+    componentDidUpdate() {
+        const num = parseInt(this.props.match.params.bookId)
+        // 
+        if(this.props.book.id !== num) {
+            
+            this.props.fetchBook(num)
+        }
+    }
 
+    componentDidMount(){
+        
             this.props.fetchBook(this.props.match.params.bookId)
         
     }
@@ -31,7 +40,7 @@ class BookShow extends React.Component {
 
     render() {
         const {book} = this.props
-
+        
         return(
             <div className="book-show-page">
                 <div className="book-info">

@@ -3,16 +3,21 @@ import * as APIUtil from '../utils/search_util'
 import  {RECEIVE_BOOKS, receiveBooks } from './book_action'
 
 export const RECEIVE_LIVE_SEARCH = 'RECEIVE_LIVE_SEARCH'
+export const CLEAR_SEARCH ="CLEAR_SEARCH"
 
-export const receiveLiveSearch =(searchResults) => ({
+export const receiveLiveSearch =(books) => ({
     type: RECEIVE_LIVE_SEARCH,
-    searchResults
+    books
 })
 
 
 export const receiveErrors = (errors) => ({
     type: RECEIVE_SEARCH_ERRORS,
     errors
+})
+
+export const clearSearch =()  =>({
+    type:CLEAR_SEARCH
 })
 
 export const liveSearch = (body) => dispatch => {
@@ -23,7 +28,11 @@ export const liveSearch = (body) => dispatch => {
 }
 
 export const search = (body) => dispatch => {
+    
     return APIUtil.searchBooks(body)
-    .then(books => dispatch(receiveBooks(books)),
+    .then( books => {
+        
+        return dispatch(receiveBooks(books)
+    )},
     errors => dispatch(receiveErrors(errors.responseJSON)))
 }

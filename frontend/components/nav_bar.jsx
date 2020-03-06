@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Route } from "react-router-dom"
 import SignupFormContainer from './session/signup_form_container'
 import SigninFormContainer from './session/signin_form_container'
-import SearchBarContainer from './search_bar_container'
+import SearchBarContainer from './search/search_bar_container'
 
 class NavBar extends React.Component {
     constructor(props) {

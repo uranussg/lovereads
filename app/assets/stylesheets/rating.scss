@@ -1,12 +1,16 @@
 .stars-container{
-    display: flex;
+    display: inline-flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     margin-right: 3px;
+    flex-wrap: nowrap;
+    cursor: pointer;
+    background-repeat: no-repeat;
 }
 
 
 .stars, .stars-show{
+    // width: 20%;
     width: 20px;
     height: 20px;
     // padding: 2px;
@@ -14,6 +18,8 @@
     // background-size: 80% 80%;
     background-image: url(asset_path('moon-regular.png'));
     background-size: contain;
+    background-repeat: no-repeat;
+
 }
 
 .stared {

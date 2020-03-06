@@ -80,7 +80,7 @@ nav  h1{
     align-self: end;
     width: auto;
     position: relative;
-    z-index: 2;
+    z-index: 4;
 }
 
 .user-profile.darken-background{
@@ -107,7 +107,7 @@ nav  h1{
     right: 0;
     top: 52px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
-    z-index: 2;
+    z-index: 4;
 }
 
 .user-profile ul li {
@@ -116,6 +116,12 @@ nav  h1{
     color:#333333;
     font-size: 14px;
     line-height: 32px;
+    cursor: pointer;
+}
+
+.user-profile ul li:hover {
+    background-color: #382110;
+    color: white;
 }
 
 .user-profile ul li:last-child {
@@ -165,18 +171,4 @@ nav strong {
     padding: 10px 30px;
     text-align: center;
     margin-top: 10px;
-}
-
-.live-search {
-    display: inline-flex;
-    flex-grow: 1;
-    position: relative;
-}
-
-.search-bar {
-    display: inline-flex;
-}
-
-.search-list-container {
-    position: absolute;
 }
