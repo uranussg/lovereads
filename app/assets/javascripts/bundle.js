@@ -1417,9 +1417,11 @@ var RatingShow = /*#__PURE__*/function (_React$Component) {
       var rate = parseInt(this.props.rate);
       var star_list = [0, 1, 2, 3, 4].map(function (id) {
         return id >= 5 - rate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: id,
           className: "stars-show stared",
           "for": "5-star"
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: id,
           className: "stars-show",
           "for": "5-star"
         });

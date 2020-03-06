@@ -14,7 +14,7 @@ class RatingShow extends React.Component {
     render() {
         const rate = parseInt(this.props.rate)
         const star_list = [0,1,2,3,4].map(id=>(
-            id >= (5- rate)? <div className='stars-show stared' for='5-star'></div> : <div className='stars-show' for='5-star'></div>
+            id >= (5- rate)? <div key={id} className='stars-show stared' for='5-star'></div> : <div key={id} className='stars-show' for='5-star'></div>
             ))
 
         return (
