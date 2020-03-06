@@ -2580,7 +2580,7 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
         className: "submit",
         onClick: this.handleSubmit
       }, "Sign up")), errorMessage ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "error-messages"
+        className: "signup error-messages"
       }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, " ", errorMessage)) : null);
     }
   }]);

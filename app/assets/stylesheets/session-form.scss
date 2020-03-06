@@ -170,7 +170,11 @@ nav .signin-form input {
 .single-page-session .error-messages {
     top: 0;
     transform: translate(0, -80%);
+}
+
+.single-page-session .signup.error-messages {
     padding-left: 20px;
+
 }
 
 .error-messages li {

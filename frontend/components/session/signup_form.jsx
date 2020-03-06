@@ -71,7 +71,7 @@ class SignupForm extends React.Component {
                 </div>
                 <button className="submit" onClick={this.handleSubmit}>Sign up</button>
             </form>
-            {errorMessage?<div className="error-messages"> <ul> {errorMessage}</ul></div> : null }
+            {errorMessage?<div className="signup error-messages"> <ul> {errorMessage}</ul></div> : null }
      
         </div>)
     }
