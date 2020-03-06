@@ -319,6 +319,58 @@ var deleteReview = function deleteReview(reviewId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/search_action.js":
+/*!*******************************************!*\
+  !*** ./frontend/actions/search_action.js ***!
+  \*******************************************/
+/*! exports provided: RECEIVE_LIVE_SEARCH, receiveLiveSearch, receiveErrors, liveSearch, search */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LIVE_SEARCH", function() { return RECEIVE_LIVE_SEARCH; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLiveSearch", function() { return receiveLiveSearch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "liveSearch", function() { return liveSearch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "search", function() { return search; });
+/* harmony import */ var _utils_search_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/search_util */ "./frontend/utils/search_util.js");
+/* harmony import */ var _book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./book_action */ "./frontend/actions/book_action.js");
+
+
+var RECEIVE_LIVE_SEARCH = 'RECEIVE_LIVE_SEARCH';
+var receiveLiveSearch = function receiveLiveSearch(searchResults) {
+  return {
+    type: RECEIVE_LIVE_SEARCH,
+    searchResults: searchResults
+  };
+};
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_SEARCH_ERRORS,
+    errors: errors
+  };
+};
+var liveSearch = function liveSearch(body) {
+  return function (dispatch) {
+    return _utils_search_util__WEBPACK_IMPORTED_MODULE_0__["searchBooks"](body).then(function (searchResults) {
+      return dispatch(receiveLiveSearch(searchResults));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var search = function search(body) {
+  return function (dispatch) {
+    return _utils_search_util__WEBPACK_IMPORTED_MODULE_0__["searchBooks"](body).then(function (books) {
+      return dispatch(Object(_book_action__WEBPACK_IMPORTED_MODULE_1__["receiveBooks"])(books));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -528,7 +580,9 @@ var BookIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(BookIndex, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.props.fetchBooks();
+      if (this.props.books.length === 0) {
+        this.props.fetchBooks();
+      }
     }
   }, {
     key: "render",
@@ -1146,6 +1200,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session/signup_form_container */ "./frontend/components/session/signup_form_container.js");
 /* harmony import */ var _session_signin_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_form_container */ "./frontend/components/session/signin_form_container.js");
+/* harmony import */ var _search_bar_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search_bar_container */ "./frontend/components/search_bar_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1163,6 +1218,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1216,7 +1272,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           className: "navbar-links"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/bookshelf"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Books"), "  ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Books"), "  ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile",
           onClick: this.handleDropdown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1849,6 +1905,143 @@ var Root = function Root(_ref) {
 
 /***/ }),
 
+/***/ "./frontend/components/search_bar.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/search_bar.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _books_book_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./books/book_index_item */ "./frontend/components/books/book_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var SearchBar = /*#__PURE__*/function (_React$Component) {
+  _inherits(SearchBar, _React$Component);
+
+  function SearchBar(props) {
+    var _this;
+
+    _classCallCheck(this, SearchBar);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(SearchBar).call(this, props));
+    _this.state = {
+      body: ""
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SearchBar, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.props.search(this.state.body);
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState({
+        body: e.target.value
+      });
+      this.props.liveSearch(e.target.value);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var searchList = this.props.searchResults.map(function (book) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          book: book,
+          key: book.id
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "live-search"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "search-bar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.body,
+        onChange: this.handleChange
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/search/".concat(this.state.body)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onClick: this.handleSubmit
+      }, "search!"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-list-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, searchList)));
+    }
+  }]);
+
+  return SearchBar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchBar);
+
+/***/ }),
+
+/***/ "./frontend/components/search_bar_container.js":
+/*!*****************************************************!*\
+  !*** ./frontend/components/search_bar_container.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _search_bar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./search_bar */ "./frontend/components/search_bar.jsx");
+/* harmony import */ var _actions_search_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/search_action */ "./frontend/actions/search_action.js");
+
+
+
+
+var mapStateToProp = function mapStateToProp(state) {
+  return {
+    searchResults: Object.values(state.entities.searchResults)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    liveSearch: function liveSearch(body) {
+      return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["liveSearch"])(body));
+    },
+    search: function search(body) {
+      return dispatch(Object(_actions_search_action__WEBPACK_IMPORTED_MODULE_2__["search"])(body));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProp, mapDispatchToProps)(_search_bar__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/session/session_form.jsx":
 /*!******************************************************!*\
   !*** ./frontend/components/session/session_form.jsx ***!
@@ -2324,6 +2517,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _books_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./books_reducer */ "./frontend/reducers/books_reducer.js");
 /* harmony import */ var _bookshelves_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./bookshelves_reducer */ "./frontend/reducers/bookshelves_reducer.js");
 /* harmony import */ var _reviews_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reviews_reducer */ "./frontend/reducers/reviews_reducer.js");
+/* harmony import */ var _search_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./search_reducer */ "./frontend/reducers/search_reducer.js");
+
 
 
 
@@ -2333,7 +2528,8 @@ __webpack_require__.r(__webpack_exports__);
   users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   bookshelves: _bookshelves_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   books: _books_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  reviews: _reviews_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  searchResults: _search_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 }));
 
 /***/ }),
@@ -2416,6 +2612,34 @@ __webpack_require__.r(__webpack_exports__);
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
+
+/***/ }),
+
+/***/ "./frontend/reducers/search_reducer.js":
+/*!*********************************************!*\
+  !*** ./frontend/reducers/search_reducer.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_search_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/search_action */ "./frontend/actions/search_action.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = Object.assign({}, state);
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_search_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LIVE_SEARCH"]:
+      return action.searchResults;
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 
@@ -2743,6 +2967,25 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var AuthRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(Auth));
 var ProtectedRoute = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(Protected));
+
+/***/ }),
+
+/***/ "./frontend/utils/search_util.js":
+/*!***************************************!*\
+  !*** ./frontend/utils/search_util.js ***!
+  \***************************************/
+/*! exports provided: searchBooks */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "searchBooks", function() { return searchBooks; });
+var searchBooks = function searchBooks(body) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/searches/".concat(body)
+  });
+};
 
 /***/ }),
 
