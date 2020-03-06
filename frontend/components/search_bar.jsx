@@ -37,7 +37,7 @@ class SearchBar extends React.Component {
                     onChange={this.handleChange}/>
                     <Link to={`/search/${this.state.body}`}><div onClick={this.handleSubmit}>search!</div></Link>
                 </div>
-            <div className="book-list-container">
+            <div className="search-list-container">
                 <ul>
                     {searchList}
                 </ul>

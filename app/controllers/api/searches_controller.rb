@@ -4,4 +4,7 @@ class Api::SearchesController < ApplicationController
         @books = Book.where("title ~ ?", params[:id])
         
     end
+
+    def index
+    end
 end

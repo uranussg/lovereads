@@ -174,3 +174,17 @@ nav strong {
     text-align: center;
     margin-top: 10px;
 }
+
+.live-search {
+    display: inline-flex;
+    flex-grow: 1;
+    position: relative;
+}
+
+.search-bar {
+    display: inline-flex;
+}
+
+.search-list-container {
+    position: absolute;
+}
