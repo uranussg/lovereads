@@ -1094,7 +1094,10 @@ var BookshelfForm = /*#__PURE__*/function (_React$Component) {
     _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     _this.toggleClass = _this.toggleClass.bind(_assertThisInitialized(_this));
     return _this;
-  }
+  } // componentDidUpdate() {
+  //     if(this.props.state)
+  // }
+
 
   _createClass(BookshelfForm, [{
     key: "handleSubmit",
@@ -1661,8 +1664,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rating_container__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rating_container */ "./frontend/components/reviews/rating_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1692,42 +1693,46 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ReviewForm).call(this, props));
     _this.state = {
-      rate: 5,
-      body: ""
+      user_id: _this.props.userId,
+      book_id: _this.props.bookId,
+      body: _this.props.review.body || ""
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(ReviewForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (!this.props.book) {
+        this.props.fetchBook(this.props.match.params.bookId);
+      }
+    }
+  }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this2 = this;
-
-      e.preventDefault();
-      this.props.rate ? this.props.createReview(this.state) : this.props.updateReview(this.state).then(function () {
-        return _this2.setState({
-          rate: 0,
-          body: ""
-        });
-      });
-      this.props.history.push("/benches/".concat(this.props.benchId));
+      e.preventDefault()(this.props.rate ? this.props.updateReview(this.state).then(this.props.history.push("/books/".concat(this.props.bookId))) : this.props.createReview(this.state.book_id, this.state).then(this.props.history.push("/books/".concat(this.props.bookId)))); // .then( this.props.history.push(`/books/${this.props.bookId}`))
+      // this.props.history.push(`/books/${this.props.bookId}`)
     }
   }, {
     key: "handleUpdate",
-    value: function handleUpdate(type) {
-      var _this3 = this;
+    value: function handleUpdate() {
+      var _this2 = this;
 
       return function (e) {
         e.preventDefault();
 
-        _this3.setState(_defineProperty({}, type, e.target.value));
+        _this2.setState({
+          body: e.target.value
+        });
       };
     }
   }, {
     key: "render",
     value: function render() {
       var book = this.props.book;
+      book = book || {}; // debugger
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-form"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1738,14 +1743,22 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
         src: window.demoCover
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-book-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, book.writer_id))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title"
+      }, book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "author"
+      }, "by ", book.writer_id))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "rating"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "my-rating"
+      }, "My rating:"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating_container__WEBPACK_IMPORTED_MODULE_1__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "review-body"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         type: "text",
+        cols: "30",
+        rows: "10",
         value: this.state.body,
-        onChange: this.handleUpdate("body")
+        onChange: this.handleUpdate()
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleSubmit
       }, "Submit")));
@@ -1770,14 +1783,21 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
-/* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
+/* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/book_action */ "./frontend/actions/book_action.js");
+/* harmony import */ var _review_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./review_form */ "./frontend/components/reviews/review_form.jsx");
  // import { createReview } from "../actions/review_actions"
 
 
 
 
+
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  // debugger
   return {
+    review: Object.values(state.entities.reviews).length ? Object.values(state.entities.reviews).filter(function (review) {
+      return review.user_id === state.session.id;
+    })[0] : {},
+    userId: state.session.id,
     bookId: ownProps.match.params.bookId,
     book: state.entities.books[ownProps.match.params.bookId],
     rate: state.entities.users[state.session.id].rate[ownProps.match.params.bookId]
@@ -1791,11 +1811,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     updateReview: function updateReview(bookId, formReview) {
       return dispatch(Object(_actions_review_actions__WEBPACK_IMPORTED_MODULE_1__["updateReview"])(bookId, formReview));
+    },
+    fetchBook: function fetchBook(bookId) {
+      return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_2__["fetchBook"])(bookId));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_review_form__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1845,11 +1868,13 @@ var ReviewIndex = /*#__PURE__*/function (_React$Component) {
 
   _createClass(ReviewIndex, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      var num = parseInt(this.props.match.params.bookId);
-
-      if (this.props.book.id !== num) {
-        this.props.fetchReviews(num);
+    value: function componentDidUpdate(prevProps) {
+      // const num = parseInt(this.props.match.params.bookId)
+      // if(this.props.book.id !== num) {
+      //     this.props.fetchReviews(num)
+      // }
+      if (this.props.book.id !== prevProps.book.id || this.props.review !== prevProps.review) {
+        this.props.fetchReviews(this.props.book.id);
       }
     }
   }, {
@@ -2226,7 +2251,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProp = function mapStateToProp(state, ownProps) {
-  debugger;
   return {
     body: ownProps.match.params.body,
     // searchResults: Object.values(state.entities.searchResults)

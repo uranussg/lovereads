@@ -45,8 +45,8 @@
 }
 
 .book-list-item .item-info {
-    padding: 5px 0;
-    margin: 5px 0;
+    // padding: 5px 0;
+    // margin: 5px 0;
     display: inline-flex;
     flex-direction: column;
     width: 100%;
@@ -54,9 +54,11 @@
 }
 
 .book-list-item .item-title{
-    font-family: "Merriweather", "Georgia", serif;
+    font-family: "Lato",  "Helvetica Neue", "Helvetica", sans-serif;
     // font-size: 120%;
     // font-weight: bold;
-    line-height: 1.3;
+    line-height: 1.5;
     text-align: center;
+    color:#382110;
+    font-weight: 500;
 }

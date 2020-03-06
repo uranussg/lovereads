@@ -22,7 +22,7 @@ export const fetchReview = (reviewId) => {
 }
 
 export const updateReview = (review) => {
-
+    
     return $.ajax ({
         method: "Patch",
         url: `/api/reviews/${review.bookId}`,

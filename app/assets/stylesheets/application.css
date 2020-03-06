@@ -16,8 +16,10 @@
  *= require './books_index.scss'
  *= require './bookshelf.scss'
  *= require './book_show_detail.scss'
+ *= reqiure './shelf_form.scss'
  *= require './review-list-item.scss'
  *= require './rating.scss'
+ *= require './review_form.scss'
  *= require_tree .
  *= require_self
  */

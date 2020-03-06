@@ -1,11 +1,12 @@
 .stars-container{
     display: inline-flex;
     flex-direction: row-reverse;
-    justify-content: flex-end;
+    justify-content: center;
     margin-right: 3px;
     flex-wrap: nowrap;
     cursor: pointer;
     background-repeat: no-repeat;
+    width: 100%;
 }
 
 

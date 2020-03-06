@@ -14,6 +14,10 @@ class BookshelfForm extends React.Component {
         this.toggleClass = this.toggleClass.bind(this)
     }
 
+    // componentDidUpdate() {
+    //     if(this.props.state)
+    // }
+
     handleSubmit(e){
         
         this.setState({title:e.target.innerText},

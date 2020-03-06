@@ -21,6 +21,7 @@ class Api::ReviewsController < ApplicationController
     end
 
     def update
+        
         @review =Review.find_by({user_id: review_params[:user_id], book_id: review_params[:book_id] })
         
         if @review.update(review_params)

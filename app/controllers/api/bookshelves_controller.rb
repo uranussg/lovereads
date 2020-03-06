@@ -27,7 +27,8 @@ class Api::BookshelvesController < ApplicationController
         end
     end
 
-    def update       
+    def update    
+           
          @bookshelf = Bookshelf.find(params[:id])
         
         if @bookshelf.update(bookshelf_params)

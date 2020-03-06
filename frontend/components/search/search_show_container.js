@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import SearchShow from './search_show'
 
 const mapStateToProp = (state, ownProps) => {
-    debugger
+    
     return {
         body: ownProps.match.params.body,
         // searchResults: Object.values(state.entities.searchResults)
