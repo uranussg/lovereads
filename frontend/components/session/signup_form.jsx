@@ -39,7 +39,8 @@ class SignupForm extends React.Component {
     }
     render() {
         let errorMessage 
-        if (Object.keys(this.props.errors).length> 0)
+        debugger
+        if (Object.keys(this.props.errors).length> 0 && Object.keys(this.props.errors.signup).length> 0)
             { errorMessage = this.props.errors.signup.map( error => (
             
             <li>{error}</li>

@@ -6,14 +6,14 @@ export default (state = {}, action) => {
     Object.freeze(state)
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            return []
+            return {signin:[], signup:[]}
         case RECEIVE_SESSION_ERRORS:
             const newState =Object.assign({}, state)
             newState[action.errortype] = action.errors
             return newState
 
         case CLEAR_SESSION_ERRORS:
-            return []
+            return {signin:[], signup:[]}
         default:
             return state
     }

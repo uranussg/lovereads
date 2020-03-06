@@ -48,10 +48,11 @@ class SessionForm extends React.Component {
     }
     render() {
         let errorMessage
-        if (Object.keys(this.props.errors).length> 0)
+        if (Object.keys(this.props.errors).length> 0 &&Object.keys(this.props.errors.signin).length> 0)
             { 
                 errorMessage = this.props.errors.signin}
             
+        
         return (<div className="session-form">
             <form className="signin-form">
                 <div>

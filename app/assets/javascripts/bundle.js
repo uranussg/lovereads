@@ -2391,7 +2391,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var errorMessage;
 
-      if (Object.keys(this.props.errors).length > 0) {
+      if (Object.keys(this.props.errors).length > 0 && Object.keys(this.props.errors.signin).length > 0) {
         errorMessage = this.props.errors.signin;
       }
 
@@ -2550,8 +2550,9 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var errorMessage;
+      debugger;
 
-      if (Object.keys(this.props.errors).length > 0) {
+      if (Object.keys(this.props.errors).length > 0 && Object.keys(this.props.errors.signup).length > 0) {
         errorMessage = this.props.errors.signup.map(function (error) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, error);
         });
@@ -3018,7 +3019,10 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return [];
+      return {
+        signin: [],
+        signup: []
+      };
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
       var newState = Object.assign({}, state);
@@ -3026,7 +3030,10 @@ __webpack_require__.r(__webpack_exports__);
       return newState;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_SESSION_ERRORS"]:
-      return [];
+      return {
+        signin: [],
+        signup: []
+      };
 
     default:
       return state;
