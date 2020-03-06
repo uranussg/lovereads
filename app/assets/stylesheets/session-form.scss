@@ -126,7 +126,8 @@ nav .signin-form input {
 }
 
 .unlogged .masthead .error-messages {
-    top: -10px;
+    top: 0;
+    transform: translate(0, -80%);
     align-self: center;
 }
 
@@ -172,12 +173,12 @@ nav .signin-form input {
     transform: translate(0, -80%);
 }
 
-.single-page-session .signup.error-messages {
+ .signup.error-messages {
     padding-left: 20px;
 
 }
 
-.single-page-session .error-messages li {
+ .signup.error-messages li {
 
     padding: 2px 0;
     // padding-left: 16px;

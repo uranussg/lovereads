@@ -47,7 +47,7 @@ class ReviewForm extends React.Component {
         
         let {book} =this.props 
         book = book || {}
-        // debugger
+        // 
         return (
             <div className="review-form">
                 <div className='review-book'>

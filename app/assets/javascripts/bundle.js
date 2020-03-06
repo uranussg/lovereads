@@ -1736,7 +1736,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var book = this.props.book;
-      book = book || {}; // debugger
+      book = book || {}; // 
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-form"
@@ -2550,7 +2550,6 @@ var SignupForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var errorMessage;
-      debugger;
 
       if (Object.keys(this.props.errors).length > 0 && Object.keys(this.props.errors.signup).length > 0) {
         errorMessage = this.props.errors.signup.map(function (error) {
