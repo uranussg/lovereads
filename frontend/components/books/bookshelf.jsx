@@ -21,8 +21,8 @@ class BookShelf extends React.Component {
     }
 
     handleUpdate(e){
-        
-        this.props.fetchBookshelf(e.target.value)
+        ['Want to Read', 'Reading', 'Read'].includes(e.target.value)?
+        this.props.fetchBookshelf(e.target.value) : this.props.fetchBookshelves()
     }
     handleDelete(e) {
         
@@ -36,12 +36,12 @@ class BookShelf extends React.Component {
         // <li> <button onClick={this.handleUpdate} value={title[0]}>{title[0]}({title[1]})</button>  </li>
         // ))
         const titlelist = ['Want to Read', 'Reading', 'Read'].map(status=> (
-            <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]})</button>  </li>
+            <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]|| 0 })</button>  </li>
             ))
         const bookList = books.map(book => (
-            <div>
+            <li>
             <BookIndexItem book={book} key={book.id}/>
-            <button onClick={this.handleDelete} value={book.id}>Remove from Shelf</button></div>
+            <button onClick={this.handleDelete} value={book.id}>Remove from Shelf</button></li>
         ))
         
         return (
@@ -54,6 +54,7 @@ class BookShelf extends React.Component {
                         <div className='shelf-titles'>
                             <h3>Bookshelves</h3>
                             <ul>
+                                <li> <button onClick={this.handleUpdate}> All</button></li>
                                 {titlelist}
                             </ul>
                         </div>

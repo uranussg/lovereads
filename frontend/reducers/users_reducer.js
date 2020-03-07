@@ -2,7 +2,7 @@ import { RECEIVE_CURRENT_USER} from '../actions/session_actions'
 
 import {RECEIVE_BOOKSHELF, REMOVE_BOOKSHELF} from '../actions/bookshelf_action'
 import { RECEIVE_REVIEW } from '../actions/review_actions'
-import {RECEIVE_TAG} from '../actions/tag_action'
+import {RECEIVE_TAGGING, REMOVE_TAGGING} from '../actions/tag_action'
 
 
 export default (state = {}, action) => {
@@ -22,14 +22,6 @@ export default (state = {}, action) => {
         //         newState[curr_user_id].bookshelves.push(action.bookshelf.title)
         //     }
         //     return newState
-        case RECEIVE_TAG:
-            
-                const curr_user_id = action.tag.user_id
-                if (!newState[curr_user_id].tags.includes(action.bookshelf.title))
-                {
-                    newState[curr_user_id].tags.push(action.tag.title)
-                }
-                return newState
         case RECEIVE_REVIEW:
             
             const user_id = action.review.user_id
@@ -43,8 +35,15 @@ export default (state = {}, action) => {
             newState[action.bookshelf.user_id].bookshelves[`${action.bookshelf.title}`] -= 1
             return newState
         case RECEIVE_BOOKSHELF:
-            newState[action.bookshelf.user_id].bookshelves[`${action.bookshelf.title}`] += 1
+            newState[action.bookshelf.user_id].bookshelves[`${action.bookshelf.title}`] = newState[action.bookshelf.user_id].bookshelves[`${action.bookshelf.title}`] + 1 || 1
             return newState
+            case REMOVE_TAGGING:
+
+                newState[action.taggings.user_id].tags[action.taggings.tag_id][2] -= 1
+                return newState
+            case RECEIVE_TAGGING:
+                newState[action.taggings.user_id].tags[action.taggings.tag_id][2] = newState[action.taggings.user_id].tags[action.taggings.tag_id][2] + 1 || 1
+                return newState
         default:
             return state
     }

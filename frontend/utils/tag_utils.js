@@ -32,7 +32,7 @@ export const createTagging = (book_id, tag) => {
     return $.ajax ({
         method: "POST",
         url: `/api/tags/${tag.id}/taggings`,
-        data:{book_id}
+        data:{tagging: {book_id}}
     })
 }
 

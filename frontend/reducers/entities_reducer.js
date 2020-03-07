@@ -10,8 +10,8 @@ import taggingReducer from './tagging_reducer'
 
 export default combineReducers ({
     users: usersReducer,
-    bookshelves: bookshelvesReducer,
     books: bookReducer,
+    bookshelves: bookshelvesReducer,
     reviews: reviewReducer,
     searchResults: searchReducer,
     writers: writerReducer,

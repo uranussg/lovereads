@@ -10,6 +10,7 @@ export default (state = {}, action) => {
     switch (action.type) {
 
         case RECEIVE_CURRENT_USER:
+            
                 return action.user.bookshelves || state
         case RECEIVE_BOOKSHELF:
             newState[action.bookshelf.book_id] = action.bookshelf

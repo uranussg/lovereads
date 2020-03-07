@@ -1,2 +1,2 @@
-json.extract! tagging, :id, :book_id,  :user_id, :tag_id
-json.set! :tag, tagging.tag.name
+json.extract! tagging, :id,   :user_id, :book_id,:tag_id
+json.set! :name, tagging.tag.name

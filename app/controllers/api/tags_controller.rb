@@ -1,30 +1,35 @@
 class Api::TagsController < ApplicationController
     def index
-        debugger
+        
         if params[:filter]
             @tags = Tag.includes(taggings: [:user, :book]).where(filter)
-            debugger
+            
         else
             @tags = Tag.all
-            debugger
+            
         end
     end
 
     def show 
-        @books = Tag.find_by(name: params[:id])[0].books
+        
+        @books = Tag.find_by(name: params[:id]).books
     end
 
     def create 
-        
-        # @bookshelf = Bookshelf.new({user_id:params[:user_id], book_id:params[:book_id], title:params[:title]})
-        @tags = Tagging.new(tag_params)
-
-        
-        if @tag.save
-            
+        @tag = Tag.find_by(tag_params[:name])
+        if @tag 
             render partial: 'api/tags/tag', object: @tag
-        else 
-            render @tag.errors.full_messages
+        else
+
+            @tag = Tag.new(tag_params)
+
+            
+            if @tag.save
+                
+                render partial: 'api/tags/tag', object: @tag
+            else 
+                render @tag.errors.full_messages
+            end
         end
     end
 

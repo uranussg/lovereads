@@ -13,9 +13,12 @@ class SearchShow extends React.Component {
         }
 
     }
-    componentDidUpdate() {
+    componentDidUpdate(prevProp) {
         if (this.props.body !== this.props.match.params.body)
          {this.props.fetchBooks()}
+        // if (this.props.books != prevProp.books) {
+        //     this.props.fetchBookIndex()
+        // }
     }
 
     render() {

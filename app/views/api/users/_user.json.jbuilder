@@ -18,8 +18,9 @@ json.bookshelves do
     end
 end
 json.taggings do
+
     user.taggings.each do |tagging|
-        json.set! tagging.book_id do  
+        json.set! tagging.id do  
             json.extract! tagging, :id, :user_id, :book_id, :tag_id
             json.set! :name, tagging.tag.name
         end

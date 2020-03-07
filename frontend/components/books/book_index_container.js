@@ -12,7 +12,7 @@ return ({
 const md = dispatch => {
 
 return ({
-    fetchBooks: () => dispatch(fetchBooks())
+    fetchBookIndex: () => dispatch(fetchBooks())
 })
 }
 export default connect(ms, md)(BookIndex)

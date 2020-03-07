@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:show, :index, :create] do
       resources :taggings, only: [:create]
     end
-    resource :taggings, only: :destroy
+    resources :taggings, only: :destroy
   end
 
   root to: 'static_pages#root'

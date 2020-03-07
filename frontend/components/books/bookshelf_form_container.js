@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import BookshelfForm from './bookshelf_form'
-import {createBookshelf, editBookshelf, removeBookshelf} from '../../actions/bookshelf_action'
+import {createBookshelf, editBookshelf, deleteBookFromShelf, removeBookshelf} from '../../actions/bookshelf_action'
 import {withRouter} from 'react-router-dom'
 
 const ms = (state, ownProps) => {
@@ -15,6 +15,7 @@ return {
 const md = dispatch => ({
     createBookshelf: bookshelf => dispatch(createBookshelf(bookshelf)),
     editBookshelf: (bookshelfId, bookshelf)=> dispatch(editBookshelf(bookshelfId, bookshelf)),
+    deleteBookFromShelf: (bookshelf) => dispatch(deleteBookFromShelf(bookshelf)),
     removeBookshelf: (bookshelf) => dispatch(removeBookshelf(bookshelf))
 }
 )

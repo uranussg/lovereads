@@ -6,7 +6,7 @@ class Api::TaggingsController < ApplicationController
         @tagging.user_id = current_user.id
         @tagging.tag_id = params[:tag_id]
         if @tagging.save
-            
+
             render partial: 'api/taggings/tagging', object: @tagging
         else 
             render @tagging.errors.full_messages
@@ -16,6 +16,7 @@ class Api::TaggingsController < ApplicationController
 
     def destroy
         @tagging =Tagging.find(params[:id])
+        
         if @tagging.destroy
             render partial: 'api/taggings/tagging', object: @tagging
         else 

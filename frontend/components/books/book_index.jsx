@@ -6,9 +6,16 @@ class BookIndex extends React.Component {
         super(props)
     }
 
+    // componentDidUpdate(prevProp) {
+    //     
+    //     if (JSON.stringify(this.props.books) != JSON.stringify(prevProp.books)) {
+    //         this.props.fetchBookIndex()
+    //     }
+    // }
+
     componentDidMount() {
         // if (this.props.books.length === 0)
-         {this.props.fetchBooks()}
+         {this.props.fetchBookIndex()}
     }
 
     render() {
@@ -19,7 +26,7 @@ class BookIndex extends React.Component {
 
         return (
             <div className="book-list-container">
-                <h2>New Books</h2>
+                {/* <h2>New Books</h2> */}
                 <ul>
                     {bookList}
                 </ul>

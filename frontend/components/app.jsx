@@ -9,7 +9,7 @@ import BookShowContainer from './books/book_show_container'
 import BookShelfContainer from './books/bookshelf_container'
 import ReviewFormContainer from './reviews/review_form_container'
 import NotFound from './not_found';
-import SearchShowContainer from './search/search_show_container'
+import SearchPage from './search/search_page'
 import WriterShowContainer from './writers/writer_show_container'
 
 const App = () => (
@@ -40,7 +40,7 @@ const App = () => (
             <ProtectedRoute exact path='/books/:bookId' component={BookShowContainer}/>
             <ProtectedRoute exact path='/bookshelf' component={BookShelfContainer}/>
             <ProtectedRoute exact path="/books/:bookId/reviews" component={ReviewFormContainer} />
-            <Route path="/search/:body" component={SearchShowContainer}/>
+            <Route path="/search/:body" component={SearchPage}/>
             <Route path='/writers/:writerId' component={WriterShowContainer}/>
             {/* <Route path="/search/:body" render={(props) => 
             <div className="search-show">

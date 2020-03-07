@@ -19,13 +19,22 @@ class BookshelfForm extends React.Component {
     // }
 
     handleSubmit(e){
-        this.props.removeBookshelf(this.props.bookshelf)
-        this.setState({title:e.target.innerText},
-            ()=> (this.props.read? this.props.editBookshelf(this.props.bookshelf.id, this.state)
-            .then((e)=>this.toggleClass(e)):
-            this.props.createBookshelf(this.state)
-            .then((e)=>this.toggleClass(e))
-            ))
+        
+        const editorcreate = (bool) => {
+            if (bool){
+                this.props.removeBookshelf(this.props.bookshelf)
+                this.props.editBookshelf(this.props.bookshelf.id, this.state)
+                .then((e)=>this.toggleClass(e))}else {
+                this.props.createBookshelf(this.state)
+            .then((e)=> (e.target.innerText=== 'Want to Read'? null : this.toggleClass(e)))
+            }
+            }
+        
+        e.target.getAttribute('value') === 'delete' ?
+        this.props.deleteBookFromShelf(this.props.bookshelf.id)
+        : this.setState({title:e.target.innerText},
+           ()=>editorcreate(this.props.read)
+) 
         
     }
 
@@ -45,10 +54,10 @@ class BookshelfForm extends React.Component {
             <div className='status-bar'>
                 {this.props.read? 
                 <div className="added">
-                    <div className="check-mark"><i className="fas fa-check-circle"></i></div>
+                    <div className="check-mark" > <button onClick={this.handleSubmit} value="delete">delete</button> </div>
                     <p>{this.props.read}</p>
                     </div>:
-                    <div className="unadded"> <p> Want To Read</p></div>
+                    <div className="unadded" onClick={this.handleSubmit}> <p> Want to Read</p></div>
                 }
             </div >
             <div className="add-shelf">

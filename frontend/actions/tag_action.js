@@ -5,6 +5,7 @@ export const RECEIVE_TAG = "RECEIVE_TAG"
 export const RECEIVE_TAGS = "RECEIVE_TAGS"
 export const RECEIVE_TAGGING = "RECEIVETAGGING"
 export const RECEIVE_TAGS_ERRORS = "RECEIVE_TAGS_ERRORS"
+export const REMOVE_TAGGING = "REMOVE_TAGGING"
 
 
 
@@ -20,6 +21,11 @@ export const receiveTag = (tag) => ({
 
 export const receiveTagging = tagging => ({
     type: RECEIVE_TAGGING,
+    tagging
+})
+
+export const removeTagging = (tagging) => ({
+    type: REMOVE_TAGGING,
     tagging
 })
 
@@ -63,7 +69,7 @@ export const createTagging = (bookId, tag) => dispatch => {
 export const deleteTagging = (tagging_id) => dispatch => {
 
     return APIUtil.deleteTagging(tagging_id)
-    .then(tagging => dispatch(receiveTagging(tagging)),
+    .then(tagging => dispatch(removeTagging(tagging)),
     errors => dispatch(receiveErrors(errors.responseJSON)))
 }
 
