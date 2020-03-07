@@ -8,8 +8,13 @@ class BookShelf extends React.Component {
         super(props)
         this.state={}
         this.handleUpdate= this.handleUpdate.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
     }
-
+    componentDidUpdate(prevProps) {
+        if(this.props.bookshelves!==prevProps.bookshelves){
+        this.props.fetchBookshelves()
+        }
+    }
     componentDidMount(){
         
         this.props.fetchBookshelves()
@@ -19,15 +24,24 @@ class BookShelf extends React.Component {
         
         this.props.fetchBookshelf(e.target.value)
     }
+    handleDelete(e) {
+        
+        this.props.deleteBookFromShelf(this.props.bookshelves[e.target.getAttribute('value')].id)
+    }
 
     render() {
         
         const {titles, books} = this.props
-        const titlelist = titles.map(title=> (
-        <li> <button onClick={this.handleUpdate} value={title}>{title}</button>  </li>
-        ))
+        // const titlelist = titles.map(title=> (
+        // <li> <button onClick={this.handleUpdate} value={title[0]}>{title[0]}({title[1]})</button>  </li>
+        // ))
+        const titlelist = ['Want to Read', 'Reading', 'Read'].map(status=> (
+            <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]})</button>  </li>
+            ))
         const bookList = books.map(book => (
+            <div>
             <BookIndexItem book={book} key={book.id}/>
+            <button onClick={this.handleDelete} value={book.id}>Remove from Shelf</button></div>
         ))
         
         return (

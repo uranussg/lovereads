@@ -10,6 +10,8 @@ Bookshelf.destroy_all
 Book.destroy_all
 User.destroy_all
 Writer.destroy_all
+Tag.destroy_all
+Tagging.destroy_all
 
 u1 = User.create(username: "song1", email:"song1", password:111111)
 u2 = User.create(username: "song2", email:"song2", password:111111)
@@ -36,3 +38,13 @@ r2 = Review.create(user_id: u1.id, book_id:b2.id, rate: 5, body:"good!")
 r3 = Review.create(user_id: u1.id, book_id:b3.id, rate: 2)
 r4 = Review.create(user_id: u1.id, book_id:b4.id, rate: 3)
 r5 = Review.create(user_id: u2.id, book_id:b1.id, rate: 5)
+
+
+t1 = Tag.create(name:"demo")
+t2 = Tag.create(name:"fiction")
+t3 = Tag.create(name:"philosophy")
+tg1 = Tagging.create(user_id:u1.id, book_id:b1.id, tag_id:t1.id)
+tg2 = Tagging.create(user_id:u1.id, book_id:b2.id, tag_id:t2.id)
+tg3 = Tagging.create(user_id:u1.id, book_id:b3.id, tag_id:t2.id)
+tg4 = Tagging.create(user_id:u1.id, book_id:b1.id, tag_id:t3.id)
+tg5 = Tagging.create(user_id:u2.id, book_id:b1.id, tag_id:t1.id)

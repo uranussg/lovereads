@@ -33,11 +33,7 @@ class User < ApplicationRecord
         return self.session_token
       end
   
-    #   has_many :reviews
-  
-    #   has_many :reviewed_benches,
-    #     through: :reviews,
-    #     source: :bench
+
 
     has_many :bookshelves
 
@@ -53,8 +49,33 @@ class User < ApplicationRecord
       self.bookshelves.pluck(:title).uniq
     end
 
-    def books_on_shelf(shelf)
-      Book.joins(bookshelves: :user).where("users.id = ?", self.id).where('bookshelves.title = ?', shelf)
+    def ordered_bookshelves
+      bookshelves.group(:title).order("COUNT(*) DESC").limit(10).select(:title, 'count(*) as count').map {|bookshelf| [bookshelf.title, bookshelf.count]}.to_h
 
     end
+
+    def books_on_shelf(shelf)
+      Book.joins(bookshelves: :user).where("users.id = ?", self.id).where('bookshelves.title = ?', shelf)
+    
+    end
+
+    has_many :taggings
+
+    has_many :tags,
+      through: :taggings,
+      source: :tag  
+
+    has_many :tagged_books,
+      through: :taggings,
+      source: :book     
+    
+    has_many :books_under_tags_in_use,
+      through: :tags,
+      source: :books
+
+      def ordered_tags
+        tags.group(:name).order("COUNT(*) DESC").limit(10).select(:name, 'count(*) as count').map {|tag| [tag.name, tag.count]}.to_h
+        
+      end
+
 end

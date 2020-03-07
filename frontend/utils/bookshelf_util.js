@@ -25,6 +25,14 @@ export const editBookshelf = (bookshelfId, bookshelf) => {
     })
 }
 
+export const deleteBookshelf = (bookshelfId) => {
+
+    return $.ajax ({
+        method: "delete",
+        url: `/api/bookshelves/${bookshelfId}`,
+    })
+}
+
 export const fetchBookshelf = (title) => {
     
     return $.ajax ({

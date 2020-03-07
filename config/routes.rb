@@ -8,9 +8,13 @@ Rails.application.routes.draw do
     end
     resources :reviews, only: [:show, :update, :destroy]
 
-    resources :bookshelves, only: [:index, :show, :create, :update]
+    resources :bookshelves, only: [:index, :show, :create, :update, :destroy]
     resources :searches, only: [:show, :index]
     resources :writers, only: [:show]
+    resources :tags, only: [:show, :index, :create] do
+      resources :taggings, only: [:create]
+    end
+    resource :taggings, only: :destroy
   end
 
   root to: 'static_pages#root'

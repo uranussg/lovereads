@@ -40,6 +40,17 @@ class Api::BookshelvesController < ApplicationController
 
     end
 
+    def destroy
+        @bookshelf = Bookshelf.find(params[:id])
+        
+        if @bookshelf.destroy
+            
+            render partial: 'api/bookshelves/bookshelf', object: @bookshelf
+        else 
+            render @bookshelf.errors.full_messages
+        end
+    end
+
     def bookshelf_params
         params.require(:bookshelf).permit(:user_id, :book_id, :title)
     end

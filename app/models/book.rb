@@ -28,4 +28,14 @@ class Book < ApplicationRecord
     end
 
     has_one_attached :cover
+
+    has_many :taggings  
+    has_many :tags,
+        through: :taggings,
+        source: :tag
+
+    def ordered_tags
+        tags.group(:name).order("COUNT(*) DESC").limit(10).select(:name, 'count(*) as count').map{|tag| tag.name}
+            
+    end
 end

@@ -1,7 +1,9 @@
 
 json.info do
     json.extract! user, :id, :username, :email
-    json.bookshelves user.shelf_titles
+    # json.bookshelves user.shelf_titles
+    json.tags user.ordered_tags
+    json.bookshelves  user.ordered_bookshelves
     json.rate do
     user.reviews.each do |review|
         json.set! review.book_id, review.rate
@@ -15,4 +17,11 @@ json.bookshelves do
         end
     end
 end
-
+json.taggings do
+    user.taggings.each do |tagging|
+        json.set! tagging.book_id do  
+            json.extract! tagging, :id, :user_id, :book_id, :tag_id
+            json.set! :name, tagging.tag.name
+        end
+    end
+end

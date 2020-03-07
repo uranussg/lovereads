@@ -5,6 +5,8 @@ import bookshelvesReducer from './bookshelves_reducer'
 import reviewReducer from './reviews_reducer'
 import searchReducer from './search_reducer'
 import writerReducer from './writer_reducer'
+import tagReducer from './tags_reducer'
+import taggingReducer from './tagging_reducer'
 
 export default combineReducers ({
     users: usersReducer,
@@ -12,6 +14,9 @@ export default combineReducers ({
     books: bookReducer,
     reviews: reviewReducer,
     searchResults: searchReducer,
-    writers: writerReducer
+    writers: writerReducer,
+    tags: tagReducer,
+    taggings: taggingReducer
+
 
 })

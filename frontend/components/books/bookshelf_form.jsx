@@ -19,7 +19,7 @@ class BookshelfForm extends React.Component {
     // }
 
     handleSubmit(e){
-        
+        this.props.removeBookshelf(this.props.bookshelf)
         this.setState({title:e.target.innerText},
             ()=> (this.props.read? this.props.editBookshelf(this.props.bookshelf.id, this.state)
             .then((e)=>this.toggleClass(e)):
@@ -69,13 +69,13 @@ class BookshelfForm extends React.Component {
                         <div value="Read"
                         onClick={this.handleSubmit}>Read</div>
                     </li>
-                    <li>
+                    {/* <li>
                         <form className="add-new-shelf" onSubmit={this.handleSubmit}>
                             <button type="submit">Add Shelf</button>
                             <input type="text" value={this.state.title}
                         onChange={this.handleUpdate}/>
                         </form>
-                    </li>                   
+                    </li>                    */}
                 </ul>
             </div>
         </div>
