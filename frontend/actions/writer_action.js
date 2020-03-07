@@ -1,8 +1,9 @@
 import *  as APIUtil from "../utils/writer_util"
 
 export const RECEIVE_WRITER = "RECEIVE_WRITER"
+export const RECEIVE_WRITER_ERRORS = "RECEIVE_WRITER_ERRORS"
 
-export const receiveBook = (writer) => ({
+export const receiveWriter = (writer) => ({
     type: RECEIVE_WRITER,
     writer
 }) 

@@ -4,12 +4,14 @@ import bookReducer from './books_reducer'
 import bookshelvesReducer from './bookshelves_reducer'
 import reviewReducer from './reviews_reducer'
 import searchReducer from './search_reducer'
+import writerReducer from './writer_reducer'
 
 export default combineReducers ({
     users: usersReducer,
     bookshelves: bookshelvesReducer,
     books: bookReducer,
     reviews: reviewReducer,
-    searchResults: searchReducer
+    searchResults: searchReducer,
+    writers: writerReducer
 
 })

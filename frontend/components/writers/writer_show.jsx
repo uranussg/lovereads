@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-
+import BookIndexItem from '../books/book_index_item';
 
 
 
@@ -10,16 +10,17 @@ class WriterShow extends React.Component {
         super(props)
     }
 
-    componentDidUpdate() {
-        const num = parseInt(this.props.match.params.writerId)
+    componentDidUpdate(prevProps) {
+  
         // 
-        if(this.props.writer.id !== num) {
+        if(this.props.writer.id !== prevProps.writer.id) {
             
-            this.props.fetchBook(num)
+            this.props.fetchWriter(this.props.writer.id)
         }
     }
 
     componentDidMount(){
+        
         
             this.props.fetchWriter(this.props.match.params.writerId)
         
@@ -43,7 +44,7 @@ class WriterShow extends React.Component {
                     <div className="writer-info-col-2">
                         <div className="writer-basic-info">
                             <h2>{writer.name}</h2>
-                            <h3>Born: {writer.born}}</h3>
+                            <h3>Born: {writer.born}</h3>
                             <p>
                                 {writer.description}
                             </p>

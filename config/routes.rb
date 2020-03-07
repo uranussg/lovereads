@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
     resources :bookshelves, only: [:index, :show, :create, :update]
     resources :searches, only: [:show, :index]
-    resources :writers, only: :show
+    resources :writers, only: [:show]
   end
 
   root to: 'static_pages#root'

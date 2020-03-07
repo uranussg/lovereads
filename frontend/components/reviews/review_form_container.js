@@ -5,7 +5,7 @@ import {fetchBook} from '../../actions/book_action'
 import ReiviewForm from './review_form'
 
 const mapStateToProps = (state, ownProps) => {
-    // debugger
+    // 
 return ({
     review: Object.values(state.entities.reviews).length? Object.values(state.entities.reviews).filter(review=> review.user_id === state.session.id)[0] : {},
     userId: state.session.id,

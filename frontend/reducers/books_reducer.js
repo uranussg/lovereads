@@ -1,4 +1,5 @@
 import {RECEIVE_BOOKS, RECEIVE_BOOK} from '../actions/book_action'
+import {RECEIVE_WRITER} from '../actions/writer_action'
 
 
 export default (state = {}, action) => {
@@ -14,6 +15,9 @@ export default (state = {}, action) => {
             const newState = Object.assign({}, state)
             newState[action.book.id] = action.book            
             return newState
+        case RECEIVE_WRITER:
+                   
+            return action.writer.books
 
         default:
             return state
