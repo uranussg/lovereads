@@ -20,6 +20,8 @@
  *= require './review-list-item.scss'
  *= require './rating.scss'
  *= require './review_form.scss'
+ *= require './tags.scss'
+ *= require './rate_detail.scss'
  *= require_tree .
  *= require_self
  */

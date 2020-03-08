@@ -1,0 +1,110 @@
+.book-show-page .tags-container {
+    grid-column: 2;
+    margin-left: 5px;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;;
+}
+
+.book-show-page .tag-nav {
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 10px;
+    // border-bottom: 1px solid #EBE8D5;
+}
+
+.book-show-page .tags {
+    padding: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-show-page .book-tags {
+    padding: 10px 5px;
+    border-top: 1px solid #EBE8D5;
+
+}
+
+.book-show-page .user-tag-on-book ul {
+        display: flex;
+    flex-wrap: wrap;
+}
+
+.book-show-page .user-tag-on-book li{
+    font-weight: lighter;
+    font-size: 14px;
+    color:#382110;
+    padding: 4px 8px;
+    margin: 4px 4px;
+    background-color: #F4F1EA;
+    border-radius: 1rem;
+
+}
+
+.book-show-page .user-tag-on-book h3 {
+    font-size: 14px;
+    padding: 5px;
+    margin: 8px 0 5px 0;
+    border-top: dotted 1px #DCD6CC ;
+}
+.book-show-page .user-tags {
+    padding: 10px 5px;
+    border-top: 1px dotted #EBE8D5;
+
+}
+
+.book-show-page .tags .add-new-tag {
+    padding: 10px 5px;
+    border-top: 1px dotted #EBE8D5;
+}
+
+.book-show-page .tags h2 {
+    padding-bottom: 8px;
+    font-weight: 600;
+}
+
+
+.book-show-page .tags li {
+    padding: 3px 0;
+        font-weight: lighter;
+    font-size: 14px;
+    color:#382110;
+    width: 80%;
+    display: inline-flex;
+    justify-content: space-between;
+    // float: 50%;
+}
+
+.book-show-page .add-tag-button {
+    float: right;
+    width: 20%;
+    // flex-grow: 1;
+    height: 16px;
+    background-image: asset_url('plus.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.book-show-page .add-tag-button:hover {
+    background-image: asset_url('plus-square.svg');
+
+}
+.book-show-page .tags .add-new-tag button{
+    // margin-top: 10px;
+    padding-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.book-show-page .tags input {
+    padding: 5px 3px;
+    background: #FFFFFF;
+    border-radius: 3px;
+    border: #DCD6CC 1px solid;
+    color: #333333;
+
+}
+
+.book-show-page .tags input:focus {
+    background-color: rgb(250, 250, 250);
+    box-shadow:0 0 3px #D6D0C4;
+
+}

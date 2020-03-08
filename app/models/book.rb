@@ -15,7 +15,8 @@ class Book < ApplicationRecord
     has_many :reviews
 
     def rate
-        self.reviews.map(&:rate).sum * 1.0 / self.reviews.length
+         num = self.reviews.map(&:rate).sum * 1.0 / self.reviews.length
+        # Number.parseFloat(num).toPrecision(2)
     end
 
     def rate_detail

@@ -54,7 +54,7 @@ class BookshelfForm extends React.Component {
             <div className='status-bar'>
                 {this.props.read? 
                 <div className="added">
-                    <div className="check-mark" > <button onClick={this.handleSubmit} value="delete">delete</button> </div>
+                    <div className="check-mark" > <button onClick={this.handleSubmit} value="delete"></button> </div>
                     <p>{this.props.read}</p>
                     </div>:
                     <div className="unadded" onClick={this.handleSubmit}> <p> Want to Read</p></div>

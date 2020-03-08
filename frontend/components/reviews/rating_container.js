@@ -12,6 +12,7 @@ const mapStateToProps = (state, ownProps) =>
     return ({
     userId: state.session.id,
     bookId: ownProps.match.params.bookId,
+    // book:
     rate: state.entities.users[state.session.id].rate[ownProps.match.params.bookId],
 })
 }

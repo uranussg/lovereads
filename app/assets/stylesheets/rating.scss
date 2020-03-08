@@ -1,7 +1,7 @@
 .stars-container{
     display: inline-flex;
     flex-direction: row-reverse;
-    justify-content: center;
+    justify-content: flex-end;
     margin-right: 3px;
     flex-wrap: nowrap;
     cursor: pointer;
@@ -21,6 +21,11 @@
     background-size: contain;
     background-repeat: no-repeat;
 
+}
+
+.stars-show {
+    width: 16px;
+    height: 16px;
 }
 
 .stared {

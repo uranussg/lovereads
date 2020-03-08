@@ -6,6 +6,7 @@ import { ProtectedRoute} from '../../utils/route_util.js'
 import ReviewIndex from '../reviews/review_index'
 import RatingContainer from '../reviews/rating_container'
 import TagForm from '../tags/tag_form'
+import RatingShow from '../reviews/rating-show'
 
 
 
@@ -13,13 +14,16 @@ import TagForm from '../tags/tag_form'
 class BookShow extends React.Component {
     constructor(props) {
         super(props)
+        this.state = this.props.book
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProp) {
         const num = parseInt(this.props.match.params.bookId)
-        // 
-        if(this.props.book.id !== num) {
-            
+        // // 
+        if(this.props.book.id !== num)
+        // if(JSON.stringify(this.props.book)!==JSON.stringify(prevProp.book))
+         {
+            // this.setState(this.props.book)
             this.props.fetchBook(num)
         }
     }
@@ -41,7 +45,16 @@ class BookShow extends React.Component {
 
     render() {
         const {book} = this.props
-
+        
+        let ratnum= 0
+       if  (book.rateDetail)
+        { for( let i=1;i<6;i++){
+        ratnum+= book.rateDetail[i]
+            }}
+     
+         
+        const mytagonbook = book? this.props.taggings
+    .filter(tagging=> tagging.book_id === book.id).map(tagging => ( <li>{tagging.name}</li> )) : []
         return(
             <div className="book-show-page">
                 <div className="book-info">
@@ -49,17 +62,31 @@ class BookShow extends React.Component {
 
                         <img src={window.demoCover}/>
                         <BookshelfFormContainer/>
+                        <div className='user-tag-on-book'>
+                            <h3>my tags on <span>{book.title}</span></h3>
+                            <ul>
+                                {mytagonbook}
+                            </ul>
+                        </div>
 
                     </div>
                     <div className="book-info-col-2">
                         <div className="book-basic-info">
                             <h2>{book.title}</h2>
-
                             <Link to={`/writers/${book.writer_id}`}>< h3>by {book.writer}</h3></Link>
+                             <div className='book-rating'>
+                            <div className='score'>{Number.parseFloat(book.rate).toPrecision(2)}</div>
+                            <div className='rate-num'>
+                                <RatingShow rate={book.rate}/>
+                                <div className='num'>{ratnum} ratings</div>
+                            </div>
+
+                        </div>
                             <p>
                                 {book.description}
                             </p>
                         </div>
+                
                         <div className='book-more-detail'>
                             <a onClick={this.toggleDetail} className='more-detail'>...More Detail</a>
                             <ul className="more-detail hidden">
@@ -75,6 +102,11 @@ class BookShow extends React.Component {
 
 
                 </div>
+
+                <div className='tags-container'>
+                    <h2 className='tag-nav'>Add Tags</h2>
+                    <TagForm createTag={this.props.createTag} createTagging={this.props.createTagging} book={book} userTags={this.props.userTags}/>
+                </div>
                 <div className='reviews'>
                     <h2>Reviews </h2>
                     <div className='rating-review-form'>
@@ -82,10 +114,6 @@ class BookShow extends React.Component {
                     <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
                     </div>
                     <ReviewIndex fetchReviews={this.props.fetchReviews} reviews={this.props.reviews} book={book}/>
-                </div>
-
-                <div className='tags'>
-                    <TagForm createTag={this.props.createTag} createTagging={this.props.createTagging} book={book} userTags={this.props.userTags}/>
                 </div>
             </div>
         )

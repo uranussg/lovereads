@@ -7,24 +7,44 @@
     margin-right: 15px;
     margin: 3px;
     position: relative;
+    align-items: center;
 
 }
 .status-bar {
     flex-grow: 1;
+    height: 22px;
 }
 
 .status-bar p {
-    padding:5px;
-    font-size: 13px;
+    padding:4px;
+    font-size: 14px;
 }
 
 .status-bar .added{
-    background-color: #f2f2f2;  
+    background-color: white; 
+    display: flex; 
+}
+.status-bar .added .check-mark button{
+    background: asset_url('checkmark.png');
+    height: 16px;
+    width: 16px;
+    background-size: contain;
+    margin: 3px;
+    background-repeat: no-repeat;
 }
 
+.status-bar .added .check-mark button:hover {
+    background: asset_url('delete');
+}
+
+// .status-bar .added .check-mark button {
+//     width: 100%;
+//     height: 100%;
+// }
+
 .status-bar .unadded {
-    background-color: #409D69;
-    columns: white;
+    background-color: #EBE8D5;
+    color: white;
 }
 
 .status-bar .check-mark {
@@ -32,14 +52,16 @@
 }
 
 .add-shelf {
-    width: 27px;
+    width: 26px;
     position: relative;
 }
 
 .shelf-trigger {
-    height: 23px;
+    height: 22px;
     position: relative;
-    background-color: #409D69;
+    background-color: #EBE8D5;
+    // border: 4px solid #382110;
+    border-radius: 1rem;
     border-radius: 0 3px 3px 0;
 }
 
@@ -61,11 +83,12 @@
     padding: 3px;
     font-size: 13px;
     right:0;
-    width: 150px;
+    width: 160px;
+    margin-top: 5px;
 }
 .shelf-drop-down li {
     display: block;
-    padding: 3px;
+    padding: 5px;
     z-index: 3;
 }
 .shelf-drop-down.show {

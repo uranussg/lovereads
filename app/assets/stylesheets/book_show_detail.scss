@@ -14,11 +14,12 @@
 .book-info {
     grid-column: 1;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 185px 1fr;
     width: 100%;
-    padding: 3px 0;
+    padding: 3px ;
     // border-bottom:  1px solid #EBE8D5;
     position: relative;
+
 }
 
 .book-info-col-1{
@@ -32,12 +33,13 @@
 .book-info-col-1 img {
     width: 100%;
     margin-bottom: 10px;
-    box-shadow:  #ddd 0px 5px 5px;
+    // box-shadow:  #ddd 0px 5px 5px;
+    border-radius: 8bpx;
 }
 
 .book-info-col-2{
     grid-column: 2;
-    margin-left: 10px;
+    margin:0 10px;
     box-sizing: border-box;
     
 

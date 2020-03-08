@@ -12,22 +12,32 @@ class RatingForm extends React.Component {
         }
         this.handleSubmit= this.handleSubmit.bind(this)
     }
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
+        // debugger
+        let num = parseInt(this.state.rate)
+        // const curBookId = parseInt(this.props.match.params.bookId)
+        let stars = document.getElementsByClassName("stars")
+        let flag
         
-        const num=parseInt(this.state.rate)
-        if(num!==this.props.rate){
+        if(num!==this.props.rate ){
+            num = num
+            flag = 1
+        }
+        if (this.props.rate !==prevProps.rate) {
+            num =this.props.rate
+            flag = 1
+        }
 
-            let stars = document.getElementsByClassName("stars")
+        if (flag===1)
             
-            for (let i =0; i< 5; i++){
+            {for (let i =0; i< 5; i++){
                 stars[i].classList.remove("stared")
             }
             for (let i = (5-num); i < 5; i++){
                 
                 stars[i].classList.add("stared")
-            }
+            }}
 
-        }
     }
     componentDidMount(){
         

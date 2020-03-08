@@ -43,22 +43,28 @@ class TagForm extends React.Component {
         
         
         booktags = book.tags? Object.keys(book.tags).map(tagkey => (
-        <li><button onClick={this.addTagging} value={tagkey}>{book.tags[tagkey][0]}</button><span>({book.tags[tagkey][1]})</span></li>
+        <li><div id={`${tagkey}book`} value={tagkey}>{book.tags[tagkey][0]}({book.tags[tagkey][1]})</div>
+        <span></span>
+        <button for={`${tagkey}book`} onClick={this.addTagging} value={tagkey} className='add-tag-button'></button>
+        </li>
         )) : []
 
         const mytags = Object.keys(this.props.userTags).map(tagkey => (
-            <li><button onClick={this.addTagging} value={tagkey}>{userTags[tagkey][0]}</button><span>({userTags[tagkey][1]})</span></li>
+            <li><span id={`${tagkey}user`} value={tagkey}>{userTags[tagkey][0]}({userTags[tagkey][1]})</span>
+            <span></span>
+            <button for={`${tagkey}user`} onClick={this.addTagging} value={tagkey} className='add-tag-button'></button>
+            </li>
             ))
         return (
         <div className="tags">
             <div className="book-tags">
-                <h2>book's tags</h2>
+                 <h2>Tags on {book.title}</h2>
                 <ul>
                     {booktags}
                 </ul>
             </div>
             <div className='user-tags'>
-                <h2>my tags</h2>
+                <h2>Tags I often use</h2>
                 <ul>
                     {mytags}
                 </ul>
