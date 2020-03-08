@@ -18,12 +18,12 @@ export const fetchTag = (name) => {
 }
 
 
-export const createTag = (tagName) => {
+export const createTag = (tag) => {
     
     return $.ajax ({
         method: "POST",
         url: "/api/tags",
-        data:{tagName}
+        data:{ tag }
     })
 }
 

@@ -39,10 +39,15 @@ export default (state = {}, action) => {
             return newState
             case REMOVE_TAGGING:
 
-                newState[action.taggings.user_id].tags[action.taggings.tag_id][2] -= 1
+                newState[action.tagging.user_id].tags[action.tagging.tag_id][1] -= 1
                 return newState
             case RECEIVE_TAGGING:
-                newState[action.taggings.user_id].tags[action.taggings.tag_id][2] = newState[action.taggings.user_id].tags[action.taggings.tag_id][2] + 1 || 1
+                
+                // const userTag = newState[action.tagging.user_id].tags
+                newState[action.tagging.user_id].tags[action.tagging.tag_id]? 
+                
+                newState[action.tagging.user_id].tags[action.tagging.tag_id][1] = newState[action.tagging.user_id].tags[action.tagging.tag_id][1] + 1 || 1 :
+                newState[action.tagging.user_id].tags[action.tagging.tag_id] = [action.tagging.name, 1] 
                 return newState
         default:
             return state

@@ -5,19 +5,19 @@ import BookIndexItem from '../books/book_index_item';
 
 
 
-class WriterShow extends React.Component {
+class TagList extends React.Component {
     constructor(props) {
         super(props)
     }
 
-    componentDidUpdate(prevProps) {
+    // componentDidUpdate(prevProps) {
   
-        // 
-        if(this.props.writer.id !== prevProps.writer.id) {
+    //     // 
+    //     if(this.props.writer.id !== prevProps.writer.id) {
             
-            this.props.fetchWriter(this.props.writer.id)
-        }
-    }
+    //         this.props.fetchWriter(this.props.writer.id)
+    //     }
+    // }
 
     componentDidMount(){
         
@@ -30,7 +30,9 @@ class WriterShow extends React.Component {
     render() {
         
         const tagList =this.props.tags.map(tag => (
-        <li key={tag.id}>{tag.name}</li>
+        <li key={tag.id}>
+            <Link to={`/tags/${tag.name}`}>{tag.name}</Link>
+            </li>
         ))
         
         return(
@@ -41,4 +43,4 @@ class WriterShow extends React.Component {
     }
 }
 
-export default WriterShow
+export default TagList

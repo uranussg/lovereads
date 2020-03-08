@@ -11,6 +11,8 @@ import ReviewFormContainer from './reviews/review_form_container'
 import NotFound from './not_found';
 import SearchPage from './search/search_page'
 import WriterShowContainer from './writers/writer_show_container'
+import TagListContainer from './tags/tag_list_container'
+import TagShowContainer from './tags/tag_show_container';
 
 const App = () => (
     <div className="bg">
@@ -34,14 +36,18 @@ const App = () => (
             <Route exact path="/" render={(props) => 
             <div className="homepage-main-content">
                 <BookIndexContainer {...props} />
+                <TagListContainer  {...props}/>
             </div> 
             }/>
 
             <ProtectedRoute exact path='/books/:bookId' component={BookShowContainer}/>
             <ProtectedRoute exact path='/bookshelf' component={BookShelfContainer}/>
             <ProtectedRoute exact path="/books/:bookId/reviews" component={ReviewFormContainer} />
-            <Route path="/search/:body" component={SearchPage}/>
-            <Route path='/writers/:writerId' component={WriterShowContainer}/>
+            <Route exact path="/search/:body" component={SearchPage}/>
+            <Route exact path='/writers/:writerId' component={WriterShowContainer}/>
+            <Route exact path='/tags' component={TagListContainer}/>
+            <Route exact path='/tags/:tagName' component={TagShowContainer}/>
+
             {/* <Route path="/search/:body" render={(props) => 
             <div className="search-show">
                 <BookIndexContainer {...props} />

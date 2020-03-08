@@ -1,6 +1,7 @@
 
 import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_actions'
-import { RECEIVE_BOOKSHELF, REMOVE_BOOKSHELF } from '../actions/bookshelf_action'
+import { RECEIVE_BOOKSHELF, REMOVE_BOOKSHELF } from '../actions/bookshelf_action'   
+
 
 export default (state = {}, action) => {
     
@@ -20,6 +21,8 @@ export default (state = {}, action) => {
 
             newState[action.bookshelf.book_id] = undefined
             return newState
+
+
         case LOGOUT_CURRENT_USER:
             return {}
 

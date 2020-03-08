@@ -4,7 +4,8 @@ import BookshelfFormContainer from './bookshelf_form_container'
 import { ProtectedRoute} from '../../utils/route_util.js'
 // import { ReviewFormContainer } from "../reviews/review_form_container";
 import ReviewIndex from '../reviews/review_index'
-import RatingContainer from '../reviews/rating_container';
+import RatingContainer from '../reviews/rating_container'
+import TagForm from '../tags/tag_form'
 
 
 
@@ -40,14 +41,14 @@ class BookShow extends React.Component {
 
     render() {
         const {book} = this.props
-        
+
         return(
             <div className="book-show-page">
                 <div className="book-info">
                     <div className="book-info-col-1">
 
-                    <img src={window.demoCover}/>
-                    <BookshelfFormContainer/>
+                        <img src={window.demoCover}/>
+                        <BookshelfFormContainer/>
 
                     </div>
                     <div className="book-info-col-2">
@@ -62,10 +63,10 @@ class BookShow extends React.Component {
                         <div className='book-more-detail'>
                             <a onClick={this.toggleDetail} className='more-detail'>...More Detail</a>
                             <ul className="more-detail hidden">
-        <li><span className='attr'>ISBN</span><span className='value'>{book.isbn}</span></li>
-        <li><span className='attr'>Edition Language</span><span className='value'>{book.language}</span></li>
-        <li><span className='attr'>House</span><span className='value'>{book.house}</span></li>
-        <li><span className='attr'>Published Time</span><span className='value'>{book.publish_at}</span></li>
+                                    <li><span className='attr'>ISBN</span><span className='value'>{book.isbn}</span></li>
+                                    <li><span className='attr'>Edition Language</span><span className='value'>{book.language}</span></li>
+                                    <li><span className='attr'>House</span><span className='value'>{book.house}</span></li>
+                                    <li><span className='attr'>Published Time</span><span className='value'>{book.publish_at}</span></li>
 
                             <a onClick={this.toggleDetail}>...Less Detail</a>
                             </ul>
@@ -81,6 +82,10 @@ class BookShow extends React.Component {
                     <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
                     </div>
                     <ReviewIndex fetchReviews={this.props.fetchReviews} reviews={this.props.reviews} book={book}/>
+                </div>
+
+                <div className='tags'>
+                    <TagForm createTag={this.props.createTag} createTagging={this.props.createTagging} book={book} userTags={this.props.userTags}/>
                 </div>
             </div>
         )

@@ -16,7 +16,8 @@ class Api::TagsController < ApplicationController
     end
 
     def create 
-        @tag = Tag.find_by(tag_params[:name])
+
+        @tag = Tag.find_by(name: tag_params[:name])
         if @tag 
             render partial: 'api/tags/tag', object: @tag
         else

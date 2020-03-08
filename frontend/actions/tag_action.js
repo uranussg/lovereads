@@ -73,9 +73,9 @@ export const deleteTagging = (tagging_id) => dispatch => {
     errors => dispatch(receiveErrors(errors.responseJSON)))
 }
 
-export const createTag = (bookId, tagName) => dispatch => {
+export const createTag = (bookId, tag) => dispatch => {
     
-    return APIUtil.createTag(tagName)
+    return APIUtil.createTag(tag)
     .then((tag) => dispatch(createTagging(bookId, tag)),
     errors=> dispatch(receiveErrors(errors.responseJSON)))
 }

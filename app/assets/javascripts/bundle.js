@@ -581,9 +581,9 @@ var deleteTagging = function deleteTagging(tagging_id) {
     });
   };
 };
-var createTag = function createTag(bookId, tagName) {
+var createTag = function createTag(bookId, tag) {
   return function (dispatch) {
-    return _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__["createTag"](tagName).then(function (tag) {
+    return _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__["createTag"](tag).then(function (tag) {
       return dispatch(createTagging(bookId, tag));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
@@ -658,6 +658,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _not_found__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./not_found */ "./frontend/components/not_found.jsx");
 /* harmony import */ var _search_search_page__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./search/search_page */ "./frontend/components/search/search_page.jsx");
 /* harmony import */ var _writers_writer_show_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./writers/writer_show_container */ "./frontend/components/writers/writer_show_container.js");
+/* harmony import */ var _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./tags/tag_list_container */ "./frontend/components/tags/tag_list_container.js");
+/* harmony import */ var _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./tags/tag_show_container */ "./frontend/components/tags/tag_show_container.js");
+
+
 
 
 
@@ -700,7 +704,7 @@ var App = function App() {
     render: function render(props) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homepage-main-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_6__["default"], props));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_6__["default"], props), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__["default"], props));
     }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     exact: true,
@@ -715,11 +719,21 @@ var App = function App() {
     path: "/books/:bookId/reviews",
     component: _reviews_review_form_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
     path: "/search/:body",
     component: _search_search_page__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
     path: "/writers/:writerId",
     component: _writers_writer_show_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
+    path: "/tags",
+    component: _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
+    path: "/tags/:tagName",
+    component: _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "*",
     component: _not_found__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -931,6 +945,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_route_util_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/route_util.js */ "./frontend/utils/route_util.js");
 /* harmony import */ var _reviews_review_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../reviews/review_index */ "./frontend/components/reviews/review_index.jsx");
 /* harmony import */ var _reviews_rating_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../reviews/rating_container */ "./frontend/components/reviews/rating_container.js");
+/* harmony import */ var _tags_tag_form__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../tags/tag_form */ "./frontend/components/tags/tag_form.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -953,6 +968,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
  // import { ReviewFormContainer } from "../reviews/review_form_container";
+
 
 
 
@@ -1040,6 +1056,13 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         fetchReviews: this.props.fetchReviews,
         reviews: this.props.reviews,
         book: book
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        createTag: this.props.createTag,
+        createTagging: this.props.createTagging,
+        book: book,
+        userTags: this.props.userTags
       })));
     }
   }]);
@@ -1064,6 +1087,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _book_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./book_show */ "./frontend/components/books/book_show.jsx");
 /* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/book_action */ "./frontend/actions/book_action.js");
 /* harmony import */ var _actions_review_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/review_actions */ "./frontend/actions/review_actions.js");
+/* harmony import */ var _actions_tag_action__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/tag_action */ "./frontend/actions/tag_action.js");
+
 
 
 
@@ -1072,7 +1097,8 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state, ownProps) {
   return {
     book: state.entities.books[ownProps.match.params.bookId] || {},
-    reviews: Object.values(state.entities.reviews)
+    reviews: Object.values(state.entities.reviews),
+    userTags: state.entities.users[state.session.id].tags
   };
 };
 
@@ -1083,6 +1109,12 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     },
     fetchBook: function fetchBook(bookId) {
       return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_2__["fetchBook"])(bookId));
+    },
+    createTag: function createTag(bookId, tag) {
+      return dispatch(Object(_actions_tag_action__WEBPACK_IMPORTED_MODULE_4__["createTag"])(bookId, tag));
+    },
+    createTagging: function createTagging(bookId, tag) {
+      return dispatch(Object(_actions_tag_action__WEBPACK_IMPORTED_MODULE_4__["createTagging"])(bookId, tag));
     }
   };
 };
@@ -2905,6 +2937,368 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/tags/tag_form.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/tags/tag_form.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var TagForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(TagForm, _React$Component);
+
+  function TagForm(props) {
+    var _this;
+
+    _classCallCheck(this, TagForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TagForm).call(this, props));
+    _this.state = {
+      name: ""
+    };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this)); // this.toggleClass = this.toggleClass.bind(this)
+
+    _this.addTagging = _this.addTagging.bind(_assertThisInitialized(_this));
+    return _this;
+  } // componentDidUpdate() {
+  //     if(this.props.state)
+  // }
+
+
+  _createClass(TagForm, [{
+    key: "addTagging",
+    value: function addTagging(e) {
+      var tag = {
+        id: e.target.value
+      };
+      this.props.createTagging(this.props.book.id, tag);
+    }
+  }, {
+    key: "handleUpdate",
+    value: function handleUpdate(e) {
+      this.setState({
+        name: e.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
+
+      this.props.createTag(this.props.book.id, this.state).then(function () {
+        return _this2.setState({
+          name: ""
+        });
+      });
+    } // toggleClass(e) {
+    //     const dropdown =document.querySelectorAll('.shelf-drop-down')[0]
+    //     dropdown.classList.toggle("show")
+    // }
+
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var _this$props = this.props,
+          book = _this$props.book,
+          userTags = _this$props.userTags;
+      var booktags;
+      booktags = book.tags ? Object.keys(book.tags).map(function (tagkey) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this3.addTagging,
+          value: tagkey
+        }, book.tags[tagkey][0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", book.tags[tagkey][1], ")"));
+      }) : [];
+      var mytags = Object.keys(this.props.userTags).map(function (tagkey) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this3.addTagging,
+          value: tagkey
+        }, userTags[tagkey][0]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", userTags[tagkey][1], ")"));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-tags"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "book's tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, booktags)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "user-tags"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "my tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytags)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "add-new-tag",
+        onSubmit: this.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "New Tag"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.state.title,
+        onChange: this.handleUpdate
+      }))));
+    }
+  }]);
+
+  return TagForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagForm);
+
+/***/ }),
+
+/***/ "./frontend/components/tags/tag_list.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/tags/tag_list.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _books_book_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../books/book_index_item */ "./frontend/components/books/book_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var TagList = /*#__PURE__*/function (_React$Component) {
+  _inherits(TagList, _React$Component);
+
+  function TagList(props) {
+    _classCallCheck(this, TagList);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(TagList).call(this, props));
+  } // componentDidUpdate(prevProps) {
+  //     // 
+  //     if(this.props.writer.id !== prevProps.writer.id) {
+  //         this.props.fetchWriter(this.props.writer.id)
+  //     }
+  // }
+
+
+  _createClass(TagList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchTags();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var tagList = this.props.tags.map(function (tag) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: tag.id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/tags/".concat(tag.name)
+        }, tag.name));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, tagList));
+    }
+  }]);
+
+  return TagList;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagList);
+
+/***/ }),
+
+/***/ "./frontend/components/tags/tag_list_container.js":
+/*!********************************************************!*\
+  !*** ./frontend/components/tags/tag_list_container.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_tag_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/tag_action */ "./frontend/actions/tag_action.js");
+/* harmony import */ var _tag_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tag_list */ "./frontend/components/tags/tag_list.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  return {
+    userId: state.session.id,
+    tags: Object.values(state.entities.tags)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchTags: function fetchTags() {
+      return dispatch(Object(_actions_tag_action__WEBPACK_IMPORTED_MODULE_2__["fetchTags"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_tag_list__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/tags/tag_show.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/tags/tag_show.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _books_book_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../books/book_index_item */ "./frontend/components/books/book_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var TagShow = /*#__PURE__*/function (_React$Component) {
+  _inherits(TagShow, _React$Component);
+
+  function TagShow(props) {
+    var _this;
+
+    _classCallCheck(this, TagShow);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TagShow).call(this, props));
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(TagShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchTag(this.props.match.params.tagName);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var tag = this.props.match.params.tagName;
+      var books = this.props.books;
+      var bookList = books.map(function (book) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          book: book,
+          key: book.id
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-show"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "tag-name"
+      }, tag)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-list-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList)));
+    }
+  }]);
+
+  return TagShow;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagShow);
+
+/***/ }),
+
+/***/ "./frontend/components/tags/tag_show_container.js":
+/*!********************************************************!*\
+  !*** ./frontend/components/tags/tag_show_container.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_tag_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/tag_action */ "./frontend/actions/tag_action.js");
+/* harmony import */ var _tag_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tag_show */ "./frontend/components/tags/tag_show.jsx");
+
+
+
+
+var ms = function ms(state, ownProps) {
+  return {
+    books: Object.values(state.entities.books) || {}
+  };
+};
+
+var md = function md(dispatch) {
+  return {
+    fetchTag: function fetchTag(name) {
+      return dispatch(Object(_actions_tag_action__WEBPACK_IMPORTED_MODULE_1__["fetchTag"])(name));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(ms, md)(_tag_show__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/writers/writer_show.jsx":
 /*!*****************************************************!*\
   !*** ./frontend/components/writers/writer_show.jsx ***!
@@ -3117,11 +3511,14 @@ document.addEventListener('DOMContentLoaded', function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/book_action */ "./frontend/actions/book_action.js");
 /* harmony import */ var _actions_writer_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/writer_action */ "./frontend/actions/writer_action.js");
+/* harmony import */ var _actions_tag_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/tag_action */ "./frontend/actions/tag_action.js");
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = Object.assign({}, state);
   Object.freeze(state);
 
   switch (action.type) {
@@ -3129,12 +3526,19 @@ __webpack_require__.r(__webpack_exports__);
       return action.books;
 
     case _actions_book_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_BOOK"]:
-      var newState = Object.assign({}, state);
       newState[action.book.id] = action.book;
       return newState;
 
     case _actions_writer_action__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_WRITER"]:
       return action.writer.books;
+
+    case _actions_tag_action__WEBPACK_IMPORTED_MODULE_2__["REMOVE_TAGGING"]:
+      newState[action.tagging.book_id].tags[action.tagging.tag_id][1] -= 1;
+      return newState;
+
+    case _actions_tag_action__WEBPACK_IMPORTED_MODULE_2__["RECEIVE_TAGGING"]:
+      newState[action.tagging.book_id].tags[action.tagging.tag_id] ? newState[action.tagging.book_id].tags[action.tagging.tag_id][1] = newState[action.tagging.book_id].tags[action.tagging.tag_id][1] + 1 || 1 : newState[action.tagging.book_id].tags[action.tagging.tag_id] = [action.tagging.name, 1];
+      return newState;
 
     default:
       return state;
@@ -3544,11 +3948,12 @@ __webpack_require__.r(__webpack_exports__);
       return newState;
 
     case _actions_tag_action__WEBPACK_IMPORTED_MODULE_3__["REMOVE_TAGGING"]:
-      newState[action.taggings.user_id].tags[action.taggings.tag_id][2] -= 1;
+      newState[action.tagging.user_id].tags[action.tagging.tag_id][1] -= 1;
       return newState;
 
     case _actions_tag_action__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_TAGGING"]:
-      newState[action.taggings.user_id].tags[action.taggings.tag_id][2] = newState[action.taggings.user_id].tags[action.taggings.tag_id][2] + 1 || 1;
+      // const userTag = newState[action.tagging.user_id].tags
+      newState[action.tagging.user_id].tags[action.tagging.tag_id] ? newState[action.tagging.user_id].tags[action.tagging.tag_id][1] = newState[action.tagging.user_id].tags[action.tagging.tag_id][1] + 1 || 1 : newState[action.tagging.user_id].tags[action.tagging.tag_id] = [action.tagging.name, 1];
       return newState;
 
     default:
@@ -3886,12 +4291,12 @@ var fetchTag = function fetchTag(name) {
     url: "/api/tags/".concat(name)
   });
 };
-var createTag = function createTag(tagName) {
+var createTag = function createTag(tag) {
   return $.ajax({
     method: "POST",
     url: "/api/tags",
     data: {
-      tagName: tagName
+      tag: tag
     }
   });
 };

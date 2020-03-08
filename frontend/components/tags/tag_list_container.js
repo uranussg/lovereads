@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) =>
     
     return ({
     userId: state.session.id,
-        tags:state.entities.tags
+        tags:Object.values(state.entities.tags)
 })
 }
 
