@@ -20,7 +20,7 @@ const HomePage = () => (
             <div className='label-title'>
                 <h1>Hot Tags</h1>
                 <Link to='/tags'>
-                    <sec className='arrow-right'></sec>
+                    <div className='arrow-right'></div>
                     <span className="view-all">View All</span>
                 </Link>
             </div>

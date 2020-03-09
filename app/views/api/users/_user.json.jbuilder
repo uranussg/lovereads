@@ -4,11 +4,17 @@ json.info do
     # json.bookshelves user.shelf_titles
     json.tags user.ordered_tags
     json.bookshelves  user.ordered_bookshelves
-    json.rate do
-    user.reviews.each do |review|
-        json.set! review.book_id, review.rate
-    end
-end
+    # 382110
+    # if(user.reviews.length>0)
+    #     json.rate do
+    #     user.reviews.each do |review|
+    #         json.set! review.book_id, review.rate
+    #     end
+    # else   
+    #     json.rate Object.assgin({})
+    # end
+    json.rate user.rate
+
 end
 json.bookshelves do
     user.bookshelves.each do |bookshelf|

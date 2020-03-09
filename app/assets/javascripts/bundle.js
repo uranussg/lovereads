@@ -727,7 +727,15 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/tags",
-    component: _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__["default"]
+    render: function render(props) {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-listpage"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "taglist-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "tags-list-nav"
+      }, "All Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__["default"], props)));
+    }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/tags/:tagName",
@@ -1128,6 +1136,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+  382110;
   return {
     book: state.entities.books[ownProps.match.params.bookId] || {},
     reviews: Object.values(state.entities.reviews),
@@ -1547,7 +1556,7 @@ var HomePage = function HomePage() {
     className: "label-title"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hot Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/tags"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sec", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "arrow-right"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "view-all"
@@ -1920,7 +1929,7 @@ var RatingForm = /*#__PURE__*/function (_React$Component) {
   _createClass(RatingForm, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      // debugger
+      // 382110
       var num = parseInt(this.state.rate); // const curBookId = parseInt(this.props.match.params.bookId)
 
       var stars = document.getElementsByClassName("stars");

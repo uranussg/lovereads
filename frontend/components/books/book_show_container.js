@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) =>
 { 
 
     
+    382110
 return ({
     book: state.entities.books[ownProps.match.params.bookId] || {},
     reviews: Object.values(state.entities.reviews),

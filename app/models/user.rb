@@ -78,4 +78,13 @@ class User < ApplicationRecord
         
       end
 
+      def rate
+        rate = Hash.new()
+        self.reviews.each do |review|
+          rate[review.book_id] =  review.rate
+        end
+        # 382110
+        rate
+      end
+
 end

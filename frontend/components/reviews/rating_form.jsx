@@ -13,7 +13,7 @@ class RatingForm extends React.Component {
         this.handleSubmit= this.handleSubmit.bind(this)
     }
     componentDidUpdate(prevProps){
-        // debugger
+        // 382110
         let num = parseInt(this.state.rate)
         // const curBookId = parseInt(this.props.match.params.bookId)
         let stars = document.getElementsByClassName("stars")

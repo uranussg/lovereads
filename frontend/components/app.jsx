@@ -41,7 +41,15 @@ const App = () => (
             <ProtectedRoute exact path="/books/:bookId/reviews" component={ReviewFormContainer} />
             <Route exact path="/search/:body" component={SearchPage}/>
             <Route exact path='/writers/:writerId' component={WriterShowContainer}/>
-            <Route exact path='/tags' component={TagListContainer}/>
+            {/* <Route exact path='/tags' component={TagListContainer}/> */}
+            <Route exact path='/tags'render={(props) => 
+            <div className='tag-listpage'>
+                <div className="taglist-container">
+                    <h1 className='tags-list-nav'>All Tags</h1>
+                    <TagListContainer {...props} />
+                </div> 
+            </div>
+            }/>
             <Route exact path='/tags/:tagName' component={TagShowContainer}/>
 
             {/* <Route path="/search/:body" render={(props) => 
