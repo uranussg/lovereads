@@ -5,8 +5,7 @@ class Api::TagsController < ApplicationController
             @tags = Tag.includes(taggings: [:user, :book]).where(filter)
             
         else
-            @tags = Tag.all
-            
+            @tags = Tag.includes(:books).all.sort_by { |tag| tag.book_num}
         end
     end
 

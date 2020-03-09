@@ -25,7 +25,7 @@ class BookShelf extends React.Component {
         this.props.fetchBookshelf(e.target.value) : this.props.fetchBookshelves()
     }
     handleDelete(e) {
-        
+        e.stopPropagation()
         this.props.deleteBookFromShelf(this.props.bookshelves[e.target.getAttribute('value')].id)
     }
 
@@ -40,8 +40,9 @@ class BookShelf extends React.Component {
             ))
         const bookList = books.map(book => (
             <li>
+            <button onClick={this.handleDelete} className='remove-button' value={book.id}> </button>
             <BookIndexItem book={book} key={book.id}/>
-            <button onClick={this.handleDelete} value={book.id}>Remove from Shelf</button></li>
+            </li>
         ))
         
         return (

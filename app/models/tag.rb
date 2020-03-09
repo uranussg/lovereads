@@ -8,4 +8,7 @@ class Tag < ApplicationRecord
         self.includes(:taggings).all.sort_by { |tag| -tag.taggings.length }.map{|tag| [tag.name, tag.taggings.length]}
     end
     
+    def book_num
+        self.books.distinct.length
+    end
 end

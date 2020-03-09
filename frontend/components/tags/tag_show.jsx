@@ -2,7 +2,7 @@ import React from 'react'
 import {Link } from 'react-router-dom'
 
 import BookIndexItem from '../books/book_index_item'
-import TagList from './tag_list'
+import TagListContainer from './tag_list_container'
 
 class TagShow extends React.Component {
     constructor(props) {
@@ -43,9 +43,14 @@ class TagShow extends React.Component {
                     </div>
                 </div>
                 <div className='tag-show-col-2'>
-                    <div className='tags-nav'>
-                        {/* <TagList/> */}
+                    <div className='label-title'>
+                        <h1>Hot Tags</h1>
+                        <Link to='/tags'>
+                            <div className='arrow-right'></div>
+                            <span className="view-all">View All</span>
+                        </Link>
                     </div>
+                    <TagListContainer  />
                 </div>
             </div>
         )

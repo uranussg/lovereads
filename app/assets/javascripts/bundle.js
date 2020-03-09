@@ -660,7 +660,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _writers_writer_show_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./writers/writer_show_container */ "./frontend/components/writers/writer_show_container.js");
 /* harmony import */ var _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./tags/tag_list_container */ "./frontend/components/tags/tag_list_container.js");
 /* harmony import */ var _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./tags/tag_show_container */ "./frontend/components/tags/tag_show_container.js");
-/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home-page */ "./frontend/components/home-page.jsx");
+/* harmony import */ var _home_page_container__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home_page_container */ "./frontend/components/home_page_container.js");
+/* harmony import */ var _greeting_page__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./greeting-page */ "./frontend/components/greeting-page.jsx");
+
 
 
 
@@ -703,7 +705,7 @@ var App = function App() {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/",
-    component: _home_page__WEBPACK_IMPORTED_MODULE_15__["default"]
+    component: _home_page_container__WEBPACK_IMPORTED_MODULE_15__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     exact: true,
     path: "/books/:bookId",
@@ -1239,6 +1241,7 @@ var BookShelf = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "handleDelete",
     value: function handleDelete(e) {
+      e.stopPropagation();
       this.props.deleteBookFromShelf(this.props.bookshelves[e.target.getAttribute('value')].id);
     }
   }, {
@@ -1259,13 +1262,14 @@ var BookShelf = /*#__PURE__*/function (_React$Component) {
         }, status, "(", titles[status] || 0, ")"), "  ");
       });
       var bookList = books.map(function (book) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_book_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this2.handleDelete,
+          className: "remove-button",
+          value: book.id
+        }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_book_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           book: book,
           key: book.id
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-          onClick: _this2.handleDelete,
-          value: book.id
-        }, "Remove from Shelf"));
+        }));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "shelf-show"
@@ -1522,10 +1526,10 @@ var md = function md(dispatch) {
 
 /***/ }),
 
-/***/ "./frontend/components/home-page.jsx":
-/*!*******************************************!*\
-  !*** ./frontend/components/home-page.jsx ***!
-  \*******************************************/
+/***/ "./frontend/components/greeting-page.jsx":
+/*!***********************************************!*\
+  !*** ./frontend/components/greeting-page.jsx ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1543,15 +1547,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var HomePage = function HomePage() {
+var GreetingPage = function GreetingPage() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "homepage-main"
+    className: "greeting-main"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "homepage-col-1"
+    className: "greeting-col-1"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "greeting-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, "Deciding what to read next?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You\u2019re in the right place. Tell us what titles or genres you\u2019ve enjoyed in the past, and we\u2019ll give you surprisingly insightful recommendations.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "title"
+  }, "What are your friends reading?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "What are your friends reading?"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "label-title"
-  }, "New Books"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "homepage-col-2"
+  }, "What will you discover>"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "greeting-col-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "label-title"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hot Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -1563,7 +1573,127 @@ var HomePage = function HomePage() {
   }, "View All"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_list_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
 };
 
+/* harmony default export */ __webpack_exports__["default"] = (GreetingPage);
+
+/***/ }),
+
+/***/ "./frontend/components/home_page.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/components/home_page.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _utils_route_util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/route_util.js */ "./frontend/utils/route_util.js");
+/* harmony import */ var _books_book_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./books/book_index_container */ "./frontend/components/books/book_index_container.js");
+/* harmony import */ var _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tags/tag_list_container */ "./frontend/components/tags/tag_list_container.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var HomePage = /*#__PURE__*/function (_React$Component) {
+  _inherits(HomePage, _React$Component);
+
+  function HomePage(props) {
+    _classCallCheck(this, HomePage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(HomePage).call(this, props));
+  }
+
+  _createClass(HomePage, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "homepage-main"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "homepage-col-1"
+      }, this.props.currentUser ? null : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "greeting-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title"
+      }, "Deciding what to read next?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "You\u2019re in the right place. Tell us what titles or genres you\u2019ve enjoyed in the past, and we\u2019ll give you surprisingly insightful recommendations.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title"
+      }, "What are your friends reading?"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Chances are your friends are discussing their favorite (and least favorite) books on Goodreads."))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "homepage-book-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "label-title"
+      }, !this.props.currentUser ? "What will you discover?" : "New Books"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "homepage-col-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "label-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hot Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/tags"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "arrow-right"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "view-all"
+      }, "View All"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_list_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+    }
+  }]);
+
+  return HomePage;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
 /* harmony default export */ __webpack_exports__["default"] = (HomePage);
+
+/***/ }),
+
+/***/ "./frontend/components/home_page_container.js":
+/*!****************************************************!*\
+  !*** ./frontend/components/home_page_container.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home_page */ "./frontend/components/home_page.jsx");
+
+
+
+
+var mapStateToProp = function mapStateToProp(state) {
+  return {
+    currentUser: state.entities.users[state.session.id]
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    logout: function logout() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProp, mapDispatchToProps)(_home_page__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -3253,12 +3383,16 @@ var TagList = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var tagList = this.props.tags.map(function (tag) {
+      var _this = this;
+
+      var tagList = this.props.tags.sort(function (a, b) {
+        return b.book_num - a.book_num;
+      }).map(function (tag) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           key: tag.id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/tags/".concat(tag.name)
-        }, tag.name));
+        }, tag.name, _this.props.match && _this.props.match.url === '/tags' ? "(".concat(tag.book_num, ")") : ''));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tag-list"
@@ -3323,7 +3457,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _books_book_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../books/book_index_item */ "./frontend/components/books/book_index_item.jsx");
-/* harmony import */ var _tag_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tag_list */ "./frontend/components/tags/tag_list.jsx");
+/* harmony import */ var _tag_list_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tag_list_container */ "./frontend/components/tags/tag_list_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3391,8 +3525,14 @@ var TagShow = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tag-show-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tags-nav"
-      })));
+        className: "label-title"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hot Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/tags"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "arrow-right"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "view-all"
+      }, "View All"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tag_list_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
     }
   }]);
 

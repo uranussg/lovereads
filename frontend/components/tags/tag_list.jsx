@@ -28,10 +28,10 @@ class TagList extends React.Component {
 
 
     render() {
-        
-        const tagList =this.props.tags.map(tag => (
+    
+        const tagList =this.props.tags.sort((a, b)=>(b.book_num - a.book_num)).map(tag => (
         <li key={tag.id}>
-            <Link to={`/tags/${tag.name}`}>{tag.name}</Link>
+            <Link to={`/tags/${tag.name}`}>{tag.name}{this.props.match && this.props.match.url==='/tags'? `(${tag.book_num})` : ''}</Link>
             </li>
         ))
         

@@ -13,7 +13,8 @@ import SearchPage from './search/search_page'
 import WriterShowContainer from './writers/writer_show_container'
 import TagListContainer from './tags/tag_list_container'
 import TagShowContainer from './tags/tag_show_container';
-import HomePage from "./home-page"
+import HomePageContainer from "./home_page_container"
+import GreetingPage from './greeting-page'
 
 const App = () => (
     <div className="bg">
@@ -34,7 +35,9 @@ const App = () => (
         </Switch>
 
         <Switch>
-            <Route exact path="/" component={HomePage}/>
+            {/* <Switch> */}
+            {/* </Switch> */}
+            <Route exact path="/" component={HomePageContainer}/>
 
             <ProtectedRoute exact path='/books/:bookId' component={BookShowContainer}/>
             <ProtectedRoute exact path='/bookshelf' component={BookShelfContainer}/>

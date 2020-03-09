@@ -5,3 +5,31 @@
     display:grid;
     grid-template-columns: 2fr 1fr;
 }
+
+.tag-listpage .taglist-container {
+    padding:20px ;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    grid-column: 1;
+    box-sizing: border-box;
+    
+}
+
+.tag-listpage .taglist-container ul {
+    padding: 8px;
+    display: flex
+}
+
+.tag-listpage .tags-list-nav {
+    border-bottom: 1px dashed #DDDDDD;
+    padding: 8px 0;
+    font-size: 20px;
+}
+
+.tag-listpage .tag-list li{
+    font-size: 16px;
+color:#00635d;
+background-color: #F4F1EA;
+border-radius: 1rem;
+padding: 8px 16px;
+margin: 8px 8px;
+}

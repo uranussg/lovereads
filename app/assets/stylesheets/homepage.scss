@@ -4,19 +4,51 @@
     margin: 0 auto;
     display:grid;
     grid-template-columns: 2fr 1fr;
+    margin-top: 20px;
+    // background-color: #F9F7F4;
+
+    
 }
 
+.homepage-main .greeting-text {
+    display: flex;
+}
+.homepage-main .greeting-text > div {
+    float: left;
+    width: 50%;
+    padding-bottom: 20px;
+    margin-right: 10px;
+}
+
+// .greatin.greeting-text::after {
+//     content: "";
+//     clear: both;
+//     display: table;
+//   }
+
+.homepage-main .greeting-text .title {
+    font-size: 18px;
+    padding-bottom: 8px;
+}
+.homepage-book-list {
+    border-radius: 10px;
+    background-color: #F4F1EA;
+    padding: 0 8px;
+}
 .homepage-col-1 {
     padding:20px ;
     font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
     grid-column: 1;
     box-sizing: border-box;
+
 }
 
 .homepage-col-1 .label-title {
     font-weight: bold;
     border-bottom: 1px dotted #DDDDDD;
-    padding: 8px 0;
+    padding: 12px 0;
+    padding-left: 12px;
+    // float: left;
 }
 .book-list-container ul{
 
@@ -86,7 +118,7 @@
 
 .homepage-col-2 .label-title h1{
     // margin-top: 10px;
-    padding: 8px;
+    padding: 12px;
     // border-bottom: 1px solid #EBE8D5;
     font-weight: bold;
     font-size: 12px;
@@ -110,7 +142,7 @@
 
 .homepage-col-2 .tag-list {
     padding: 10px 5px;
-    border-top: 1px solid #DDDDDD;
+    border-top: 1px dashed #DDDDDD;
 }
 .homepage-col-2 .tag-list ul {
     padding: 0 5px;

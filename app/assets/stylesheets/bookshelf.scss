@@ -22,7 +22,7 @@
 .shelf-container {
     display: grid;
     grid-template-columns: 1fr 5fr;
-    padding: 5px;
+    // padding: 5px;
 }
 
 .shelf-sidbar {
@@ -35,12 +35,12 @@
     flex-direction: column;
     border-bottom: 1px solid #EBE8D5;
     align-items: start;
-    margin: 5px 0;
+    margin: 4px 8px 4px 0;
 }
 
 .shelf-titles h3 {
     font-weight: bold;
-    padding-bottom: 3px;
+    padding: 4px 0;
 
 }
 
@@ -50,13 +50,41 @@
     padding: 3px 0;
 }
 
+.shelf-titles li {
+    width: 100%;
+    padding: 4px 0;
+    border-top: 1px dashed #DDDDDD;
+}
+
 .shelf-titles button{
     background: transparent;
     padding: 0;
-    border: 0;
+    border-bottom: 0;
     color:#00635d
 }
 
 .shelf-show .book-list-container {
     grid-column: 2;
+}
+
+.shelf-show .book-list-container a {
+    position: relative;
+}
+
+.shelf-show .book-list-container button {
+    position: absolute;
+    margin: 4px;
+    padding: 4px;
+    width: 16px;
+    height: 16px;
+    z-index: 2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: asset_url("delete.png");
+
+
+}
+.shelf-show .book-list-container button:hover {
+    background-image: asset_url("delete.png");
 }
