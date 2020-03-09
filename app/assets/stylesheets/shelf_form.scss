@@ -1,6 +1,6 @@
 .shelf-form {
     border-radius: 3px;
-    border: 1px solid #EBE8D5;
+    border: 1px solid #DDDDDD;
     display: flex;
     // padding:5px;
     box-sizing: border-box;
@@ -43,7 +43,7 @@
 // }
 
 .status-bar .unadded {
-    background-color: #EBE8D5;
+    background-color: #fdd05f;
     color: white;
 }
 
@@ -59,7 +59,7 @@
 .shelf-trigger {
     height: 22px;
     position: relative;
-    background-color: #EBE8D5;
+    background-color: #fdd05f;
     // border: 4px solid #382110;
     border-radius: 1rem;
     border-radius: 0 3px 3px 0;
@@ -78,7 +78,7 @@
 }
 .shelf-drop-down {
     display: none;
-    border:1px solid #EBE8D5;
+    border:1px solid #DDDDDD;
     border-radius: 3px;
     padding: 3px;
     font-size: 13px;

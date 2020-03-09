@@ -2,6 +2,7 @@ import React from 'react'
 import {Link } from 'react-router-dom'
 
 import BookIndexItem from '../books/book_index_item'
+import TagList from './tag_list'
 
 class TagShow extends React.Component {
     constructor(props) {
@@ -27,17 +28,25 @@ class TagShow extends React.Component {
         ))
         
         return (
-            <div className="tag-show">
-                <div className="tag-nav">
-                    <h2 className='tag-name'>{tag}</h2>
-                </div>
-
+            <div className="tag-showpage">
+                <div className='tag-show-col-1'>
+                    <div className="tag-nav">
+                        <h2 className='tag-name'>
+                        <span>Tag: </span> <span className="tag"> {tag}</span> 
+                            </h2>
+                    </div>
                     
                     <div className='book-list-container'>
                         <ul>
                             {bookList}
                         </ul>
                     </div>
+                </div>
+                <div className='tag-show-col-2'>
+                    <div className='tags-nav'>
+                        {/* <TagList/> */}
+                    </div>
+                </div>
             </div>
         )
     }

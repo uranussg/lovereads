@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 class TagForm extends React.Component {
@@ -43,16 +44,22 @@ class TagForm extends React.Component {
         
         
         booktags = book.tags? Object.keys(book.tags).map(tagkey => (
-        <li><div id={`${tagkey}book`} value={tagkey}>{book.tags[tagkey][0]}({book.tags[tagkey][1]})</div>
-        <span></span>
-        <button for={`${tagkey}book`} onClick={this.addTagging} value={tagkey} className='add-tag-button'></button>
+        
+            <li>
+                {/* <Link to={`tags/${book.tags[tagkey][0]}`}> */}
+                <div id={`${tagkey}book`} value={tagkey}>{book.tags[tagkey][0]}({book.tags[tagkey][1]})</div>
+                {/* </Link> */}
+   
+            <button for={`${tagkey}book`} onClick={this.addTagging} value={tagkey} className='add-tag-button'></button>
         </li>
         )) : []
 
         const mytags = Object.keys(this.props.userTags).map(tagkey => (
-            <li><span id={`${tagkey}user`} value={tagkey}>{userTags[tagkey][0]}({userTags[tagkey][1]})</span>
-            <span></span>
-            <button for={`${tagkey}user`} onClick={this.addTagging} value={tagkey} className='add-tag-button'></button>
+            <li>
+                {/* <Link to={`tags/${book.tags[tagkey][0]}`}> */}
+                <span id={`${tagkey}user`} value={tagkey}>{userTags[tagkey][0]}({userTags[tagkey][1]})</span>
+                {/* </Link> */}
+                <button for={`${tagkey}user`} onClick={this.addTagging} value={tagkey} className='add-tag-button'></button>
             </li>
             ))
         return (

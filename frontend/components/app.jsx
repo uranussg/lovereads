@@ -13,6 +13,7 @@ import SearchPage from './search/search_page'
 import WriterShowContainer from './writers/writer_show_container'
 import TagListContainer from './tags/tag_list_container'
 import TagShowContainer from './tags/tag_show_container';
+import HomePage from "./home-page"
 
 const App = () => (
     <div className="bg">
@@ -33,12 +34,7 @@ const App = () => (
         </Switch>
 
         <Switch>
-            <Route exact path="/" render={(props) => 
-            <div className="homepage-main-content">
-                <BookIndexContainer {...props} />
-                <TagListContainer  {...props}/>
-            </div> 
-            }/>
+            <Route exact path="/" component={HomePage}/>
 
             <ProtectedRoute exact path='/books/:bookId' component={BookShowContainer}/>
             <ProtectedRoute exact path='/bookshelf' component={BookShelfContainer}/>

@@ -660,6 +660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _writers_writer_show_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./writers/writer_show_container */ "./frontend/components/writers/writer_show_container.js");
 /* harmony import */ var _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./tags/tag_list_container */ "./frontend/components/tags/tag_list_container.js");
 /* harmony import */ var _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./tags/tag_show_container */ "./frontend/components/tags/tag_show_container.js");
+/* harmony import */ var _home_page__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home-page */ "./frontend/components/home-page.jsx");
+
 
 
 
@@ -701,11 +703,7 @@ var App = function App() {
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/",
-    render: function render(props) {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "homepage-main-content"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_6__["default"], props), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_list_container__WEBPACK_IMPORTED_MODULE_13__["default"], props));
-    }
+    component: _home_page__WEBPACK_IMPORTED_MODULE_15__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     exact: true,
     path: "/books/:bookId",
@@ -1515,6 +1513,51 @@ var md = function md(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/home-page.jsx":
+/*!*******************************************!*\
+  !*** ./frontend/components/home-page.jsx ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _utils_route_util_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/route_util.js */ "./frontend/utils/route_util.js");
+/* harmony import */ var _books_book_index_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./books/book_index_container */ "./frontend/components/books/book_index_container.js");
+/* harmony import */ var _tags_tag_list_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./tags/tag_list_container */ "./frontend/components/tags/tag_list_container.js");
+
+
+
+
+
+
+var HomePage = function HomePage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "homepage-main"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "homepage-col-1"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "label-title"
+  }, "New Books"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "homepage-col-2"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "label-title"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hot Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/tags"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sec", {
+    className: "arrow-right"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "view-all"
+  }, "View All"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_list_container__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HomePage);
+
+/***/ }),
+
 /***/ "./frontend/components/nav_bar.jsx":
 /*!*****************************************!*\
   !*** ./frontend/components/nav_bar.jsx ***!
@@ -1741,20 +1784,34 @@ var RatingShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(RatingShow, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var rate = parseInt(this.props.rate);
+
+      if (this.props.rate - rate < 0.7 && this.props.rate - rate > 0.3) {
+        var half = document.getElementById("".concat(rate + 1, "-stars"));
+        if (half) half.classList.add("half-star");
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var rate = parseInt(this.props.rate);
       var star_list = [0, 1, 2, 3, 4].map(function (id) {
         return id >= 5 - rate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: id,
-          className: "stars-show stared",
-          "for": "5-star"
+          id: "".concat(5 - id, "-stars"),
+          className: "stars-show stared"
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: id,
           className: "stars-show",
-          "for": "5-star"
+          id: "".concat(5 - id, "-stars")
         });
-      });
+      }); // if ((this.props.rate - rate) < 0.7 && (this.props.rate-rate)>0.3) {
+      //     const half = document.getElementById(`${rate +1}-stars`)
+      //         if(half) half.classList.add("half-star")
+      // }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "stars-container"
       }, star_list);
@@ -2998,6 +3055,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3015,6 +3073,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -3083,7 +3142,7 @@ var TagForm = /*#__PURE__*/function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           id: "".concat(tagkey, "book"),
           value: tagkey
-        }, book.tags[tagkey][0], "(", book.tags[tagkey][1], ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, book.tags[tagkey][0], "(", book.tags[tagkey][1], ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "for": "".concat(tagkey, "book"),
           onClick: _this3.addTagging,
           value: tagkey,
@@ -3094,7 +3153,7 @@ var TagForm = /*#__PURE__*/function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           id: "".concat(tagkey, "user"),
           value: tagkey
-        }, userTags[tagkey][0], "(", userTags[tagkey][1], ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        }, userTags[tagkey][0], "(", userTags[tagkey][1], ")"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           "for": "".concat(tagkey, "user"),
           onClick: _this3.addTagging,
           value: tagkey,
@@ -3255,6 +3314,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _books_book_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../books/book_index_item */ "./frontend/components/books/book_index_item.jsx");
+/* harmony import */ var _tag_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tag_list */ "./frontend/components/tags/tag_list.jsx");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3272,6 +3332,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -3307,14 +3368,22 @@ var TagShow = /*#__PURE__*/function (_React$Component) {
         });
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tag-show"
+        className: "tag-showpage"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-show-col-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tag-nav"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "tag-name"
-      }, tag)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Tag: "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "tag"
+      }, " ", tag))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-list-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList)));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tag-show-col-2"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-nav"
+      })));
     }
   }]);
 

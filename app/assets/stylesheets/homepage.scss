@@ -1,0 +1,129 @@
+.homepage-main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+}
+
+.homepage-col-1 {
+    padding:20px ;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    grid-column: 1;
+    box-sizing: border-box;
+}
+
+.homepage-col-1 .label-title {
+    font-weight: bold;
+    border-bottom: 1px dotted #DDDDDD;
+    padding: 8px 0;
+}
+.book-list-container ul{
+
+    display: flex;
+
+    flex-wrap: wrap;
+}
+
+.book-list-container h2 {
+    font-size: 20px;
+    padding: 10px 0;
+
+    font-weight: bold;
+}
+.book-list-container ul > a, .book-list-container ul > li{
+    display: inline-block;
+    width: 20%;
+    box-sizing: border-box;
+    padding: 16px ;
+}
+
+
+// .book-list-item {
+//     display: inline-flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin: 5px;
+// }
+.book-list-item img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.book-list-item .item-info {
+    // padding: 5px 0;
+    // margin: 5px 0;
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.book-list-item .item-title{
+    font-family: "Lato",  "Helvetica Neue", "Helvetica", sans-serif;
+    // font-size: 120%;
+    // font-weight: bold;
+    line-height: 1.5;
+    text-align: left;
+    color:#382110;
+    font-weight: 500;
+}
+
+.homepage-col-2 {
+    grid-column: 2;
+    margin-left: 16px;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    padding: 20px;
+
+}
+
+.homepage-col-2 .label-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    // margin-top: 8px;
+}
+
+.homepage-col-2 .label-title h1{
+    // margin-top: 10px;
+    padding: 8px;
+    // border-bottom: 1px solid #EBE8D5;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.homepage-col-2 .label-title a {
+        font-size: 12px;
+    color:#00635d;
+    padding: 8px;
+}
+
+.homepage-col-2 .label-title .arrow-right {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-image: asset_url('arrow-right.png');
+}
+
+.homepage-col-2 .tag-list {
+    padding: 10px 5px;
+    border-top: 1px solid #DDDDDD;
+}
+.homepage-col-2 .tag-list ul {
+    padding: 0 5px;
+    // border-top: 1px solid #DDDDDD;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.homepage-col-2 .tag-list li {
+
+    // font-weight: lighter;
+font-size: 16px;
+color:#00635d;
+background-color: #F4F1EA;
+border-radius: 1rem;
+padding: 8px 12px;
+margin: 4px 4px;
+
+}

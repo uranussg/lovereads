@@ -31,8 +31,14 @@
 .stared {
     // background-color: purple;
     background-image: url(asset_path('moon-solid.png'));
+    
 
 }
+// .stared:first-of-type{
+//     transform: scale(2);
+//     transition-duration: 5s;;
+//     animation-fill-mode: forwards
+// }
 
 
 .stars-container:hover  .stars {
@@ -44,4 +50,8 @@
     // background-color:purple;
     background-image: url(asset_path('moon-solid.png'));
 
+}
+
+.half-star {
+    background-image: asset_url('moon-half.jpg');
 }
