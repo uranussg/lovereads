@@ -3495,6 +3495,13 @@ var TagShow = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(TagShow, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.match.params.tagName !== prevProps.match.params.tagName) {
+        this.props.fetchTag(this.props.match.params.tagName);
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchTag(this.props.match.params.tagName);

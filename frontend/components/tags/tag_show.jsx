@@ -11,6 +11,13 @@ class TagShow extends React.Component {
 
     }
 
+    componentDidUpdate(prevProps) {
+        if(this.props.match.params.tagName !== prevProps.match.params.tagName){
+        this.props.fetchTag(this.props.match.params.tagName)
+            
+        }
+    }
+
     componentDidMount(){
         
         this.props.fetchTag(this.props.match.params.tagName)
