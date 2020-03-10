@@ -20,9 +20,9 @@ export const receiveErrors = (errors) => ({
     errors
 })
 
-export const fetchBooks = () => dispatch => {
+export const fetchBooks = (user) => dispatch => {
     
-    return APIUtil.fetchBooks()
+    return APIUtil.fetchBooks(user)
     .then(books => dispatch(receiveBooks(books)),
     errors => dispatch(receiveErrors(errors.responseJSON)) )
 }

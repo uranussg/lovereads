@@ -95,10 +95,14 @@
     font-family: "Lato",  "Helvetica Neue", "Helvetica", sans-serif;
     // font-size: 120%;
     // font-weight: bold;
-    line-height: 1.5;
+    line-height: 1.2;
+    font-size: 12px;
     text-align: left;
     color:#382110;
     font-weight: 500;
+    max-lines: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .homepage-col-2 {

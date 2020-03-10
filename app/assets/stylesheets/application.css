@@ -24,6 +24,7 @@
  *= require './rate_detail.scss'
  *= require './tag_showpage.scss'
  *= require './tag_listpage.scss'
+ *= require './tagshelf.scss'
 
  *= require_tree .
  *= require_self

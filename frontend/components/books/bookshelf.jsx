@@ -40,7 +40,9 @@ class BookShelf extends React.Component {
             ))
         const bookList = books.map(book => (
             <li>
-            <button onClick={this.handleDelete} className='remove-button' value={book.id}> </button>
+                <div className='button-container'>
+                    <button onClick={this.handleDelete} className='remove-button' value={book.id}> </button>
+                </div>
             <BookIndexItem book={book} key={book.id}/>
             </li>
         ))

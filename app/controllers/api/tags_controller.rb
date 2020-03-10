@@ -10,8 +10,9 @@ class Api::TagsController < ApplicationController
     end
 
     def show 
+  
+            @books = Tag.find_by(name: params[:id]).books
         
-        @books = Tag.find_by(name: params[:id]).books
     end
 
     def create 
@@ -42,5 +43,7 @@ class Api::TagsController < ApplicationController
     def tag_params
         params.require(:tag).permit(:name)
     end
+
+
     
 end

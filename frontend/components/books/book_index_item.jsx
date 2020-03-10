@@ -11,13 +11,13 @@ class BookIndexItem extends React.Component {
         return (
             <Link to={`/books/${this.props.book.id}`}>
                 <li className="book-list-item">
-                    <img src={window.demoCover} alt=""/>
+                    <img src={this.props.book.coverUrl} alt=""/>
                     <div className='item-info'>
-                    <   label className="item-title">
+                        <label className="item-title">
                            {this.props.book.title}
                         </label>
                         <label className="item-rate">
-                            <RatingShow rate={this.props.book.rate}/>
+                            <RatingShow rate={this.props.book.rate} bookId={this.props.book.id}/>
                         </label>
                         </div>
                 </li>

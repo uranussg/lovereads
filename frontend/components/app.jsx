@@ -15,6 +15,7 @@ import TagListContainer from './tags/tag_list_container'
 import TagShowContainer from './tags/tag_show_container';
 import HomePageContainer from "./home_page_container"
 import GreetingPage from './greeting-page'
+import TagShelfContainer from './tags/tag_shelf_container'
 
 const App = () => (
     <div className="bg">
@@ -54,6 +55,7 @@ const App = () => (
             </div>
             }/>
             <Route exact path='/tags/:tagName' component={TagShowContainer}/>
+            <Route exact path='/mytags' component={TagShelfContainer}/>
 
             {/* <Route path="/search/:body" render={(props) => 
             <div className="search-show">

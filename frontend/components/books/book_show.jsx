@@ -60,7 +60,7 @@ class BookShow extends React.Component {
                 <div className="book-info">
                     <div className="book-info-col-1">
 
-                        <img src={window.demoCover}/>
+                        <img src={book.coverUrl}/>
                         <BookshelfFormContainer/>
                         <div className='user-tag-on-book'>
                             <h3>my tags on <span>{book.title}</span></h3>
@@ -77,7 +77,7 @@ class BookShow extends React.Component {
                              <div className='book-rating'>
                             <div className='score'>{Number.parseFloat(book.rate).toPrecision(2)}</div>
                             <div className='rate-num'>
-                                <RatingShow rate={book.rate}/>
+                                <RatingShow rate={book.rate} bookId={book.id}/>
                                 <div className='num'>{ratnum} ratings</div>
                             </div>
 

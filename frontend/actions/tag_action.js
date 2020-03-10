@@ -79,3 +79,8 @@ export const createTag = (bookId, tag) => dispatch => {
     .then((tag) => dispatch(createTagging(bookId, tag)),
     errors=> dispatch(receiveErrors(errors.responseJSON)))
 }
+
+
+export const fetchUserTag = (userId, tag) => dispatch => {
+    // return APIUtil.
+}

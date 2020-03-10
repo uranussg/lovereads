@@ -14,6 +14,7 @@ export const fetchTag = (name) => {
     return $.ajax ({
         method: "GET",
         url: `/api/tags/${name}`,
+        // data: {user}
     })
 }
 

@@ -16,7 +16,8 @@
 
 .tag-listpage .taglist-container ul {
     padding: 8px;
-    display: flex
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .tag-listpage .tags-list-nav {

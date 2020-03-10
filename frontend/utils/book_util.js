@@ -1,8 +1,9 @@
-export const fetchBooks = () => {
+export const fetchBooks = (user) => {
     
     return $.ajax({
         method: "GET",
         url: "/api/books",
+        data:{user}
   
     })
 }

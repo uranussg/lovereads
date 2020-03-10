@@ -1,4 +1,4 @@
-.shelf-show{
+.tagshelf-show{
     max-width: 1000px;;
     padding: 20px 10px;
     margin: 0 auto;
@@ -7,7 +7,7 @@
 }
 
 
-.shelf-nav{
+.tagshelf-nav{
     font-size: 20px;
     padding: 0 0 10px  0;
     font-weight: bold;
@@ -19,17 +19,17 @@
 }
 
 
-.shelf-container {
+.tagshelf-container {
     display: grid;
     grid-template-columns: 1fr 5fr;
     // padding: 5px;
 }
 
-.shelf-sidbar {
+.tagshelf-sidbar {
     grid-column: 1;
 }
 
-.shelf-titles {
+.tagshelf-titles {
     width:auto;
     display: flex;
     flex-direction: column;
@@ -38,40 +38,44 @@
     margin: 4px 8px 4px 0;
 }
 
-.shelf-titles h3 {
+.tagshelf-titles h3 {
     font-weight: bold;
     padding: 4px 0;
 
 }
 
-.shelf-titles ul{
+.tagshelf-titles ul{
     display: flex;
     flex-direction: column;
     padding: 3px 0;
 }
 
-.shelf-titles li {
+.tagshelf-titles li {
     width: 100%;
     padding: 4px 0;
     border-top: 1px dashed #DDDDDD;
 }
 
-.shelf-titles button{
+.tagshelf-titles li:first-child {
+    border-top: none;
+}
+
+.tagshelf-titles button{
     background: transparent;
     padding: 0;
     border-bottom: 0;
     color:#00635d
 }
 
-.shelf-show .book-list-container {
+.tagshelf-show .book-list-container {
     grid-column: 2;
 }
 
-.shelf-show .book-list-container a {
+.tagshelf-show .book-list-container a {
     position: relative;
 }
 
-.shelf-show .button-container {
+.tagshelf-show .button-container {
     position: absolute;
     margin: 4px;
     width: 16px;
@@ -79,7 +83,7 @@
 }
 
 
-.shelf-show .book-list-container button {
+.tagshelf-show .book-list-container button {
     position: absolute;
 
     padding: 4px;
@@ -94,13 +98,13 @@
 
 }
 
-.shelf-show .book-list-container .button-container::before {
+.tagshelf-show .book-list-container .button-container::before {
     position: absolute;
     content: '';
     width: 16px;
     height: 16px;
 
 }
-.shelf-show .book-list-container .button-container:hover::before {
+.tagshelf-show .book-list-container .button-container:hover::before {
     background-color:black;
 }

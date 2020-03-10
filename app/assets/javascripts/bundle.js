@@ -126,9 +126,9 @@ var receiveErrors = function receiveErrors(errors) {
     errors: errors
   };
 };
-var fetchBooks = function fetchBooks() {
+var fetchBooks = function fetchBooks(user) {
   return function (dispatch) {
-    return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooks"]().then(function (books) {
+    return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooks"](user).then(function (books) {
       return dispatch(receiveBooks(books));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
@@ -481,7 +481,7 @@ var logout = function logout() {
 /*!****************************************!*\
   !*** ./frontend/actions/tag_action.js ***!
   \****************************************/
-/*! exports provided: RECEIVE_TAG, RECEIVE_TAGS, RECEIVE_TAGGING, RECEIVE_TAGS_ERRORS, REMOVE_TAGGING, receiveTags, receiveTag, receiveTagging, removeTagging, receiveErrors, fetchTags, fetchTag, createTagging, deleteTagging, createTag */
+/*! exports provided: RECEIVE_TAG, RECEIVE_TAGS, RECEIVE_TAGGING, RECEIVE_TAGS_ERRORS, REMOVE_TAGGING, receiveTags, receiveTag, receiveTagging, removeTagging, receiveErrors, fetchTags, fetchTag, createTagging, deleteTagging, createTag, fetchUserTag */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -501,6 +501,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTagging", function() { return createTagging; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTagging", function() { return deleteTagging; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTag", function() { return createTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserTag", function() { return fetchUserTag; });
 /* harmony import */ var _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/tag_utils */ "./frontend/utils/tag_utils.js");
 /* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/book_action */ "./frontend/actions/book_action.js");
 
@@ -590,6 +591,10 @@ var createTag = function createTag(bookId, tag) {
     });
   };
 };
+var fetchUserTag = function fetchUserTag(userId, tag) {
+  return function (dispatch) {// return APIUtil.
+  };
+};
 
 /***/ }),
 
@@ -662,6 +667,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./tags/tag_show_container */ "./frontend/components/tags/tag_show_container.js");
 /* harmony import */ var _home_page_container__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./home_page_container */ "./frontend/components/home_page_container.js");
 /* harmony import */ var _greeting_page__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./greeting-page */ "./frontend/components/greeting-page.jsx");
+/* harmony import */ var _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tags/tag_shelf_container */ "./frontend/components/tags/tag_shelf_container.js");
+
 
 
 
@@ -742,6 +749,10 @@ var App = function App() {
     exact: true,
     path: "/tags/:tagName",
     component: _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
+    path: "/mytags",
+    component: _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_17__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "*",
     component: _not_found__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -916,7 +927,7 @@ var BookIndexItem = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "book-list-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.demoCover,
+        src: this.props.book.coverUrl,
         alt: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "item-info"
@@ -925,7 +936,8 @@ var BookIndexItem = /*#__PURE__*/function (_React$Component) {
       }, this.props.book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "item-rate"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_rating_show__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        rate: this.props.book.rate
+        rate: this.props.book.rate,
+        bookId: this.props.book.id
       })))));
     }
   }]);
@@ -1043,7 +1055,7 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.demoCover
+        src: book.coverUrl
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bookshelf_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-tag-on-book"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "my tags on ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, book.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytagonbook))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1059,7 +1071,8 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
       }, Number.parseFloat(book.rate).toPrecision(2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rate-num"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_rating_show__WEBPACK_IMPORTED_MODULE_7__["default"], {
-        rate: book.rate
+        rate: book.rate,
+        bookId: book.id
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "num"
       }, ratnum, " ratings"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, book.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1262,11 +1275,13 @@ var BookShelf = /*#__PURE__*/function (_React$Component) {
         }, status, "(", titles[status] || 0, ")"), "  ");
       });
       var bookList = books.map(function (book) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "button-container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: _this2.handleDelete,
           className: "remove-button",
           value: book.id
-        }, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_book_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        }, " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_book_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
           book: book,
           key: book.id
         }));
@@ -1712,6 +1727,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_signup_form_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./session/signup_form_container */ "./frontend/components/session/signup_form_container.js");
 /* harmony import */ var _session_signin_form_container__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./session/signin_form_container */ "./frontend/components/session/signin_form_container.js");
 /* harmony import */ var _search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./search/search_bar_container */ "./frontend/components/search/search_bar_container.js");
+/* harmony import */ var _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./tags/tag_shelf_container */ "./frontend/components/tags/tag_shelf_container.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1729,6 +1745,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -1783,7 +1800,9 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           className: "navbar-links"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/bookshelf"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Books"), "  ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Books"), "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          to: "/mytags"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Tags"), " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile",
           onClick: this.handleDropdown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1925,26 +1944,42 @@ var RatingShow = /*#__PURE__*/function (_React$Component) {
   _createClass(RatingShow, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      // 
       var rate = parseInt(this.props.rate);
 
       if (this.props.rate - rate < 0.7 && this.props.rate - rate > 0.3) {
-        var half = document.getElementById("".concat(rate + 1, "-stars"));
+        // 
+        var half = document.getElementById("".concat(this.props.bookId, "-").concat(rate + 1, "-stars"));
         if (half) half.classList.add("half-star");
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.bookId != prevProps.bookId) {
+        var rate = parseInt(this.props.rate);
+
+        if (this.props.rate - rate < 0.7 && this.props.rate - rate > 0.3) {
+          var half = document.getElementById("".concat(this.props.bookId, "-").concat(rate + 1, "-stars"));
+          if (half) half.classList.add("half-star");
+        }
       }
     }
   }, {
     key: "render",
     value: function render() {
+      var _this = this;
+
       var rate = parseInt(this.props.rate);
       var star_list = [0, 1, 2, 3, 4].map(function (id) {
         return id >= 5 - rate ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: id,
-          id: "".concat(5 - id, "-stars"),
+          id: "".concat(_this.props.bookId, "-").concat(5 - id, "-stars"),
           className: "stars-show stared"
         }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: id,
           className: "stars-show",
-          id: "".concat(5 - id, "-stars")
+          id: "".concat(_this.props.bookId, "-").concat(5 - id, "-stars")
         });
       }); // if ((this.props.rate - rate) < 0.7 && (this.props.rate-rate)>0.3) {
       //     const half = document.getElementById(`${rate +1}-stars`)
@@ -3444,6 +3479,201 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/tags/tag_shelf.jsx":
+/*!************************************************!*\
+  !*** ./frontend/components/tags/tag_shelf.jsx ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _books_book_index_container__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../books/book_index_container */ "./frontend/components/books/book_index_container.js");
+/* harmony import */ var _books_book_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../books/book_index_item */ "./frontend/components/books/book_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var TagShelf = /*#__PURE__*/function (_React$Component) {
+  _inherits(TagShelf, _React$Component);
+
+  function TagShelf(props) {
+    var _this;
+
+    _classCallCheck(this, TagShelf);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(TagShelf).call(this, props));
+    _this.state = {
+      books: _this.props.books
+    };
+    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TagShelf, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.bookshelves !== prevProps.bookshelves) {
+        this.props.fetchBookshelves();
+      }
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.props.fetchBooks({
+        user_id: this.props.user_id
+      }).then(function () {
+        return _this2.setState({
+          books: _this2.props.books
+        });
+      });
+    }
+  }, {
+    key: "handleUpdate",
+    value: function handleUpdate(e) {
+      var curTaggings = this.props.taggings.filter(function (tagging) {
+        return tagging.name === e.target.value;
+      }).map(function (tagging) {
+        return tagging.book_id;
+      });
+      var tagBooks = this.props.books.filter(function (book) {
+        return curTaggings.includes(book.id);
+      });
+      this.setState({
+        books: tagBooks
+      });
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(e) {
+      e.stopPropagation();
+      this.props.deleteBookFromShelf(this.props.bookshelves[e.target.getAttribute('value')].id);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var titles = this.props.titles;
+      var books = this.state.books;
+      var titlelist = titles.map(function (title) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: _this3.handleUpdate,
+          value: title
+        }, title), "  ");
+      }); // const titlelist = ['Want to Read', 'Reading', 'Read'].map(status=> (
+      //     <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]|| 0 })</button>  </li>
+      //     ))
+
+      var bookList = books.map(function (book) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+          book: book,
+          key: book.id
+        }));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tagshelf-show"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tagshelf-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "title"
+      }, "My Tags")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tagshelf-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tagshelf-sidebar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tagshelf-titles"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, titlelist))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-list-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList))));
+    }
+  }]);
+
+  return TagShelf;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (TagShelf);
+
+/***/ }),
+
+/***/ "./frontend/components/tags/tag_shelf_container.js":
+/*!*********************************************************!*\
+  !*** ./frontend/components/tags/tag_shelf_container.js ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _tag_shelf__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tag_shelf */ "./frontend/components/tags/tag_shelf.jsx");
+/* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/book_action */ "./frontend/actions/book_action.js");
+ // import {fetchTag} from '../../actions/tag_action'
+
+
+
+
+var ms = function ms(state, ownProps) {
+  return {
+    books: Object.values(state.entities.books) || {},
+    titles: Object.values(state.entities.users[state.session.id].tags).map(function (tag) {
+      return tag[0];
+    }) || [],
+    taggings: Object.values(state.entities.taggings),
+    user_id: state.session.id
+  };
+};
+
+var md = function md(dispatch) {
+  return {
+    fetchBooks: function fetchBooks(user) {
+      return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_2__["fetchBooks"])(user));
+    },
+    deleteTagging: function (_deleteTagging) {
+      function deleteTagging(_x) {
+        return _deleteTagging.apply(this, arguments);
+      }
+
+      deleteTagging.toString = function () {
+        return _deleteTagging.toString();
+      };
+
+      return deleteTagging;
+    }(function (tagging_id) {
+      return dispatch(deleteTagging(tagging_id));
+    })
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(ms, md)(_tag_shelf__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/tags/tag_show.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/tags/tag_show.jsx ***!
@@ -4290,10 +4520,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBook", function() { return fetchBook; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchReviews", function() { return fetchReviews; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
-var fetchBooks = function fetchBooks() {
+var fetchBooks = function fetchBooks(user) {
   return $.ajax({
     method: "GET",
-    url: "/api/books"
+    url: "/api/books",
+    data: {
+      user: user
+    }
   });
 };
 var fetchBook = function fetchBook(bookId) {
@@ -4573,7 +4806,8 @@ var fetchTags = function fetchTags() {
 var fetchTag = function fetchTag(name) {
   return $.ajax({
     method: "GET",
-    url: "/api/tags/".concat(name)
+    url: "/api/tags/".concat(name) // data: {user}
+
   });
 };
 var createTag = function createTag(tag) {

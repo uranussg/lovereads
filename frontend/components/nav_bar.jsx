@@ -4,6 +4,7 @@ import { Route } from "react-router-dom"
 import SignupFormContainer from './session/signup_form_container'
 import SigninFormContainer from './session/signin_form_container'
 import SearchBarContainer from './search/search_bar_container'
+import TagShlefContainer from './tags/tag_shelf_container';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -34,6 +35,7 @@ class NavBar extends React.Component {
 
                     <div className='navbar-links'>
                     <Link to='/bookshelf'><div>My Books</div>  </Link>
+                    <Link to='/mytags'><div>My Tags</div> </Link>
                     </div>
                     <SearchBarContainer/>
 
