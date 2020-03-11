@@ -1,0 +1,107 @@
+footer {
+    background: #f9f8f4;
+    padding-bottom: 32px;
+    padding-top: 32px;
+}
+
+.footer-container {
+    max-width: 1000px;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    position: relative;
+
+}
+
+.footer-col-1{
+    grid-column: 1;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.footer-col-1 ul {
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    box-sizing: border-box;
+}
+
+.footer-container .contact-info > li{
+    float: left;
+    width: 50%;
+}
+
+.footer-col-1 .people div {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.15;
+    margin: 12px 0;
+    text-transform: uppercase;
+    color: #767676;
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+
+.footer-col-1 .people ul {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.footer-col-1 .people ul li {
+    font-size: 14;
+    line-height: 1.5;
+}
+
+.footer-col-1 .connect ul {
+    width: auto;
+}
+
+.footer-col-1 .icons a {
+    padding: 16px;
+    margin: 0 8px;
+    border-radius: 1rem;
+    background-color: #A2A19F;
+    font-weight: bold;
+    color: white;
+    width: 0;
+    // height: 0;
+    // width: 40px;
+    // height: 40px;
+    position: relative;
+}
+
+.footer-col-1 .icons a:first-child {
+    margin-left: 0;
+}
+
+.footer-col-1 .icons a span {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    min-width: 10px;
+    min-height: 10px;
+}
+
+.footer-col-1 .icons .github {
+    width: 100%;
+    background-image: asset_url('github.svg');
+}
+.footer-col-2 {
+    grid-column: 2;
+}
+
+.footer-col-1 .connect div {
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 1.15;
+    margin: 12px 0;
+    text-transform: uppercase;
+    color: #767676;
+    margin-bottom: 8px;
+    margin-top: 0;
+}

@@ -80,6 +80,7 @@
     margin: 4px;
     width: 16px;
     height: 16px;
+    background-color: white;
 }
 
 
@@ -93,18 +94,20 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: asset_url("delete.png");
-
-
+    background-image: asset_url("delete-hover.svg");
+    
+    
 }
 
-.tagshelf-show .book-list-container .button-container::before {
-    position: absolute;
-    content: '';
-    width: 16px;
-    height: 16px;
+// .tagshelf-show .book-list-container .button-container::before {
+    //     position: absolute;
+    //     content: '';
+    //     width: 16px;
+    //     height: 16px;
+    
+    // }
+    .tagshelf-show .book-list-container button:hover {
+        background-image: asset_url("delete.svg");
+    // background-color:black;
 
-}
-.tagshelf-show .book-list-container .button-container:hover::before {
-    background-color:black;
 }

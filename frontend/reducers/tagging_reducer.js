@@ -16,7 +16,7 @@ export default (state = {}, action) => {
             return newState
         case REMOVE_TAGGING:
 
-            newState[action.tagging.id] = undefined
+            delete newState[action.tagging.id]
             return newState
         case LOGOUT_CURRENT_USER:
             return {}

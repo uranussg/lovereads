@@ -38,7 +38,7 @@ class WriterShow extends React.Component {
                 <div className="writer-info">
                     <div className="writer-info-col-1">
 
-                    <img src={window.demoCover}/>
+                    <img src={window.demoPic}/>
 
                     </div>
                     <div className="writer-info-col-2">
@@ -49,17 +49,17 @@ class WriterShow extends React.Component {
                                 {writer.description}
                             </p>
                         </div>
-                        
+                        <div className='authored-books'>
+                            <h2>{writer.name}'s BOOKS' </h2>
+                            <ul>
+                                {authoredBooks}
+                            </ul>
+                        </div>
                     </div>
 
 
                 </div>
-                <div className='authoered-books'>
-                    <h2>{WriterShow.name}'s BOOKS' </h2>
-                    <ul>
-                        {authoredBooks}
-                    </ul>
-                </div>
+
             </div>
         )
     }

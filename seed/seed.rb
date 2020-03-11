@@ -77,14 +77,14 @@ end
 taggings_dataset =[]
 
 
-(0..10).each do |n|
-        n0 = rand(tags.length)
+(14..19).each do |n|
+        n0 = rand(tags.length - 1)
         taglist = (0...tags.length).to_a.sample(n0)
         taglist.each do |n1|
             n2 = rand(18)
-            booklist = (0..74).to_a.sample(n2)
+            booklist = (0..73).to_a.sample(n2)
             booklist.each do |n3|
-                taggings_dataset.push("Tagging.create(user_id:u#{n}.id,tag_id:t#{n1}.id), book_id:b[#{n3}].id")
+                taggings_dataset.push("Tagging.create(user_id:u#{n}.id,tag_id:t#{n1}.id, book_id:b[#{n3}].id)")
             end
     end
 end

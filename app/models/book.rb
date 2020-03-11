@@ -6,7 +6,7 @@ class Book < ApplicationRecord
     end
 
     def self.top_rated
-        self.all.sort_by { |book| book.rate }.reverse.limit(15)
+        self.all.sort_by { |book| -book.rate }.limit(15)
     end
 
 

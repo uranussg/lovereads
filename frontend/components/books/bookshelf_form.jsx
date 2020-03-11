@@ -20,21 +20,26 @@ class BookshelfForm extends React.Component {
 
     handleSubmit(e){
         
-        const editorcreate = (bool) => {
+        const editorcreate = (bool, id) => {
             if (bool){
                 this.props.removeBookshelf(this.props.bookshelf)
                 this.props.editBookshelf(this.props.bookshelf.id, this.state)
-                .then((e)=>this.toggleClass(e))}else {
+                .then(()=>this.toggleClass())}
+            else {
+                // 
                 this.props.createBookshelf(this.state)
-            .then((e)=> (e.target.innerText=== 'Want to Read'? null : this.toggleClass(e)))
+            .then(()=> (id=== 'unadded'? null : this.toggleClass()))
             }
             }
+        const id = e.target.getAttribute('value')
         
         e.target.getAttribute('value') === 'delete' ?
         this.props.deleteBookFromShelf(this.props.bookshelf.id)
         : this.setState({title:e.target.innerText},
-           ()=>editorcreate(this.props.read)
-) 
+           ()=>{
+               
+               editorcreate(this.props.read, id)}
+            ) 
         
     }
 
@@ -43,7 +48,7 @@ class BookshelfForm extends React.Component {
         this.setState({title:e.target.value})
     }
 
-    toggleClass(e) {
+    toggleClass() {
         const dropdown =document.querySelectorAll('.shelf-drop-down')[0]
         dropdown.classList.toggle("show")
     }
@@ -57,7 +62,7 @@ class BookshelfForm extends React.Component {
                     <div className="check-mark" > <button onClick={this.handleSubmit} value="delete"></button> </div>
                     <p>{this.props.read}</p>
                     </div>:
-                    <div className="unadded" onClick={this.handleSubmit}> <p> Want to Read</p></div>
+                    <div className="unadded" onClick={this.handleSubmit} value="unadded">  Want to Read</div>
                 }
             </div >
             <div className="add-shelf">

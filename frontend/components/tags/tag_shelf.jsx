@@ -6,13 +6,17 @@ import BookIndexItem from '../books/book_index_item'
 class TagShelf extends React.Component {
     constructor(props) {
         super(props)
-        this.state={books:this.props.books}
+        this.state={books:this.props.books,
+        taggings:this.props.taggings}
         this.handleUpdate= this.handleUpdate.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
     }
     componentDidUpdate(prevProps) {
-        if(this.props.bookshelves!==prevProps.bookshelves){
-        this.props.fetchBookshelves()
+
+        if(JSON.stringify(this.props.taggings)!==JSON.stringify(prevProps.taggings)){
+
+        this.props.fetchBooks({user_id: this.props.user_id}).then(()=> this.setState({books:this.props.books,taggings:this.props.taggings}))
+
         }
     }
     componentDidMount(){
@@ -23,15 +27,26 @@ class TagShelf extends React.Component {
     }
 
     handleUpdate(e){
+        const tagnames = document.getElementsByClassName('title-button')
         
-        const curTaggings = this.props.taggings.filter(tagging=> tagging.name === e.target.value).map(tagging=> tagging.book_id)
-        const tagBooks = this.props.books.filter(book=> curTaggings.includes(book.id))
         
-        this.setState({books: tagBooks})
+        const curTaggings = this.props.taggings.filter(tagging=> tagging.name === e.target.value)
+        const tagBooks = this.props.books.filter(book=> curTaggings.map(tagging=> tagging.book_id).includes(book.id))
+        
+        this.setState({books: tagBooks, taggings: curTaggings})
+    }
+
+    getTaggingId(){
+
     }
     handleDelete(e) {
         e.stopPropagation()
-        this.props.deleteBookFromShelf(this.props.bookshelves[e.target.getAttribute('value')].id)
+
+        const taggingIds = this.state.taggings.filter(tagging=> tagging.book_id === parseInt(e.target.getAttribute('value')))
+        taggingIds.forEach(taggingId => {
+
+            this.props.deleteTagging(taggingId.id)
+        })
     }
 
     render() {
@@ -39,19 +54,21 @@ class TagShelf extends React.Component {
         const {titles} = this.props
         const books = this.state.books
         const titlelist = titles.map(title=> (
-        <li> <button onClick={this.handleUpdate} value={title}>{title}</button>  </li>
+        <li> <button className='title-button' onClick={this.handleUpdate} value={title}>{title}</button>  </li>
         ))
         // const titlelist = ['Want to Read', 'Reading', 'Read'].map(status=> (
         //     <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]|| 0 })</button>  </li>
         //     ))
         const bookList = books.map(book => (
+                    
             <li>
-                {/* <div className='button-container'>
+                <div className='button-container'>
                     <button onClick={this.handleDelete} className='remove-button' value={book.id}> </button>
-                </div> */}
+                </div>
             <BookIndexItem book={book} key={book.id}/>
             </li>
-        ))
+            ))
+                    
         
         return (
             <div className="tagshelf-show">
@@ -64,6 +81,7 @@ class TagShelf extends React.Component {
                             {/* <h3>My Tags</h3> */}
                             <ul>
                                 {/* <li> <button onClick={this.handleUpdate}> All</button></li> */}
+
                                 {titlelist}
                             </ul>
                         </div>

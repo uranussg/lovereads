@@ -1,0 +1,110 @@
+.search-page {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    // display:grid;
+    // grid-template-columns: 2fr 1fr;
+    padding:20px ;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    // grid-column: 1;
+    box-sizing: border-box;
+}
+
+.search-page .search-subnav {
+    border-bottom: 1px dashed #DDDDDD;
+    padding: 8px 0;
+    font-size: 22px;
+}
+.search-page .book-list-container  {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+    // position: relative;
+    z-index: 1;
+}
+
+.search-page .book-list-container h2 {
+    padding: 8px 0;
+    width: auto;
+    // height: 24px;
+    // margin-bottom: 0;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+// .search-page .book-list-container .rating-review-form {
+//     display: flex;
+//     padding: 10px 0;
+//     align-items: center;
+// }
+  .search-page .book-list-container ul {
+    position: relative;
+    margin:  4px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+    // position: relative;
+    z-index: 1;
+}
+.search-page .book-list-container a {
+
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+    color: #333333;
+    // background-color: #F4F1EA;
+    line-height: 1;
+    padding: 8px 0;
+    margin: 4px;
+    height: auto;
+    width: 100%;
+    
+    border-bottom: 1px solid #EBE8D5;
+}
+
+
+.search-page .book-list-container a {
+    // height: auto;
+}
+
+.search-page .book-list-container li {
+
+    // padding: 4px;
+    height: 80px;
+    // margin: 4px
+    // height: auto;
+
+}
+.search-page .book-list-container li:last-child {
+    border-bottom: none;
+}
+
+
+.search-page .book-list-container img {
+    position: relative;
+    width: auto;
+    height: 100%;
+    object-fit: scale-down;
+    // z-index: 2;
+    // margin: 3px 0;
+}
+
+.search-page .book-list-container .book-list-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+// .search-page .book-list-container .book-list-item:hover {
+//     background-color: #F9F7F4;
+// }
+
+
+.search-page .book-list-container .item-info {
+    display: inline-flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0 16px;
+    align-items: flex-start;
+}

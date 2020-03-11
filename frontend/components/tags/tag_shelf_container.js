@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-// import {fetchTag} from '../../actions/tag_action'
+import {deleteTagging} from '../../actions/tag_action'
 import Tagshelf from './tag_shelf'
 import {fetchBooks} from '../../actions/book_action'
 

@@ -8,6 +8,7 @@
     margin: 3px;
     position: relative;
     align-items: center;
+    cursor: pointer;
 
 }
 .status-bar {
@@ -25,7 +26,7 @@
     display: flex; 
 }
 .status-bar .added .check-mark button{
-    background: asset_url('checkmark.png');
+    background-image: asset_url('checkmark.png');
     height: 16px;
     width: 16px;
     background-size: contain;
@@ -34,7 +35,7 @@
 }
 
 .status-bar .added .check-mark button:hover {
-    background: asset_url('delete');
+    background-image: asset_url('delete');
 }
 
 // .status-bar .added .check-mark button {
@@ -45,6 +46,8 @@
 .status-bar .unadded {
     background-color: #fdd05f;
     color: white;
+    height: 22px;
+    text-align: center;
 }
 
 .status-bar .check-mark {

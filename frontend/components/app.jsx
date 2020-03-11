@@ -16,6 +16,7 @@ import TagShowContainer from './tags/tag_show_container';
 import HomePageContainer from "./home_page_container"
 import GreetingPage from './greeting-page'
 import TagShelfContainer from './tags/tag_shelf_container'
+import Footer from './footer';
 
 const App = () => (
     <div className="bg">
@@ -66,6 +67,7 @@ const App = () => (
 
         
         </Switch>
+        <Route path='/' component={Footer}/>
     </div>
 )
 

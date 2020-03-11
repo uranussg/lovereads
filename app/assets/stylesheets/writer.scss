@@ -1,0 +1,171 @@
+.writer-show-page {
+    // width: 100%;
+    max-width: 1000px;
+    padding: 10px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    // display: grid;
+    // grid-template-columns: 1fr 3fr;
+    position: relative;
+    z-index: 3;
+}
+
+.writer-info {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    width: 100%;
+    padding: 4px ;
+    // border-bottom:  1px solid #EBE8D5;
+    position: relative;
+
+}
+
+.writer-info-col-1{
+    grid-column: 1;
+    padding-right: 10px;
+    box-sizing: border-box;
+    position: relative;
+
+}
+
+.writer-info-col-1 img {
+    width: 150px;
+    height: 150px;
+    image-rendering: crisp-edges;
+    object-position: center;
+    object-fit: fill;
+    margin: 10px;
+    // box-shadow:  #ddd 0px 5px 5px;
+    border-radius: 1rem;
+}
+
+.writer-info-col-2{
+    grid-column: 2;
+    margin:0 10px;
+    box-sizing: border-box;
+    
+
+}
+
+.writer-info-col-2 h2 {
+    font-family: "Merriweather", "Georgia", serif;;
+    color: #333333;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 1.25;
+    padding: 0px 0px 2px 0px;
+    margin: 4px 0px 4px 0px;
+}
+.writer-info-col-2 h3 {
+    color: #333;
+    font-size: 16px;
+    font-family: "Merriweather", "Georgia", serif;
+    line-height: 150%;
+}
+
+.writer-info-col-2 p {
+    line-height: 21px;
+    font-family: "Merriweather", "Georgia", serif;
+    font-size: 14px;
+}
+
+.writer-basic-info {
+    border-bottom:  1px solid #DDDDDD;
+    padding-bottom: 5px;;
+}
+
+
+.authored-books  {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+    // position: relative;
+    z-index: 1;
+}
+
+.authored-books h2 {
+    padding: 8px 0;
+    width: auto;
+    // height: 24px;
+    // margin-bottom: 0;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+// .authored-books .rating-review-form {
+//     display: flex;
+//     padding: 10px 0;
+//     align-items: center;
+// }
+  .authored-books ul {
+    position: relative;
+    margin:  4px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px 0;
+    // position: relative;
+    z-index: 1;
+}
+.authored-books a {
+
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+  font-size: 14px;
+    color: #333333;
+    // background-color: #F4F1EA;
+    line-height: 1;
+    padding: 8px 0;
+    margin: 4px;
+    height: auto;
+    border-bottom: 1px solid #EBE8D5;
+}
+
+
+.authored-books a {
+    // height: auto;
+}
+
+.authored-books li {
+
+    // padding: 4px;
+    height: 80px;
+    // margin: 4px
+    // height: auto;
+
+}
+.authored-books li:last-child {
+    border-bottom: none;
+}
+
+
+.authored-books img {
+    position: relative;
+    width: auto;
+    height: 100%;
+    object-fit: scale-down;
+    border: 1px solid #EBE8D5;
+    // z-index: 2;
+    // margin: 3px 0;
+}
+
+.authored-books .book-list-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+// .authored-books .book-list-item:hover {
+//     background-color: #F9F7F4;
+// }
+
+
+.authored-books .item-info {
+    display: inline-flex;
+    flex-direction: column;
+    width: auto;
+    margin: 0 16px;
+    align-items: flex-start;
+}

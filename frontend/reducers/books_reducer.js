@@ -19,8 +19,8 @@ export default (state = {}, action) => {
                    
             return action.writer.books
             case REMOVE_TAGGING:
-
-                newState[action.tagging.book_id].tags[action.tagging.tag_id][1] -= 1
+                if (newState[action.tagging.book_id].tags)
+                {newState[action.tagging.book_id].tags[action.tagging.tag_id][1] -= 1}
                 return newState
             case RECEIVE_TAGGING:
 

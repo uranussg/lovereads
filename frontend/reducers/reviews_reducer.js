@@ -15,7 +15,8 @@ export default (state = {}, action) => {
             return newState
         case REMOVE_REVIEW:
             
-            newState[action.review.id] = undefined
+            delete newState[action.review.id] 
+            return newState
 
         default:
             return state
