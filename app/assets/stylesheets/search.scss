@@ -51,7 +51,7 @@
 
 .search-list-container ul {
     position: relative;
-    margin: 0 5px;
+    margin:  4px;
 }
 .search-list-container a {
     height: auto;
@@ -60,16 +60,22 @@
 .search-list-container li {
     height: auto;
     border-bottom: 1px solid #EBE8D5;
-    padding: 2px;
+    padding: 4px;
+    height: 96px;
+    // margin: 4px
 
 }
+.search-list-container li:last-child {
+    border-bottom: none;
+}
+
 
 .search-list-container img {
     position: relative;
-    width: 20%;
+    width: 12%;
     object-fit: contain;
     // z-index: 2;
-    margin: 3px 0;
+    // margin: 3px 0;
 }
 
 .search-list-container .book-list-item {
@@ -77,8 +83,15 @@
     align-items: center;
 }
 
+.search-list-container .book-list-item:hover {
+    background-color: #F9F7F4;
+}
+
+
 .search-list-container .item-info {
+    display: inline-flex;
+    flex-direction: column;
     width: auto;
-    margin: 0 15px;
-    align-items: center;
+    margin: 0 16px;
+    align-items: flex-start;
 }

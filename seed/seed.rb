@@ -34,7 +34,7 @@ end
 reviews_dataset =[]
 20.times do |n|
     7.times do |n1|
-    reviews_dataset.push("r#{n*7 +n1} = Review.create(user_id: u#{n}.id, book_id:b#{n1*10 + rand(10)}.id, rate: #{[1, 2, 3, 4, 5].sample})")
+    reviews_dataset.push("r#{n*7 +n1} = Review.create(user_id: u#{n}.id, book_id:b[#{n1*10 + rand(10)}].id, rate: #{[1, 2, 3, 4, 5].sample})")
     end
 end
 
@@ -77,9 +77,15 @@ end
 taggings_dataset =[]
 
 
-20.times do |n|
-    7.times do |n1|
-        taggings_dataset.push("Tagging.create( user_id:u#{n}.id, book_id:b#{rand(74)}.id, tag_id:t#{rand(tags.length)}.id)")
+(0..10).each do |n|
+        n0 = rand(tags.length)
+        taglist = (0...tags.length).to_a.sample(n0)
+        taglist.each do |n1|
+            n2 = rand(18)
+            booklist = (0..74).to_a.sample(n2)
+            booklist.each do |n3|
+                taggings_dataset.push("Tagging.create(user_id:u#{n}.id,tag_id:t#{n1}.id), book_id:b[#{n3}].id")
+            end
     end
 end
 
@@ -100,5 +106,7 @@ covers_dataset =[]
 # puts books_dataset
 # puts reviews_dataset 
 # puts tags_dataset
-# puts taggings_dataset
-puts covers_dataset
+puts taggings_dataset
+# puts covers_dataset
+
+# File.write("seed-result.rb", taggings_dataset, mode:'a')

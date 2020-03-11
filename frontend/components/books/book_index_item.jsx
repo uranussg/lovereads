@@ -13,9 +13,9 @@ class BookIndexItem extends React.Component {
                 <li className="book-list-item">
                     <img src={this.props.book.coverUrl} alt=""/>
                     <div className='item-info'>
-                        <label className="item-title">
+                        <p className="item-title">
                            {this.props.book.title}
-                        </label>
+                        </p>
                         <label className="item-rate">
                             <RatingShow rate={this.props.book.rate} bookId={this.props.book.id}/>
                         </label>

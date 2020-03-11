@@ -931,7 +931,7 @@ var BookIndexItem = /*#__PURE__*/function (_React$Component) {
         alt: ""
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "item-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "item-title"
       }, this.props.book.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         className: "item-rate"
