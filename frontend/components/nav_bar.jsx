@@ -10,10 +10,12 @@ class NavBar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            showDropdown: false
+            showDropdown: false,
+            showBrowse:false
         }
         this.handleSubmit= this.handleSubmit.bind(this)
         this.handleDropdown = this.handleDropdown.bind(this)
+        this.handleBrowse = this.handleBrowse.bind(this)
     }
     handleSubmit(e) {
         e.preventDefault()
@@ -24,7 +26,21 @@ class NavBar extends React.Component {
         const profile = document.getElementsByClassName("user-profile")[0]
         profile.classList.toggle("darken-background")
     }
+
+    handleBrowse(e) {
+        this.setState({showBrowse: !this.state.showBrowse})
+        const browsenav = document.getElementsByClassName("browse-nav")[0]
+        browsenav.classList.toggle("darken-background")
+    }
   render () {
+      const browselist = (<div className="browse-list">
+      <ul>
+          <li> <Link to="/browse/new">New Books</Link></li>
+          <li> <Link to='/browse/rate'>Top Rated</Link></li>
+          <li> <Link to='/browse/recommendation'>Recommendations</Link></li>
+      </ul>
+
+  </div>)
 
     if (this.props.currentUser){
         return (
@@ -34,8 +50,13 @@ class NavBar extends React.Component {
                     <Link to="/"><h1 id="title">Love<strong>reads</strong> </h1></Link>
 
                     <div className='navbar-links'>
-                    <Link to='/bookshelf'><div>My Books</div>  </Link>
-                    <Link to='/mytags'><div>My Tags</div> </Link>
+                        <Link to='/bookshelf'><div>My Books</div>  </Link>
+                        <Link to='/mytags'><div>My Tags</div> </Link>
+                        <a className='browse-nav'>
+                        <div  onClick={this.handleBrowse}>
+                       Browse </div>
+                        {this.state.showBrowse? browselist:null}
+                        </a>
                     </div>
                     <SearchBarContainer/>
 

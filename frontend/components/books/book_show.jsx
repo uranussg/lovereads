@@ -57,6 +57,7 @@ class BookShow extends React.Component {
     .filter(tagging=> tagging.book_id === book.id).map(tagging => ( <li>{tagging.name}</li> )) : []
         return(
             <div className="book-show-page">
+                <div className="col-1">
                 <div className="book-info">
                     <div className="book-info-col-1">
 
@@ -75,7 +76,7 @@ class BookShow extends React.Component {
                             <h2>{book.title}</h2>
                             <Link to={`/writers/${book.writer_id}`}>< h3>by {book.writer}</h3></Link>
                              <div className='book-rating'>
-                            <div className='score'>{Number.parseFloat(book.rate).toPrecision(2)}</div>
+                            <div className='score'>{Number.parseFloat(book.rate).toPrecision(2) || 0.0}</div>
                             <div className='rate-num'>
                                 <RatingShow rate={book.rate} bookId={book.id}/>
                                 <div className='num'>{ratnum} ratings</div>
@@ -102,11 +103,6 @@ class BookShow extends React.Component {
 
 
                 </div>
-
-                <div className='tags-container'>
-                    <h2 className='tag-nav'>Add Tags</h2>
-                    <TagForm createTag={this.props.createTag} createTagging={this.props.createTagging} book={book} userTags={this.props.userTags}/>
-                </div>
                 <div className='reviews'>
                     <h2>Reviews </h2>
                     <div className='rating-review-form'>
@@ -114,6 +110,11 @@ class BookShow extends React.Component {
                     <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
                     </div>
                     <ReviewIndex fetchReviews={this.props.fetchReviews} reviews={this.props.reviews} book={book}/>
+                </div>
+                </div>
+                <div className='tags-container'>
+                    <h2 className='tag-nav'>Add Tags</h2>
+                    <TagForm createTag={this.props.createTag} createTagging={this.props.createTagging} book={book} userTags={this.props.userTags}/>
                 </div>
             </div>
         )

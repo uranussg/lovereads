@@ -33,13 +33,13 @@ class TagShow extends React.Component {
         const bookList = books.map(book => (
             <BookIndexItem book={book} key={book.id}/>
         ))
-        
+        const num = bookList.length
         return (
             <div className="tag-showpage">
                 <div className='tag-show-col-1'>
                     <div className="tag-nav">
                         <h2 className='tag-name'>
-                        <span>Tag: </span> <span className="tag"> {tag}</span> 
+                        <span>Tag: </span> <span className="tag"> {tag}</span> <span>({num})</span>
                             </h2>
                     </div>
                     

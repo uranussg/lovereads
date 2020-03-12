@@ -90,7 +90,7 @@
 /*!*****************************************!*\
   !*** ./frontend/actions/book_action.js ***!
   \*****************************************/
-/*! exports provided: RECEIVE_BOOKS, RECEIVE_BOOK, RECEIVE_BOOK_ERRORS, receiveBooks, receiveBook, receiveErrors, fetchBooks, fetchBook */
+/*! exports provided: RECEIVE_BOOKS, RECEIVE_BOOK, RECEIVE_BOOK_ERRORS, receiveBooks, receiveBook, receiveErrors, fetchBooks, fetchBook, browseBooks */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -103,6 +103,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooks", function() { return fetchBooks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBook", function() { return fetchBook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "browseBooks", function() { return browseBooks; });
 /* harmony import */ var _utils_book_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/book_util */ "./frontend/utils/book_util.js");
 
 var RECEIVE_BOOKS = "RECEIVE_BOOKS";
@@ -139,6 +140,15 @@ var fetchBook = function fetchBook(bookId) {
   return function (dispatch) {
     return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["fetchBook"](bookId).then(function (book) {
       return dispatch(receiveBook(book));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var browseBooks = function browseBooks(type) {
+  return function (dispatch) {
+    return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["browseBooks"](type).then(function (books) {
+      return dispatch(receiveBooks(books));
     }, function (errors) {
       return dispatch(receiveErrors(errors.responseJSON));
     });
@@ -742,6 +752,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _greeting_page__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./greeting-page */ "./frontend/components/greeting-page.jsx");
 /* harmony import */ var _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tags/tag_shelf_container */ "./frontend/components/tags/tag_shelf_container.js");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
+/* harmony import */ var _books_browse_container__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./books/browse_container */ "./frontend/components/books/browse_container.js");
+
 
 
 
@@ -828,6 +840,10 @@ var App = function App() {
     exact: true,
     path: "/mytags",
     component: _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_17__["default"]
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+    exact: true,
+    path: "/browse/:type",
+    component: _books_browse_container__WEBPACK_IMPORTED_MODULE_19__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "*",
     component: _not_found__WEBPACK_IMPORTED_MODULE_10__["default"]
@@ -1129,6 +1145,8 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-show-page"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-1"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-1"
@@ -1146,7 +1164,7 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         className: "book-rating"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "score"
-      }, Number.parseFloat(book.rate).toPrecision(2)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, Number.parseFloat(book.rate).toPrecision(2) || 0.0), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rate-num"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_rating_show__WEBPACK_IMPORTED_MODULE_7__["default"], {
         rate: book.rate,
@@ -1179,15 +1197,6 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
       }, book.publish_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: this.toggleDetail
       }, "...Less Detail"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "tags-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "tag-nav"
-      }, "Add Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        createTag: this.props.createTag,
-        createTagging: this.props.createTagging,
-        book: book,
-        userTags: this.props.userTags
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reviews"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Reviews "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rating-review-form"
@@ -1197,6 +1206,15 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         fetchReviews: this.props.fetchReviews,
         reviews: this.props.reviews,
         book: book
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tags-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "tag-nav"
+      }, "Add Tags"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_tags_tag_form__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        createTag: this.props.createTag,
+        createTagging: this.props.createTagging,
+        book: book,
+        userTags: this.props.userTags
       })));
     }
   }]);
@@ -1622,6 +1640,119 @@ var md = function md(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/books/browse.jsx":
+/*!**********************************************!*\
+  !*** ./frontend/components/books/browse.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _book_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./book_index_item */ "./frontend/components/books/book_index_item.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var Browse = /*#__PURE__*/function (_React$Component) {
+  _inherits(Browse, _React$Component);
+
+  function Browse(props) {
+    _classCallCheck(this, Browse);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Browse).call(this, props));
+  }
+
+  _createClass(Browse, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      {
+        this.props.browseBooks(this.props.type);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var titles = {
+        "new": "New Books",
+        rate: "Top Rated",
+        recommendation: "Recommentdation for You"
+      };
+      var bookList = this.props.books.map(function (book) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_book_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          book: book,
+          key: book.id
+        });
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "browse-page"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "book-list-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, titles[this.props.type]), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList)));
+    }
+  }]);
+
+  return Browse;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Browse);
+
+/***/ }),
+
+/***/ "./frontend/components/books/browse_container.js":
+/*!*******************************************************!*\
+  !*** ./frontend/components/books/browse_container.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/book_action */ "./frontend/actions/book_action.js");
+/* harmony import */ var _browse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ././browse */ "./frontend/components/books/browse.jsx");
+
+
+
+
+var ms = function ms(state, ownProps) {
+  return {
+    type: ownProps.match.params.type,
+    books: Object.values(state.entities.books)
+  };
+};
+
+var md = function md(dispatch) {
+  return {
+    browseBooks: function browseBooks(type) {
+      return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_1__["browseBooks"])(type));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(ms, md)(_browse__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/comments/comment_index.jsx":
 /*!********************************************************!*\
   !*** ./frontend/components/comments/comment_index.jsx ***!
@@ -1712,7 +1843,11 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
       var commentList = Object.values(this.state.comments).map(function (comment) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "comment-item"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.body));
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "name"
+        }, comment.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "body"
+        }, comment.body));
       });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-container"
@@ -1726,7 +1861,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
         value: this.state["new"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit"
-      }, "write comment")))));
+      }, "submit")))));
     }
   }]);
 
@@ -1795,10 +1930,10 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         className: "connect"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Connect"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "icons"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "F")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://github.com/uranussg",
         className: "github"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " f")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "icons"
@@ -1931,7 +2066,7 @@ var HomePage = /*#__PURE__*/function (_React$Component) {
         className: "homepage-book-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "label-title"
-      }, !this.props.currentUser ? "What will you discover?" : "New Books"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, !this.props.currentUser ? "What will you discover?" : "Top Rated"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_container__WEBPACK_IMPORTED_MODULE_3__["default"], null))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "homepage-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "label-title"
@@ -2038,10 +2173,12 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(NavBar).call(this, props));
     _this.state = {
-      showDropdown: false
+      showDropdown: false,
+      showBrowse: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
+    _this.handleBrowse = _this.handleBrowse.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2061,8 +2198,27 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
       profile.classList.toggle("darken-background");
     }
   }, {
+    key: "handleBrowse",
+    value: function handleBrowse(e) {
+      this.setState({
+        showBrowse: !this.state.showBrowse
+      });
+      var browsenav = document.getElementsByClassName("browse-nav")[0];
+      browsenav.classList.toggle("darken-background");
+    }
+  }, {
     key: "render",
     value: function render() {
+      var browselist = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "browse-list"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/browse/new"
+      }, "New Books")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/browse/rate"
+      }, "Top Rated")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        to: "/browse/recommendation"
+      }, "Recommendations"))));
+
       if (this.props.currentUser) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "nav-bg"
@@ -2076,7 +2232,11 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           to: "/bookshelf"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Books"), "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/mytags"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Tags"), " ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Tags"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          className: "browse-nav"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          onClick: this.handleBrowse
+        }, "Browse "), this.state.showBrowse ? browselist : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile",
           onClick: this.handleDropdown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2551,7 +2711,7 @@ var ReviewForm = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-book-img"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.demoCover
+        src: book.coverUrl
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-book-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2679,11 +2839,10 @@ var ReviewIndex = /*#__PURE__*/function (_React$Component) {
   _createClass(ReviewIndex, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      // const num = parseInt(this.props.match.params.bookId)
-      // if(this.props.book.id !== num) {
-      //     this.props.fetchReviews(num)
+      // if (this.props.book.id !== prevProps.book.id || this.props.review !== prevProps.review) {
+      //     this.props.fetchReviews(this.props.book.id)
       // }
-      if (this.props.book.id !== prevProps.book.id || this.props.review !== prevProps.review) {
+      if (this.props.book.id !== prevProps.book.id) {
         this.props.fetchReviews(this.props.book.id);
       }
     }
@@ -4097,6 +4256,7 @@ var TagShow = /*#__PURE__*/function (_React$Component) {
           key: book.id
         });
       });
+      var num = bookList.length;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tag-showpage"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4107,7 +4267,7 @@ var TagShow = /*#__PURE__*/function (_React$Component) {
         className: "tag-name"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Tag: "), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "tag"
-      }, " ", tag))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, " ", tag), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "(", num, ")"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-list-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tag-show-col-2"
@@ -4905,13 +5065,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./frontend/utils/book_util.js ***!
   \*************************************/
-/*! exports provided: fetchBooks, fetchBook, fetchReviews, createReview */
+/*! exports provided: fetchBooks, fetchBook, browseBooks, fetchReviews, createReview */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBooks", function() { return fetchBooks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBook", function() { return fetchBook; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "browseBooks", function() { return browseBooks; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchReviews", function() { return fetchReviews; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createReview", function() { return createReview; });
 var fetchBooks = function fetchBooks(user) {
@@ -4927,6 +5088,12 @@ var fetchBook = function fetchBook(bookId) {
   return $.ajax({
     method: "GET",
     url: "/api/books/".concat(bookId)
+  });
+};
+var browseBooks = function browseBooks(type) {
+  return $.ajax({
+    method: "GET",
+    url: "/api/browse/".concat(type)
   });
 };
 var fetchReviews = function fetchReviews(bookId) {

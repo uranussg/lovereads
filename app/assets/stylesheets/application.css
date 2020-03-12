@@ -28,6 +28,7 @@
  *= require './writer.scss'
  *= require './search_result.scss'
  *= require './footer.scss'
+ *= require './comment.scss'
  *= require_tree .
  *= require_self
  */
@@ -36,4 +37,6 @@ a:hover {
 }
 
 
-
+nav a:hover {
+    text-decoration: none;
+}

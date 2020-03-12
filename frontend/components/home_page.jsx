@@ -31,7 +31,7 @@ class HomePage extends React.Component{
                     }
                     <div className='homepage-book-list'>
                     <div className='label-title'>
-                    {!this.props.currentUser? `What will you discover?` : `New Books` }
+                    {!this.props.currentUser? `What will you discover?` : `Top Rated` }
                 </div>
                 <BookIndexContainer  />
                 </div>

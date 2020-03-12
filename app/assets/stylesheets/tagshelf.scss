@@ -75,18 +75,20 @@
     position: relative;
 }
 
-.tagshelf-show .button-container {
-    position: absolute;
-    margin: 4px;
-    width: 16px;
-    height: 16px;
-    background-color: white;
-}
+// .tagshelf-show .button-container {
+//     position: absolute;
+//     margin: 4px;
+//     width: 16px;
+//     height: 16px;
+//     background-color: white;
+//     // right: 0;
+//     // top: 0;
+// }
 
 
 .tagshelf-show .book-list-container button {
     position: absolute;
-
+    transform: translate(-50%, -50%);
     padding: 4px;
     width: 16px;
     height: 16px;
@@ -94,7 +96,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: asset_url("delete-hover.svg");
+    background-image: asset_url("close.png");
     
     
 }
@@ -107,7 +109,8 @@
     
     // }
     .tagshelf-show .book-list-container button:hover {
-        background-image: asset_url("delete.svg");
+   
+        transform: translate(-50%, -50%) scale(1.2) ;
     // background-color:black;
 
 }

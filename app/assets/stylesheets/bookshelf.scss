@@ -71,17 +71,17 @@
     position: relative;
 }
 
-.shelf-show .button-container {
-    position: absolute;
-    margin: 4px;
-    width: 16px;
-    height: 16px;
-}
+// .shelf-show .button-container {
+//     position: absolute;
+//     margin: 4px;
+//     width: 16px;
+//     height: 16px;
+// }
 
 
 .shelf-show .book-list-container button {
     position: absolute;
-
+    transform: translate(-50%, -50%);
     padding: 4px;
     width: 16px;
     height: 16px;
@@ -89,18 +89,18 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    background-image: asset_url("delete.svg");
+    background-image: asset_url("close.png");
 
 
 }
 
-.shelf-show .book-list-container .button-container::before {
-    position: absolute;
-    content: '';
-    width: 16px;
-    height: 16px;
+// .shelf-show .book-list-container .button-container::before {
+//     position: absolute;
+//     content: '';
+//     width: 16px;
+//     height: 16px;
 
-}
-.shelf-show .book-list-container .button-container:hover::before {
-    background-color:black;
+// }
+.shelf-show .book-list-container button:hover {
+    transform: translate(-50%, -50%) scale(1.2) ;
 }

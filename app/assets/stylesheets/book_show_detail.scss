@@ -11,8 +11,12 @@
     z-index: 3;
 }
 
-.book-info {
+.book-show-page .col-1 {
     grid-column: 1;
+}
+
+.book-info {
+    // grid-column: 1;
     display: grid;
     grid-template-columns: 185px 1fr;
     width: 100%;

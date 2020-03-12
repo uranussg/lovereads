@@ -36,3 +36,9 @@ export const fetchBook = (bookId) => dispatch => {
 }
 
 
+export const browseBooks = (type) => dispatch => {
+    
+    return APIUtil.browseBooks(type)
+    .then(books => dispatch(receiveBooks(books)),
+    errors => dispatch(receiveErrors(errors.responseJSON)) )
+}

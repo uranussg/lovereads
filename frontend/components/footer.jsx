@@ -31,10 +31,10 @@ class Footer extends React.Component {
                         <li  className='connect'>
                             <div>Connect</div>
                             <ul className='icons'>
-                                 <a> <span>F</span></a>
                                 {/* <li><a></a></li> */}
                                 <a href='https://github.com/uranussg' className='github'><span ></span></a>
                                 <a><span>in</span></a>
+                                 <a><span> f</span></a>
                             </ul>
                         </li>
                     </ul>

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       resources :taggings, only: [:create]
     end
     resources :taggings, only: :destroy
+    get '/browse/:type', to: 'books#browse'
   end
 
   root to: 'static_pages#root'

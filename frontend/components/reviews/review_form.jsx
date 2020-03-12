@@ -52,7 +52,7 @@ class ReviewForm extends React.Component {
             <div className="review-form">
                 <div className='review-book'>
                     <div className='review-book-img'>
-                        <img src={window.demoCover}></img>
+                        <img src={book.coverUrl}></img>
                     </div>
                     <div className='review-book-info'>
                          <div className='title'>{book.title}</div>

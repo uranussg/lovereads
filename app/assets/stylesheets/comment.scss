@@ -1,0 +1,55 @@
+.review-item button{
+    font-size: 12px;
+    color:#00635d;
+    font-weight: bold;
+}
+
+.comment-list{
+    display: inline-flex;
+    flex-direction: column;
+    width: 200px;
+    padding: 4px;
+    background-color: #F4F1EA;
+    border-radius: 3px;
+}
+.comment-list li {
+    display: inline-flex;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 4px 0;
+    border-bottom: 2px solid white;
+    align-items: center;
+}
+
+.comment-list li .name {
+    color: #00635d;
+    margin-right: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.comment-list li .body {
+    font-family: "Merriweather", "Georgia", serif;
+    font-size: 12px;
+}
+
+.comment-list li:last-child {
+    border-bottom: none;
+}
+
+.comment-list  input {
+    padding: 4px 2px;
+    background: #FFFFFF;
+    border-radius: 2px;
+    border: #DCD6CC 1px solid;
+    color: #333333;
+    box-sizing: border-box;
+    margin-top: 4px;
+    // width: 100%;
+}
+
+.comment-list button {
+    margin: 2px;
+    padding: 2px;
+    border: 1px solid #F4F1EA;
+}

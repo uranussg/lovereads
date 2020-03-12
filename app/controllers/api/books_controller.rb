@@ -4,7 +4,7 @@ class Api::BooksController < ApplicationController
         if params[:user]
             @books = User.find_by(id: user_params[:user_id] ).tagged_books.includes(:writer)
         else 
-            @books = Book.includes(:writer).new_books
+            @books = Book.top_rated(15) 
         #    @top_rated = Book..includes(:writer).top_rated
         end
     end
@@ -13,6 +13,22 @@ class Api::BooksController < ApplicationController
       
         @book = Book.includes(:writer, :reviews, :tags).find(params[:id])
 
+    end
+
+
+    def browse
+        type = params[:type]
+        if type == "new"
+            @books = Book.new_books.limit(25)
+        elsif type == 'rate'
+            @books = Book.top_rated(25) 
+        elsif type == 'recommendation' 
+            
+            @books = current_user.books_under_tags_in_use.sort_by { |book| -book.rate }[0...25]
+        else
+            render json: ['Invalid browse'], status: 404
+        end
+        render :index
     end
 
     def user_params

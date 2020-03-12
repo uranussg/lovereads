@@ -62,7 +62,7 @@ nav strong {
 
 }
 
-.navbar-links a {
+.navbar-links > a {
     display: inline-block;
     padding: 10px;
     box-sizing: border-box;
@@ -71,16 +71,58 @@ nav strong {
     width: auto;
 }
 
-.navbar-links a:hover {
+.navbar-links > a:hover {
     background-color: #382110;
     color: white;
 }
 
-.navbar-links a div {
+.navbar-links a > div {
     // position: relative;
     margin-top: 7px;
 }
 
+.browse-nav {
+    cursor: pointer;
+    position: relative;
+
+}
+
+.browse-nav.darken-background {
+    background-color: #382110;
+    color: white;
+}
+
+.browse-nav .browse-list {
+    position: absolute;
+    background-color: #FFFFFF;
+    width: 200px;
+    left: 0;
+    top: 52px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    z-index: 4;
+}
+
+.browse-list ul {
+    display: flex;
+    flex-direction: column;
+
+
+}
+
+.browse-nav .browse-list li {
+    display: block;
+    padding: 0 16px;
+    color:#333333;
+    font-size: 14px;
+    line-height: 32px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.browse-list li:hover {
+    background-color: #382110;
+    color: white;
+}
 
 
 .user-profile {
@@ -91,6 +133,7 @@ nav strong {
     width: auto;
     position: relative;
     z-index: 4;
+    cursor: pointer;
 }
 
 .user-profile.darken-background{

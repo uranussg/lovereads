@@ -35,8 +35,8 @@ class CommentIndex extends React.Component {
         const commentList =
          Object.values(this.state.comments).map( comment => (
             <li className='comment-item'> 
-            <div>{comment.user.username}</div>
-            <div>{comment.body}</div>
+            <div className='name'>{comment.user.username}</div>
+            <div className='body'>{comment.body}</div>
             </li>
             ))
             
@@ -49,7 +49,7 @@ class CommentIndex extends React.Component {
                         {commentList}
                         <form onSubmit={this.handleCreate}>
                         <input type="text" onChange={this.handleUpdate} value={this.state.new}/>
-                        <button type='submit'>write comment</button>
+                        <button type='submit'>submit</button>
                         </form>
                     </ul>
                 </label>

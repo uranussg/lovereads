@@ -1,0 +1,21 @@
+.browse-page {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 20px;
+}
+
+.browse-page h1 {
+    border-bottom: 1px dashed #DDDDDD;
+    padding: 8px 0;
+    font-size: 22px;
+}
+
+.browse-page .book-list-container {
+    padding:20px ;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    grid-column: 1;
+    box-sizing: border-box;
+}

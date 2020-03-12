@@ -18,6 +18,14 @@ export const fetchBook = (bookId) => {
     })
 }
 
+
+export const browseBooks = type => {
+    return $.ajax ({
+        method: "GET",
+        url: `/api/browse/${type}`,
+    })
+}
+
 export const fetchReviews = (bookId) => {
     return $.ajax({
         method: "get", 
