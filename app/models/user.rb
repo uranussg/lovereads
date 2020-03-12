@@ -83,8 +83,7 @@ class User < ApplicationRecord
         self.reviews.each do |review|
           rate[review.book_id] =  review.rate
         end
-        # 382110
         rate
       end
-
+      has_many :comment
 end

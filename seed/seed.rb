@@ -32,10 +32,21 @@ users_dataset =[]
 end
 
 reviews_dataset =[]
+count = 0
+# 20.times do |n|
+#     7.times do |n1|
+#     reviews_dataset.push("r#{n*7 +n1} = Review.create(user_id: u#{n}.id, book_id:b[#{n1*10 + rand(10)}].id, rate: #{[1, 2, 3, 4, 5].sample})")
+#     end
+# end
+
 20.times do |n|
-    7.times do |n1|
-    reviews_dataset.push("r#{n*7 +n1} = Review.create(user_id: u#{n}.id, book_id:b[#{n1*10 + rand(10)}].id, rate: #{[1, 2, 3, 4, 5].sample})")
-    end
+        n2 = rand(73)
+        booklist = (0..73).to_a.sample(n2)
+        booklist.each do |n3|
+            count += 1
+            reviews_dataset.push("r#{count} = Review.create(user_id: u#{n}.id, book_id:b[#{n3}].id, rate: #{[1, 2, 3, 4, 5].sample}, body:'Description')")
+        end
+
 end
 
 tags =['Biography',
@@ -86,7 +97,7 @@ taggings_dataset =[]
             booklist.each do |n3|
                 taggings_dataset.push("Tagging.create(user_id:u#{n}.id,tag_id:t#{n1}.id, book_id:b[#{n3}].id)")
             end
-    end
+        end
 end
 
 
@@ -98,15 +109,36 @@ covers_dataset =[]
         covers_dataset.push(str)
     end
 
+
+fetch_users = ["users = User.all"]
+    20.times do |no|
+        fetch_users.push("u#{no} = users[#{no}]")
+    end
+
+fetch_writers = ["writers = Writer.all"]
+    49.times do |no|
+        fetch_writers.push("w#{no} = writers[#{no}]")
+    end
+
+
+fetch_books = ['books = Book.all']
+    74.times do |no|
+        fetch_books.push("b[#{no}] = books[#{no}]")
+    end
+
 # p writer_order[-1]
 # p distinct_writer[-1]
 
 # puts users_dataset 
 # puts writers_dataset
 # puts books_dataset
-# puts reviews_dataset 
+puts reviews_dataset 
 # puts tags_dataset
-puts taggings_dataset
+# puts taggings_dataset
 # puts covers_dataset
 
-# File.write("seed-result.rb", taggings_dataset, mode:'a')
+# puts fetch_users
+
+# puts fetch_writers
+
+# puts fetch_books

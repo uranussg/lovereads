@@ -1,3 +1,21 @@
+.review-list-item {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    margin: 8px 0;
+}
+
+.review-list-item img{
+    grid-column: 1;
+    object-fit: contain;
+    width: 100%;
+    // margin: 4px;
+    padding: 4px;
+    box-sizing: border-box;
+}
+
+.review-list-item .review-item {
+    grid-column: 2;
+}
 .review-item-nav{
     display:flex;
     padding: 3px 0;

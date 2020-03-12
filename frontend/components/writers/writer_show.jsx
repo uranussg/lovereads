@@ -38,7 +38,7 @@ class WriterShow extends React.Component {
                 <div className="writer-info">
                     <div className="writer-info-col-1">
 
-                    <img src={window.demoPic}/>
+                    <img src={window.demoPi}/>
 
                     </div>
                     <div className="writer-info-col-2">

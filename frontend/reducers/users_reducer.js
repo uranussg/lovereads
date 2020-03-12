@@ -42,7 +42,7 @@ export default (state = {}, action) => {
                 newState[action.tagging.user_id].tags[action.tagging.tag_id][1] -= 1
                 return newState
             case RECEIVE_TAGGING:
-                
+                // 
                 // const userTag = newState[action.tagging.user_id].tags
                 newState[action.tagging.user_id].tags[action.tagging.tag_id]? 
                 

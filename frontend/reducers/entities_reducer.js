@@ -7,6 +7,7 @@ import searchReducer from './search_reducer'
 import writerReducer from './writer_reducer'
 import tagReducer from './tags_reducer'
 import taggingReducer from './tagging_reducer'
+import commentReducer from './comments_reducer'
 
 export default combineReducers ({
     users: usersReducer,
@@ -16,7 +17,7 @@ export default combineReducers ({
     searchResults: searchReducer,
     writers: writerReducer,
     tags: tagReducer,
-    taggings: taggingReducer
-
+    taggings: taggingReducer,
+    // comments: commentReducer
 
 })

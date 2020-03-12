@@ -6,7 +6,9 @@ Rails.application.routes.draw do
     resources :books, only: [:index, :show] do 
       resources :reviews, only: [:index,:create]
     end
-    resources :reviews, only: [:show, :update, :destroy]
+    resources :reviews, only: [:show, :update, :destroy] do
+      resources :comments, only: [:index, :show, :create]
+    end
 
     resources :bookshelves, only: [:index, :show, :create, :update, :destroy]
     resources :searches, only: [:show, :index]

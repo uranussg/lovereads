@@ -245,6 +245,79 @@ var deleteBookFromShelf = function deleteBookFromShelf(bookshelfId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/comment_action.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/comment_action.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_COMMENTS, RECEIVE_COMMENT, REMOVE_COMMENT, RECEIVE_COMMENT_ERRORS, receiveComments, receiveComment, receiveErrors, fetchComments, createComment, deleteComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENTS", function() { return RECEIVE_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT", function() { return RECEIVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT", function() { return REMOVE_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_COMMENT_ERRORS", function() { return RECEIVE_COMMENT_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveComments", function() { return receiveComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveComment", function() { return receiveComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+/* harmony import */ var _utils_comment_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/comment_util */ "./frontend/utils/comment_util.js");
+
+var RECEIVE_COMMENTS = "RECEIVE_COMMENTS";
+var RECEIVE_COMMENT = "RECEIVE_COMMENT";
+var REMOVE_COMMENT = "REMOVE_COMMENT";
+var RECEIVE_COMMENT_ERRORS = "RECEIVE_COMMENT_ERRORS";
+var receiveComments = function receiveComments(comments) {
+  return {
+    type: RECEIVE_COMMENTS,
+    comments: comments
+  };
+};
+var receiveComment = function receiveComment(comment) {
+  return {
+    type: RECEIVE_COMMENT,
+    comment: comment
+  };
+};
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_COMMENT_ERRORS,
+    errors: errors
+  };
+};
+var fetchComments = function fetchComments(reviewId) {
+  return function (ispatch) {
+    return _utils_comment_util__WEBPACK_IMPORTED_MODULE_0__["fetchComments"](reviewId).then(function (comments) {
+      return dispatch(receiveComments(comments));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var createComment = function createComment(comment) {
+  return function (dispatch) {
+    return _utils_comment_util__WEBPACK_IMPORTED_MODULE_0__["createComment"](comment).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+var deleteComment = function deleteComment(commentId) {
+  return function (dispatch) {
+    return _utils_comment_util__WEBPACK_IMPORTED_MODULE_0__["deleteComment"](commentId).then(function (comment) {
+      return dispatch(receiveComment(comment));
+    }, function (errors) {
+      return dispatch(receiveErrors(errors.responseJSON));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/review_actions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/review_actions.js ***!
@@ -1549,6 +1622,121 @@ var md = function md(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/comments/comment_index.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/comments/comment_index.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _utils_comment_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/comment_util */ "./frontend/utils/comment_util.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var CommentIndex = /*#__PURE__*/function (_React$Component) {
+  _inherits(CommentIndex, _React$Component);
+
+  function CommentIndex(props) {
+    var _this;
+
+    _classCallCheck(this, CommentIndex);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CommentIndex).call(this, props));
+    _this.state = {
+      comments: {},
+      "new": ""
+    };
+    _this.handleCreate = _this.handleCreate.bind(_assertThisInitialized(_this));
+    _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CommentIndex, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      Object(_utils_comment_util__WEBPACK_IMPORTED_MODULE_2__["fetchComments"])(this.props.reviewId).then(function (comments) {
+        return _this2.setState({
+          comments: comments
+        });
+      });
+    }
+  }, {
+    key: "handleUpdate",
+    value: function handleUpdate(e) {
+      this.setState({
+        "new": e.target.value
+      });
+    }
+  }, {
+    key: "handleCreate",
+    value: function handleCreate(e) {
+      var _this3 = this;
+
+      Object(_utils_comment_util__WEBPACK_IMPORTED_MODULE_2__["createComment"])(this.props.reviewId, this.state["new"]).then(function (comment) {
+        return _this3.setState({
+          comments: Object.assign(_this3.state.comments, _defineProperty({}, comment.id, comment))
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var commentList = Object.values(this.state.comments).map(function (comment) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "comment-item"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, comment.body));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "comment-list"
+      }, commentList, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleCreate
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        onChange: this.handleUpdate,
+        value: this.state["new"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      }, "write comment")))));
+    }
+  }]);
+
+  return CommentIndex;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(CommentIndex));
+
+/***/ }),
+
 /***/ "./frontend/components/footer.jsx":
 /*!****************************************!*\
   !*** ./frontend/components/footer.jsx ***!
@@ -2541,26 +2729,83 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _rating_show__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./rating-show */ "./frontend/components/reviews/rating-show.jsx");
+/* harmony import */ var _comments_comment_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/comment_index */ "./frontend/components/comments/comment_index.jsx");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-var ReviewIndexItem = function ReviewIndexItem(_ref) {
-  var review = _ref.review;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "review-list-item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "review-item-nav"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "review-author"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, review.user)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "rated it"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "rating-show"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating_show__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    key: review.id,
-    rate: review.rate
-  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "review-body"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, review.body)));
-};
+
+
+var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
+  _inherits(ReviewIndexItem, _React$Component);
+
+  function ReviewIndexItem(props) {
+    var _this;
+
+    _classCallCheck(this, ReviewIndexItem);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ReviewIndexItem).call(this, props));
+    _this.state = {
+      showComments: false
+    };
+    _this.getComments = _this.getComments.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ReviewIndexItem, [{
+    key: "getComments",
+    value: function getComments() {
+      this.setState({
+        showComments: !this.state.showComments
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var review = this.props.review;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "review-list-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: window.demoPi
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "review-item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "review-item-nav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "review-author"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, review.user)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "rated it"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rating-show"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating_show__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        key: review.id,
+        rate: review.rate
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "review-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, review.body)), this.state.showComments && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        reviewId: review.id
+      }), this.props.review.body && !this.state.showComments ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.getComments
+      }, "Comments") : null));
+    }
+  }]);
+
+  return ReviewIndexItem;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 /* harmony default export */ __webpack_exports__["default"] = (ReviewIndexItem);
 
@@ -3993,7 +4238,7 @@ var WriterShow = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "writer-info-col-1"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: window.demoPic
+        src: window.demoPi
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "writer-info-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4211,6 +4456,42 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./frontend/reducers/comments_reducer.js":
+/*!***********************************************!*\
+  !*** ./frontend/reducers/comments_reducer.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_comment_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/comment_action */ "./frontend/actions/comment_action.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var newState = Object.assign({}, state);
+  Object.freeze(state);
+
+  switch (action.type) {
+    case _actions_comment_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENTS"]:
+      return action.comments;
+
+    case _actions_comment_action__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_COMMENT"]:
+      newState[action.comment.id] = action.comment;
+      return newState;
+
+    case _actions_comment_action__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT"]:
+      delete newState[action.comment.id];
+      return newState;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
 /***/ "./frontend/reducers/entities_reducer.js":
 /*!***********************************************!*\
   !*** ./frontend/reducers/entities_reducer.js ***!
@@ -4229,6 +4510,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _writer_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./writer_reducer */ "./frontend/reducers/writer_reducer.js");
 /* harmony import */ var _tags_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./tags_reducer */ "./frontend/reducers/tags_reducer.js");
 /* harmony import */ var _tagging_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./tagging_reducer */ "./frontend/reducers/tagging_reducer.js");
+/* harmony import */ var _comments_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./comments_reducer */ "./frontend/reducers/comments_reducer.js");
+
 
 
 
@@ -4246,7 +4529,8 @@ __webpack_require__.r(__webpack_exports__);
   searchResults: _search_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   writers: _writer_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
   tags: _tags_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
-  taggings: _tagging_reducer__WEBPACK_IMPORTED_MODULE_8__["default"]
+  taggings: _tagging_reducer__WEBPACK_IMPORTED_MODULE_8__["default"] // comments: commentReducer
+
 }));
 
 /***/ }),
@@ -4576,6 +4860,7 @@ __webpack_require__.r(__webpack_exports__);
       return newState;
 
     case _actions_tag_action__WEBPACK_IMPORTED_MODULE_3__["RECEIVE_TAGGING"]:
+      // 
       // const userTag = newState[action.tagging.user_id].tags
       newState[action.tagging.user_id].tags[action.tagging.tag_id] ? newState[action.tagging.user_id].tags[action.tagging.tag_id][1] = newState[action.tagging.user_id].tags[action.tagging.tag_id][1] + 1 || 1 : newState[action.tagging.user_id].tags[action.tagging.tag_id] = [action.tagging.name, 1];
       return newState;
@@ -4711,6 +4996,44 @@ var fetchBookshelf = function fetchBookshelf(title) {
   return $.ajax({
     method: "GET",
     url: "/api/bookshelves/".concat(title)
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/utils/comment_util.js":
+/*!****************************************!*\
+  !*** ./frontend/utils/comment_util.js ***!
+  \****************************************/
+/*! exports provided: fetchComments, createComment, deleteComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchComments", function() { return fetchComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createComment", function() { return createComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteComment", function() { return deleteComment; });
+var fetchComments = function fetchComments(reviewId) {
+  return $.ajax({
+    method: "get",
+    url: "/api/reviews/".concat(reviewId, "/comments")
+  });
+};
+var createComment = function createComment(reviewId, comment) {
+  return $.ajax({
+    method: "POST",
+    url: "/api/reviews/".concat(reviewId, "/comments"),
+    data: {
+      comment: {
+        body: comment
+      }
+    }
+  });
+};
+var deleteComment = function deleteComment(commentId) {
+  return $.ajax({
+    method: "delete",
+    url: "/api/comments/".concat(commentId)
   });
 };
 
