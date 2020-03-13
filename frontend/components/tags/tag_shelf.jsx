@@ -7,7 +7,8 @@ class TagShelf extends React.Component {
     constructor(props) {
         super(props)
         this.state={books:this.props.books,
-        taggings:this.props.taggings}
+        taggings:this.props.taggings,
+        title: "All"}
         this.handleUpdate= this.handleUpdate.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
     }
@@ -33,7 +34,7 @@ class TagShelf extends React.Component {
         const curTaggings = this.props.taggings.filter(tagging=> tagging.name === e.target.value)
         const tagBooks = this.props.books.filter(book=> curTaggings.map(tagging=> tagging.book_id).includes(book.id))
         
-        this.setState({books: tagBooks, taggings: curTaggings})
+        this.setState({books: tagBooks, taggings: curTaggings, title:e.target.value})
     }
 
     getTaggingId(){
@@ -54,7 +55,7 @@ class TagShelf extends React.Component {
         const {titles} = this.props
         const books = this.state.books
         const titlelist = titles.map(title=> (
-        <li> <button className='title-button' onClick={this.handleUpdate} value={title}>{title}</button>  </li>
+        <li> <button className='title-button' onClick={this.handleUpdate} value={title[0]}>{title[0]}({title[1]})</button>  </li>
         ))
         // const titlelist = ['Want to Read', 'Reading', 'Read'].map(status=> (
         //     <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]|| 0 })</button>  </li>
@@ -87,6 +88,7 @@ class TagShelf extends React.Component {
                         </div>
                     </div>
                     <div className='book-list-container'>
+                        <div className='current-tag'>{this.state.title}</div>
                         <ul>
                             {bookList}
                         </ul>

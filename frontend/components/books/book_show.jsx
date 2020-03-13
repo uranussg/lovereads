@@ -64,7 +64,7 @@ class BookShow extends React.Component {
                         <img src={book.coverUrl}/>
                         <BookshelfFormContainer/>
                         <div className='user-tag-on-book'>
-                            <h3>my tags on <span>{book.title}</span></h3>
+                            <h3>My tags on <span>{book.title}</span></h3>
                             <ul>
                                 {mytagonbook}
                             </ul>
@@ -94,7 +94,8 @@ class BookShow extends React.Component {
                                     <li><span className='attr'>ISBN</span><span className='value'>{book.isbn}</span></li>
                                     <li><span className='attr'>Edition Language</span><span className='value'>{book.language}</span></li>
                                     <li><span className='attr'>House</span><span className='value'>{book.house}</span></li>
-                                    <li><span className='attr'>Published Time</span><span className='value'>{book.publish_at}</span></li>
+                                    <li><span className='attr'>Number of Pages</span><span className='value'>{book.num_pages}</span></li>
+                                    <li><span className='attr'>Published Time</span><span className='value'>{book.publish_at|| 'unknown'}</span></li>
 
                             <a onClick={this.toggleDetail}>...Less Detail</a>
                             </ul>
@@ -106,8 +107,12 @@ class BookShow extends React.Component {
                 <div className='reviews'>
                     <h2>Reviews </h2>
                     <div className='rating-review-form'>
-                    <RatingContainer/>
-                    <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
+                        <div className='rating-nav'>My review of {book.title} </div>
+                        <div className='rating-func'>
+                        <RatingContainer/>
+                        <Link to={`/books/${book.id}/reviews`}>Write Review</Link>
+                        </div>
+          
                     </div>
                     <ReviewIndex fetchReviews={this.props.fetchReviews} reviews={this.props.reviews} book={book}/>
                 </div>

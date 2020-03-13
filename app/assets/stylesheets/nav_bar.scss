@@ -93,13 +93,22 @@ nav strong {
 }
 
 .browse-nav .browse-list {
+    display: none;
     position: absolute;
     background-color: #FFFFFF;
-    width: 200px;
+    width: 180px;
     left: 0;
-    top: 52px;
+    top: 42px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.15);
     z-index: 4;
+}
+
+.browse-nav:hover .browse-list {
+    display: flex;
+}
+
+.browse-list:hover {
+    display: flex;
 }
 
 .browse-list ul {
@@ -111,6 +120,7 @@ nav strong {
 
 .browse-nav .browse-list li {
     display: block;
+    width: 100%;
     padding: 0 16px;
     color:#333333;
     font-size: 14px;

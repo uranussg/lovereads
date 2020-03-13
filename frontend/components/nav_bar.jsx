@@ -15,7 +15,7 @@ class NavBar extends React.Component {
         }
         this.handleSubmit= this.handleSubmit.bind(this)
         this.handleDropdown = this.handleDropdown.bind(this)
-        this.handleBrowse = this.handleBrowse.bind(this)
+        // this.handleBrowse = this.handleBrowse.bind(this)
     }
     handleSubmit(e) {
         e.preventDefault()
@@ -27,11 +27,11 @@ class NavBar extends React.Component {
         profile.classList.toggle("darken-background")
     }
 
-    handleBrowse(e) {
-        this.setState({showBrowse: !this.state.showBrowse})
-        const browsenav = document.getElementsByClassName("browse-nav")[0]
-        browsenav.classList.toggle("darken-background")
-    }
+    // handleBrowse(e) {
+    //     this.setState({showBrowse: !this.state.showBrowse})
+    //     const browsenav = document.getElementsByClassName("browse-nav")[0]
+    //     browsenav.classList.toggle("darken-background")
+    // }
   render () {
       const browselist = (<div className="browse-list">
       <ul>
@@ -53,9 +53,11 @@ class NavBar extends React.Component {
                         <Link to='/bookshelf'><div>My Books</div>  </Link>
                         <Link to='/mytags'><div>My Tags</div> </Link>
                         <a className='browse-nav'>
-                        <div  onClick={this.handleBrowse}>
+                        {/* <div  onClick={this.handleBrowse}> */}
+                        <div>
                        Browse </div>
-                        {this.state.showBrowse? browselist:null}
+                        {/* {this.state.showBrowse? browselist:null} */}
+                        {browselist}
                         </a>
                     </div>
                     <SearchBarContainer/>

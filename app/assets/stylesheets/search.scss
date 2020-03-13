@@ -24,7 +24,7 @@
     display: inline-flex;
     flex-direction: column;
     position: absolute;
-    width:0;
+    // width:0;
     width: auto;
     top: 40px;
     left: 0;
@@ -34,6 +34,7 @@
     border: 1px solid #EBE8D5;
     width: calc(100%-20px);
     border-radius: 3px;
+
     // margin: 2px;
 
 }
@@ -51,7 +52,7 @@
 
 .search-list-container ul {
     position: relative;
-    margin:  4px;
+    // margin:  4px;
 }
 .search-list-container a {
     height: auto;
@@ -60,7 +61,7 @@
 .search-list-container li {
     height: auto;
     border-bottom: 1px solid #EBE8D5;
-    padding: 4px;
+    padding: 4px 8px;
     height: 96px;
     // margin: 4px
 

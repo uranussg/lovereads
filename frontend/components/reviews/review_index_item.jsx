@@ -6,21 +6,34 @@ import CommentIndex from '../comments/comment_index'
      constructor(props){
          super(props)
          this.state = {
-             showComments: false
+             showComments: false,
+             comments:null
          }
          this.getComments = this.getComments.bind(this)
+        //  this.testClick = this.testClick.bind(this)
      }
 
-     getComments() {
-
-         this.setState({showComments: !this.state.showComments})
+     getComments(e) {
+        //  debugger
+        e.preventDefault()
+        e.stopPropagation()
+        // console.log(e.target.value)
+        //  this.setState({showComments: !this.state.showComments})
+        this.setState({comments: <CommentIndex reviewId={this.props.review.id}/> })
      }
 
+    //  testClick(e){
+    //     e.preventDefault()
+
+    //     console.log(e.target.value)
+    //  }
      render() {
          
          const review = this.props.review
+        //  const commentbutton= (this.props.review.body &&(!this.state.comments)) ? <button onClick={this.getComments} value={review.id}>Comments</button>:null
+
          return (
-            <li className="review-list-item">
+            <li  className="review-list-item">
                 <img src={window.demoPi} />
                 <div className='review-item'>
                 <div className="review-item-nav">
@@ -31,10 +44,15 @@ import CommentIndex from '../comments/comment_index'
                    <div className="rating-show">
                        <RatingShow key={review.id} rate={review.rate}/>
                    </div>
+                   <div>
+                       {review.date}
+                   </div>
                </div>
-               <div className='review-body'><p>{review.body}</p></div>
-               {this.state.showComments && <CommentIndex reviewId={review.id}/>}
-               { (this.props.review.body &&(!this.state.showComments)) ? <button onClick={this.getComments}>Comments</button>:null}
+               <div className='review-body'><p >{review.body}</p></div>
+               {/* {this.state.showComments && <CommentIndex reviewId={review.id}/>} */}
+               {this.state.comments}
+               { (this.props.review.body &&(!this.state.comments)) ? <button onClick={this.getComments} value={review.id}>Comments</button>:null}
+
                </div>
            </li>
        )

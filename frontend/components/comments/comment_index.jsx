@@ -26,7 +26,8 @@ class CommentIndex extends React.Component {
 
     handleCreate(e) {
         
-        createComment(this.props.reviewId, this.state.new).then(comment => this.setState({comments:Object.assign(this.state.comments, {[comment.id]: comment})}))
+        createComment(this.props.reviewId, this.state.new).then(comment => this.setState({comments:Object.assign(this.state.comments, {[comment.id]: comment}),
+    new:""}))
     }
 
     render() {
@@ -34,13 +35,14 @@ class CommentIndex extends React.Component {
         
         const commentList =
          Object.values(this.state.comments).map( comment => (
-            <li className='comment-item'> 
+            <li key={comment.id} className='comment-item'> 
             <div className='name'>{comment.user.username}</div>
             <div className='body'>{comment.body}</div>
             </li>
             ))
             
-            
+ 
+            // console.log(this.props.reviewId)
         return(
             <div className="comment-container"> 
                 <label>

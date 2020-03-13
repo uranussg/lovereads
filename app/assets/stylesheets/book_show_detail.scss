@@ -100,7 +100,22 @@
 .reviews .rating-review-form {
     display: flex;
     padding: 10px 0;
+    align-items: flex-start;
+    flex-direction: column;
+    border-bottom: 1px dashed #DDDDDD;
+}
+
+.rating-review-form .rating-func {
+    display: flex;
+    padding: 10px 0;
     align-items: center;
+}
+
+.rating-review-form .rating-nav{
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+    padding: 4px 0;
 }
 
 .reviews a {

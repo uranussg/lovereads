@@ -24,7 +24,7 @@ class Api::BooksController < ApplicationController
             @books = Book.top_rated(25) 
         elsif type == 'recommendation' 
             
-            @books = current_user.books_under_tags_in_use.sort_by { |book| -book.rate }[0...25]
+            @books = current_user.recommendation
         else
             render json: ['Invalid browse'], status: 404
         end

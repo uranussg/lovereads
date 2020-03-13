@@ -21,7 +21,7 @@
 
 .tagshelf-container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 4fr;
     // padding: 5px;
 }
 
@@ -67,10 +67,17 @@
     color:#00635d
 }
 
+
 .tagshelf-show .book-list-container {
     grid-column: 2;
 }
 
+.tagshelf-show .current-tag {
+    font-weight: bold;
+    border-bottom: 1px dotted #DDDDDD;
+    padding: 12px 0;
+    padding-left: 12px;
+}
 .tagshelf-show .book-list-container a {
     position: relative;
 }

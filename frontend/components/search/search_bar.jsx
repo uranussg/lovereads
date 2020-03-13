@@ -60,7 +60,7 @@ class SearchBar extends React.Component {
 
     render() {
 
-        const searchList = this.props.searchResults.map(book => (
+        const searchList = this.props.searchResults.slice(0, 5).map(book => (
             <BookIndexItem book={book} key={book.id}/>
             ) 
             )

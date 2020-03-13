@@ -57,7 +57,7 @@ const App = () => (
             </div>
             }/>
             <Route exact path='/tags/:tagName' component={TagShowContainer}/>
-            <Route exact path='/mytags' component={TagShelfContainer}/>
+            <ProtectedRoute exact path='/mytags' component={TagShelfContainer}/>
             <Route exact path='/browse/:type' component={BrowseContainer}/>
 
             {/* <Route path="/search/:body" render={(props) => 

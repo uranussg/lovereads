@@ -27,12 +27,16 @@ class ReviewIndex extends React.Component {
     render() {
         let reviewList = []
     
-         reviewList =
-            this.props.reviews.map( review => (
-            <ReviewListItem  key={review.id} review={review}/>
-            ))
+        //  reviewList =
+        //     this.props.reviews.map( review => (
+        //     <ReviewListItem  key={review.id} review={review}/>
+        //     ))
             
-            
+        reviewList =
+        this.props.reviews.sort((a,b)=> (b.time-a.time)).map( review => (
+        <ReviewListItem key = {review.id} review={review}/>
+        ))
+        
         return(
             <div className="review-container"> 
                 <label>

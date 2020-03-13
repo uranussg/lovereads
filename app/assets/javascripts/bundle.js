@@ -836,7 +836,7 @@ var App = function App() {
     exact: true,
     path: "/tags/:tagName",
     component: _tags_tag_show_container__WEBPACK_IMPORTED_MODULE_14__["default"]
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_utils_route_util_js__WEBPACK_IMPORTED_MODULE_5__["ProtectedRoute"], {
     exact: true,
     path: "/mytags",
     component: _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_17__["default"]
@@ -1154,7 +1154,7 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         src: book.coverUrl
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bookshelf_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-tag-on-book"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "my tags on ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, book.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytagonbook))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "My tags on ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, book.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytagonbook))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-basic-info"
@@ -1192,17 +1192,25 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         className: "value"
       }, book.house)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "attr"
+      }, "Number of Pages"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value"
+      }, book.num_pages)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "attr"
       }, "Published Time"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "value"
-      }, book.publish_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, book.publish_at || 'unknown')), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         onClick: this.toggleDetail
       }, "...Less Detail"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "reviews"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Reviews "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "rating-review-form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rating-nav"
+      }, "My review of ", book.title, " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "rating-func"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_rating_container__WEBPACK_IMPORTED_MODULE_5__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/books/".concat(book.id, "/reviews")
-      }, "Write Review")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, "Write Review"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_reviews_review_index__WEBPACK_IMPORTED_MODULE_4__["default"], {
         fetchReviews: this.props.fetchReviews,
         reviews: this.props.reviews,
         book: book
@@ -1683,6 +1691,13 @@ var Browse = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(Browse, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.type !== prevProps.type) {
+        this.props.browseBooks(this.props.type);
+      }
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       {
@@ -1695,7 +1710,7 @@ var Browse = /*#__PURE__*/function (_React$Component) {
       var titles = {
         "new": "New Books",
         rate: "Top Rated",
-        recommendation: "Recommentdation for You"
+        recommendation: "Recommendation for You"
       };
       var bookList = this.props.books.map(function (book) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_book_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1833,7 +1848,8 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
 
       Object(_utils_comment_util__WEBPACK_IMPORTED_MODULE_2__["createComment"])(this.props.reviewId, this.state["new"]).then(function (comment) {
         return _this3.setState({
-          comments: Object.assign(_this3.state.comments, _defineProperty({}, comment.id, comment))
+          comments: Object.assign(_this3.state.comments, _defineProperty({}, comment.id, comment)),
+          "new": ""
         });
       });
     }
@@ -1842,13 +1858,15 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       var commentList = Object.values(this.state.comments).map(function (comment) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: comment.id,
           className: "comment-item"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "name"
         }, comment.user.username), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "body"
         }, comment.body));
-      });
+      }); // console.log(this.props.reviewId)
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "comment-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -2177,8 +2195,8 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
       showBrowse: false
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this));
-    _this.handleBrowse = _this.handleBrowse.bind(_assertThisInitialized(_this));
+    _this.handleDropdown = _this.handleDropdown.bind(_assertThisInitialized(_this)); // this.handleBrowse = this.handleBrowse.bind(this)
+
     return _this;
   }
 
@@ -2196,16 +2214,12 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
       });
       var profile = document.getElementsByClassName("user-profile")[0];
       profile.classList.toggle("darken-background");
-    }
-  }, {
-    key: "handleBrowse",
-    value: function handleBrowse(e) {
-      this.setState({
-        showBrowse: !this.state.showBrowse
-      });
-      var browsenav = document.getElementsByClassName("browse-nav")[0];
-      browsenav.classList.toggle("darken-background");
-    }
+    } // handleBrowse(e) {
+    //     this.setState({showBrowse: !this.state.showBrowse})
+    //     const browsenav = document.getElementsByClassName("browse-nav")[0]
+    //     browsenav.classList.toggle("darken-background")
+    // }
+
   }, {
     key: "render",
     value: function render() {
@@ -2234,9 +2248,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           to: "/mytags"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Tags"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           className: "browse-nav"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          onClick: this.handleBrowse
-        }, "Browse "), this.state.showBrowse ? browselist : null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Browse "), browselist)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_search_search_bar_container__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile",
           onClick: this.handleDropdown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2854,8 +2866,14 @@ var ReviewIndex = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var reviewList = [];
-      reviewList = this.props.reviews.map(function (review) {
+      var reviewList = []; //  reviewList =
+      //     this.props.reviews.map( review => (
+      //     <ReviewListItem  key={review.id} review={review}/>
+      //     ))
+
+      reviewList = this.props.reviews.sort(function (a, b) {
+        return b.time - a.time;
+      }).map(function (review) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_review_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
           key: review.id,
           review: review
@@ -2921,23 +2939,37 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ReviewIndexItem).call(this, props));
     _this.state = {
-      showComments: false
+      showComments: false,
+      comments: null
     };
-    _this.getComments = _this.getComments.bind(_assertThisInitialized(_this));
+    _this.getComments = _this.getComments.bind(_assertThisInitialized(_this)); //  this.testClick = this.testClick.bind(this)
+
     return _this;
   }
 
   _createClass(ReviewIndexItem, [{
     key: "getComments",
-    value: function getComments() {
+    value: function getComments(e) {
+      //  debugger
+      e.preventDefault();
+      e.stopPropagation(); // console.log(e.target.value)
+      //  this.setState({showComments: !this.state.showComments})
+
       this.setState({
-        showComments: !this.state.showComments
+        comments: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          reviewId: this.props.review.id
+        })
       });
-    }
+    } //  testClick(e){
+    //     e.preventDefault()
+    //     console.log(e.target.value)
+    //  }
+
   }, {
     key: "render",
     value: function render() {
-      var review = this.props.review;
+      var review = this.props.review; //  const commentbutton= (this.props.review.body &&(!this.state.comments)) ? <button onClick={this.getComments} value={review.id}>Comments</button>:null
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "review-list-item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
@@ -2953,12 +2985,11 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_rating_show__WEBPACK_IMPORTED_MODULE_1__["default"], {
         key: review.id,
         rate: review.rate
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, review.date)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "review-body"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, review.body)), this.state.showComments && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_comment_index__WEBPACK_IMPORTED_MODULE_2__["default"], {
-        reviewId: review.id
-      }), this.props.review.body && !this.state.showComments ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: this.getComments
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, review.body)), this.state.comments, this.props.review.body && !this.state.comments ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.getComments,
+        value: review.id
       }, "Comments") : null));
     }
   }]);
@@ -3191,7 +3222,7 @@ var SearchBar = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var searchList = this.props.searchResults.map(function (book) {
+      var searchList = this.props.searchResults.slice(0, 5).map(function (book) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_books_book_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
           book: book,
           key: book.id
@@ -4016,7 +4047,8 @@ var TagShelf = /*#__PURE__*/function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TagShelf).call(this, props));
     _this.state = {
       books: _this.props.books,
-      taggings: _this.props.taggings
+      taggings: _this.props.taggings,
+      title: "All"
     };
     _this.handleUpdate = _this.handleUpdate.bind(_assertThisInitialized(_this));
     _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
@@ -4066,7 +4098,8 @@ var TagShelf = /*#__PURE__*/function (_React$Component) {
       });
       this.setState({
         books: tagBooks,
-        taggings: curTaggings
+        taggings: curTaggings,
+        title: e.target.value
       });
     }
   }, {
@@ -4096,8 +4129,8 @@ var TagShelf = /*#__PURE__*/function (_React$Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           className: "title-button",
           onClick: _this5.handleUpdate,
-          value: title
-        }, title), "  ");
+          value: title[0]
+        }, title[0], "(", title[1], ")"), "  ");
       }); // const titlelist = ['Want to Read', 'Reading', 'Read'].map(status=> (
       //     <li> <button onClick={this.handleUpdate} value={status}>{status}({titles[status]|| 0 })</button>  </li>
       //     ))
@@ -4128,7 +4161,9 @@ var TagShelf = /*#__PURE__*/function (_React$Component) {
         className: "tagshelf-titles"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, titlelist))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-list-container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "current-tag"
+      }, this.state.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, bookList))));
     }
   }]);
 
@@ -4160,8 +4195,9 @@ __webpack_require__.r(__webpack_exports__);
 var ms = function ms(state, ownProps) {
   return {
     books: Object.values(state.entities.books) || {},
-    titles: Object.values(state.entities.users[state.session.id].tags).map(function (tag) {
-      return tag[0];
+    // titles: Object.values(state.entities.users[state.session.id].tags).map(tag => tag[0]) || [],
+    titles: Object.values(state.entities.users[state.session.id].tags).sort(function (a, b) {
+      return b[1] - a[1];
     }) || [],
     taggings: Object.values(state.entities.taggings),
     user_id: state.session.id

@@ -85,5 +85,10 @@ class User < ApplicationRecord
         end
         rate
       end
+
+
+      def recommendation 
+        self.books_under_tags_in_use.where.not(id:self.tagged_books.map(&:id) + self.books_on_shelves.map(&:id))
+      end
       has_many :comment
 end

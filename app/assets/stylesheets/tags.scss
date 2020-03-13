@@ -84,13 +84,15 @@
     width: 20%;
     // flex-grow: 1;
     height: 16px;
-    background-image: asset_url('plus.svg');
+    background-image: asset_url('plus.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
 
 .book-show-page .add-tag-button:hover {
-    background-image: asset_url('plus-square.svg');
+    // background-image: asset_url('plus-square.svg');
+    transform: scale(1.2) translateX(6%);
+
 
 }
 .book-show-page .tags .add-new-tag button{
@@ -107,6 +109,7 @@
     border-radius: 3px;
     border: #DCD6CC 1px solid;
     color: #333333;
+    font-size: 12px;
 
 }
 

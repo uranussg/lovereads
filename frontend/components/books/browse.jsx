@@ -7,7 +7,11 @@ class Browse extends React.Component {
         super(props)
     }
 
-
+    componentDidUpdate(prevProps) {
+        if (this.props.type !== prevProps.type) {
+            this.props.browseBooks(this.props.type)
+        }
+    }
     componentDidMount() {
         
          {this.props.browseBooks(this.props.type)}
@@ -17,7 +21,7 @@ class Browse extends React.Component {
         const titles = {
             new: "New Books",
             rate: "Top Rated",
-            recommendation: "Recommentdation for You"
+            recommendation: "Recommendation for You"
         }
         const bookList = this.props.books.map(book => (
             <BookIndexItem book={book} key={book.id}/>

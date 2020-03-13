@@ -8,7 +8,8 @@ const ms = (state, ownProps) => {
     
     return ({
         books: Object.values(state.entities.books) || {},
-        titles: Object.values(state.entities.users[state.session.id].tags).map(tag => tag[0]) || [],
+        // titles: Object.values(state.entities.users[state.session.id].tags).map(tag => tag[0]) || [],
+        titles: Object.values(state.entities.users[state.session.id].tags).sort((a,b)=>b[1]-a[1]) || [],
         taggings: Object.values(state.entities.taggings),
         user_id: state.session.id
     })
