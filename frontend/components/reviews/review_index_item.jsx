@@ -14,7 +14,7 @@ import CommentIndex from '../comments/comment_index'
      }
 
      getComments(e) {
-        //  debugger
+        //  
         e.preventDefault()
         e.stopPropagation()
         // console.log(e.target.value)

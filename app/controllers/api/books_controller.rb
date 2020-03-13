@@ -10,9 +10,9 @@ class Api::BooksController < ApplicationController
     end
 
     def show
-      
+        
         @book = Book.includes(:writer, :reviews, :tags).find(params[:id])
-
+        
     end
 
 

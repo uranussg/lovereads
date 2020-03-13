@@ -2950,7 +2950,7 @@ var ReviewIndexItem = /*#__PURE__*/function (_React$Component) {
   _createClass(ReviewIndexItem, [{
     key: "getComments",
     value: function getComments(e) {
-      //  debugger
+      //  
       e.preventDefault();
       e.stopPropagation(); // console.log(e.target.value)
       //  this.setState({showComments: !this.state.showComments})
