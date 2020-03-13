@@ -46,7 +46,7 @@ class TagShelf extends React.Component {
         const taggingIds = this.state.taggings.filter(tagging=> tagging.book_id === parseInt(e.target.getAttribute('value')))
         taggingIds.forEach(taggingId => {
 
-            this.props.deleteTagging(taggingId.id)
+            this.props.deleteTagging(taggingId.id).then(this.setState({title: "All"}))
         })
     }
 

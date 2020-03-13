@@ -4115,7 +4115,9 @@ var TagShelf = /*#__PURE__*/function (_React$Component) {
         return tagging.book_id === parseInt(e.target.getAttribute('value'));
       });
       taggingIds.forEach(function (taggingId) {
-        _this4.props.deleteTagging(taggingId.id);
+        _this4.props.deleteTagging(taggingId.id).then(_this4.setState({
+          title: "All"
+        }));
       });
     }
   }, {
