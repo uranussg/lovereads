@@ -4114,6 +4114,13 @@ var TagShelf = /*#__PURE__*/function (_React$Component) {
       var taggingIds = this.state.taggings.filter(function (tagging) {
         return tagging.book_id === parseInt(e.target.getAttribute('value'));
       });
+
+      if (this.state.title !== "All") {
+        taggingIds = taggingIds.filter(function (tagging) {
+          return tagging.name === _this4.state.title;
+        });
+      }
+
       taggingIds.forEach(function (taggingId) {
         _this4.props.deleteTagging(taggingId.id).then(_this4.setState({
           title: "All"

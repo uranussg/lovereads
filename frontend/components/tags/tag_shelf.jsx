@@ -43,7 +43,9 @@ class TagShelf extends React.Component {
     handleDelete(e) {
         e.stopPropagation()
 
-        const taggingIds = this.state.taggings.filter(tagging=> tagging.book_id === parseInt(e.target.getAttribute('value')))
+        let taggingIds = this.state.taggings.filter(tagging=> tagging.book_id === parseInt(e.target.getAttribute('value')))
+        if (this.state.title !== "All")
+        {taggingIds = taggingIds.filter(tagging => tagging.name === this.state.title)}
         taggingIds.forEach(taggingId => {
 
             this.props.deleteTagging(taggingId.id).then(this.setState({title: "All"}))
