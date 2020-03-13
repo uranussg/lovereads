@@ -95,7 +95,7 @@ class NavBar extends React.Component {
             <div className="masthead">
                 <dir className='headline'>
                     <div className='headline-content'></div>
-                    <img src="assets/signup-headline.png" alt=""/>
+                    <img src={window.mast} alt=""/>
                 </dir>
                 <div className='new-to-here'>
                     <h2>Create a free account!</h2>
