@@ -1154,7 +1154,7 @@ var BookShow = /*#__PURE__*/function (_React$Component) {
         src: book.coverUrl
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_bookshelf_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "user-tag-on-book"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "My tags on ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, book.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytagonbook))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Tags on ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, book.title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytagonbook))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-info-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "book-basic-info"
@@ -1951,7 +1951,9 @@ var Footer = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://github.com/uranussg",
         className: "github"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " f")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        herf: "https://www.linkedin.com/in/songge-sun-674b6a138/"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " f")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "icons"

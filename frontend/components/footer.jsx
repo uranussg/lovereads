@@ -33,7 +33,7 @@ class Footer extends React.Component {
                             <ul className='icons'>
                                 {/* <li><a></a></li> */}
                                 <a href='https://github.com/uranussg' className='github'><span ></span></a>
-                                <a><span>in</span></a>
+                                <a herf='https://www.linkedin.com/in/songge-sun-674b6a138/'><span>in</span></a>
                                  <a><span> f</span></a>
                             </ul>
                         </li>

@@ -64,7 +64,7 @@ class BookShow extends React.Component {
                         <img src={book.coverUrl}/>
                         <BookshelfFormContainer/>
                         <div className='user-tag-on-book'>
-                            <h3>My tags on <span>{book.title}</span></h3>
+                            <h3>Tags on <span>{book.title}</span></h3>
                             <ul>
                                 {mytagonbook}
                             </ul>
