@@ -50,7 +50,7 @@ class NavBar extends React.Component {
                     <Link to="/"><h1 id="title">Love<strong>reads</strong> </h1></Link>
 
                     <div className='navbar-links'>
-                        <Link to='/bookshelf'><div>My Books</div>  </Link>
+                        <Link to='/bookshelf'><div>BookShelf</div>  </Link>
                         <Link to='/mytags'><div>My Tags</div> </Link>
                         <a className='browse-nav'>
                         {/* <div  onClick={this.handleBrowse}> */}

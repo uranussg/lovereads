@@ -2246,7 +2246,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           className: "navbar-links"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/bookshelf"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Books"), "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "BookShelf"), "  "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/mytags"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "My Tags"), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           className: "browse-nav"
