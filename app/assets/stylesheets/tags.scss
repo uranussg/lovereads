@@ -108,11 +108,18 @@
     text-transform: uppercase;
 }
 
-.book-show-page .tags .input {
+.book-show-page .add-new-tag .input {
     display: flex;
     justify-content: space-between;
     width: 90%;
     align-items: center;
+}
+
+.book-show-page .add-new-tag button:hover {
+    // background-image: asset_url('plus-square.svg');
+    transform: scale(1.2) translateX(6%);
+
+
 }
 
 .book-show-page .tags button {
