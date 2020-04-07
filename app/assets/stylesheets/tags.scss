@@ -100,13 +100,30 @@
 
 
 }
-.book-show-page .tags .add-new-tag button{
+.book-show-page .tags .add-new-tag .title{
     // margin-top: 10px;
     padding-bottom: 4px;
     font-weight: bold;
     font-size: 12px;
     text-transform: uppercase;
 }
+
+.book-show-page .tags .input {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+}
+
+.book-show-page .tags button {
+    background-image: asset_url('plus.png');
+    float: right;
+    width: 10%;
+    // flex-grow: 1;
+    height: 16px;
+    background-size: contain;
+    background-repeat: no-repeat;
+} 
 
 .book-show-page .tags input {
     padding: 5px 3px;

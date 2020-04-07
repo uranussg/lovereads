@@ -69,13 +69,41 @@
     line-height: 21px;
     font-family: "Merriweather", "Georgia", serif;
     font-size: 14px;
+    padding: 8px 0;
 }
 
 .writer-basic-info {
     border-bottom:  1px solid #DDDDDD;
-    padding-bottom: 5px;;
+    padding: 8px 0;
 }
 
+.writer-basic-info div {
+    padding: 16px 0;
+    min-height: 10px;
+    border-bottom:  1px solid #EBE8D5;
+}
+
+
+.writer-basic-info .attr {
+    color: #382110;
+    font-weight: bold;
+    width: 25%;
+    float: left;
+    margin: 1px 0px;
+    display: block;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 12px;
+}
+
+.writer-basic-info .value {
+    float: left;
+    min-width: 10px;
+    width: 75%;
+    margin: 1px 0px;
+    display: block;
+    font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 12px;
+}
 
 .authored-books  {
     grid-column: 2;
@@ -87,7 +115,7 @@
 }
 
 .authored-books h2 {
-    padding: 8px 0;
+    padding-bottom: 8px;
     width: auto;
     // height: 24px;
     // margin-bottom: 0;

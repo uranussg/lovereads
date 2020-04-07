@@ -44,13 +44,14 @@ class WriterShow extends React.Component {
                     <div className="writer-info-col-2">
                         <div className="writer-basic-info">
                             <h2>{writer.name}</h2>
-                            <h3>Born: {writer.born}</h3>
+                            {/* <h3>Born: {writer.born}</h3> */}
+                            <div><span className='attr'>Born</span><span className='value'>{writer.born}</span></div>
                             <p>
                                 {writer.description}
                             </p>
                         </div>
                         <div className='authored-books'>
-                            <h2>{writer.name}'s BOOKS' </h2>
+                            <h2>{writer.name}'s BOOKS </h2>
                             <ul>
                                 {authoredBooks}
                             </ul>

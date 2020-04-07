@@ -80,9 +80,12 @@ class TagForm extends React.Component {
 
             <div>
             <form className="add-new-tag" onSubmit={this.handleSubmit}>
-                <button type="submit">New Tag</button>
-                <input type="text" value={this.state.title}
-            onChange={this.handleUpdate}/>
+                <div className='title'>New Tag</div>
+                <div className='input'>
+                    <input type="text" value={this.state.title}
+                    onChange={this.handleUpdate}/>
+                    <button type="submit"></button>
+                </div>
             </form>
         </div>                   
 

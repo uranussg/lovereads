@@ -3865,13 +3865,17 @@ var TagForm = /*#__PURE__*/function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Tags I often use"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, mytags)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "add-new-tag",
         onSubmit: this.handleSubmit
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit"
-      }, "New Tag"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "title"
+      }, "New Tag"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "input"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         value: this.state.title,
         onChange: this.handleUpdate
-      }))));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit"
+      })))));
     }
   }]);
 
@@ -4450,9 +4454,13 @@ var WriterShow = /*#__PURE__*/function (_React$Component) {
         className: "writer-info-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "writer-basic-info"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, writer.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Born: ", writer.born), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, writer.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, writer.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "attr"
+      }, "Born"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "value"
+      }, writer.born)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, writer.description)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "authored-books"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, writer.name, "'s BOOKS' "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, authoredBooks)))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, writer.name, "'s BOOKS "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, authoredBooks)))));
     }
   }]);
 
