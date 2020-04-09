@@ -7,10 +7,17 @@ import rootReducer from './reducers/root_reducer'
 import Root from './components/root'
 
 import * as TAG from "./actions/tag_action"
+const composedEnhancer = compose(applyMiddleware(thunk, logger), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
+const enhanser =  {
+  development: composedEnhancer
+  ,
+  production: applyMiddleware(thunk)
+  
+}
 
 const configureStore = (preloadState = {}) => 
-  createStore(rootReducer, preloadState, applyMiddleware(thunk, logger))
+  createStore(rootReducer, preloadState, enhanser[process.env.NODE_ENV])
 
 
 document.addEventListener('DOMContentLoaded', () => {
