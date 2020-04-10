@@ -32,9 +32,8 @@ class Footer extends React.Component {
                             <div>Connect</div>
                             <ul className='icons'>
                                 {/* <li><a></a></li> */}
-                                <a href='https://github.com/uranussg' className='github'><span ></span></a>
-                                <a herf='https://www.linkedin.com/in/songge-sun-674b6a138/'><span>in</span></a>
-                                 <a><span> f</span></a>
+                                <a href='https://github.com/uranussg' className='github'><span></span></a>
+                                <a href='https://www.linkedin.com/in/songge-sun-674b6a138/' className='linkedin'><span></span></a>
                             </ul>
                         </li>
                     </ul>

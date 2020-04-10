@@ -1952,8 +1952,9 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         href: "https://github.com/uranussg",
         className: "github"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        herf: "https://www.linkedin.com/in/songge-sun-674b6a138/"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "in")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " f")))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        href: "https://www.linkedin.com/in/songge-sun-674b6a138/",
+        className: "linkedin"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "footer-col-2"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "icons"
