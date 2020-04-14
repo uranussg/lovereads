@@ -12,7 +12,6 @@ class Api::TagsController < ApplicationController
     def show 
   
             @books = Tag.find_by(name: params[:id]).books
-        
     end
 
     def create 

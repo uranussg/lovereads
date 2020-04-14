@@ -55,7 +55,7 @@ class User < ApplicationRecord
     end
 
     def books_on_shelf(shelf)
-      Book.joins(bookshelves: :user).where("users.id = ?", self.id).where('bookshelves.title = ?', shelf)
+      Book.with_attached_cover.joins(bookshelves: :user).where("users.id = ?", self.id).where('bookshelves.title = ?', shelf)
     
     end
 

@@ -1,7 +1,7 @@
 class Tag < ApplicationRecord
     validates :name, presence:true, uniqueness:true
     has_many :taggings
-    has_many :books,
+    has_many :books,  -> { includes :reviews, "cover_attachment": :blob },
         through: :taggings,
         source: :book
     def self.tags_most_in_use
