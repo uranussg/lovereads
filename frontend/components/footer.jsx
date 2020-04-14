@@ -21,10 +21,10 @@ class Footer extends React.Component {
                         <li className="people">
                             <div>People</div>
                             <ul>
-                                <li>About me</li>
-                                <li>Careers</li>
-                                <li>Privacy</li>
-                                <li>Help</li>
+                                <li><a href="https://uranussg.github.io/portfolio/">About me</a></li>
+                                <li><a href="https://www.linkedin.com/in/songge-sun-674b6a138/">Careers</a></li>
+                                {/* <li>Privacy</li>
+                                <li>Help</li> */}
                             </ul>
                         </li>
                         
@@ -44,6 +44,9 @@ class Footer extends React.Component {
                     </div>
                     <div className='copyright'>
                     © 2020 Lovereads
+                    <br/>
+                    <br/>
+                      Songge Sun 
                     </div>
                 </div>
                 </div>

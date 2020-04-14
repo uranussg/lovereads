@@ -63,20 +63,18 @@ footer {
 
 .footer-col-1 .icons a {
     padding: 16px;
-    margin: 0 8px;
+    // margin: 0 8px;
     border-radius: 1rem;
     // background-color: rgb(158, 153, 141);
     font-weight: bold;
     color: white;
     width: 0;
-    // height: 0;
-    // width: 40px;
-    // height: 40px;
+
     position: relative;
 }
 
 .footer-col-1 .icons a:first-child {
-    margin-left: 0;
+    margin-right: 8px;
 }
 
 // .footer-col-1 .icons a span {
@@ -89,12 +87,18 @@ footer {
 .footer-col-1 .icons .github {
     width: 100%;
     background-image: asset_url('github.svg');
+    background-size: 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+    margin-right: 8px;
 }
 
 .footer-col-1 .icons .linkedin {
     width: 100%;
     background-image: asset_url('linkedin.png');
-    background-size: 110%;
+    background-size: contain;
+    margin: 0 8px;
 }
 
 

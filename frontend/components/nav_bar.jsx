@@ -67,8 +67,8 @@ class NavBar extends React.Component {
                     {
                        (this.state.showDropdown)? (<ul>
                     <li><strong>{this.props.currentUser.username}</strong></li>
-                    <li>Comment</li>
-                    <li>Favorite Genre</li>
+                    {/* <li>Comment</li>
+                    <li>Favorite Genre</li> */}
 
                     <li onClick={this.handleSubmit}>Sign out</li>                
                     </ul>) : null

@@ -2,11 +2,11 @@ class Book < ApplicationRecord
     validates :title, :writer_id, :description, presence: true
     validates :isbn, uniqueness:true
     def self.new_books
-        self.includes(:writer).where.not(publish_at:nil).order('publish_at DESC')
+        self.with_attached_cover.includes(:writer).where.not(publish_at:nil).order('publish_at DESC')
     end
 
     def self.top_rated(n)
-        self.includes(:writer, :reviews).all.sort_by { |book| -book.rate }[0...n]
+        self.with_attached_cover.includes(:writer, :reviews).all.sort_by { |book| -book.rate }[0...n]
     end
 
 

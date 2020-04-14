@@ -1944,7 +1944,11 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         className: "contact-info"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "people"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "People"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "About me"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Careers"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Privacy"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Help"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "People"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://uranussg.github.io/portfolio/"
+      }, "About me")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.linkedin.com/in/songge-sun-674b6a138/"
+      }, "Careers")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "connect"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Connect"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "icons"
@@ -1960,7 +1964,7 @@ var Footer = /*#__PURE__*/function (_React$Component) {
         className: "icons"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "copyright"
-      }, "\xA9 2020 Lovereads"))));
+      }, "\xA9 2020 Lovereads", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Songge Sun"))));
     }
   }]);
 
@@ -2256,7 +2260,7 @@ var NavBar = /*#__PURE__*/function (_React$Component) {
           onClick: this.handleDropdown
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "user-profile-picture"
-        }), this.state.showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Comment"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "Favorite Genre"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }), this.state.showDropdown ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, this.props.currentUser.username)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           onClick: this.handleSubmit
         }, "Sign out")) : null))));
       } else {
