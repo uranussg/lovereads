@@ -25,7 +25,7 @@ class CommentIndex extends React.Component {
     }
 
     handleCreate(e) {
-        
+        e.preventDefault()
         createComment(this.props.reviewId, this.state.new).then(comment => this.setState({comments:Object.assign(this.state.comments, {[comment.id]: comment}),
     new:""}))
     }
