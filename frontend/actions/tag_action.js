@@ -36,7 +36,6 @@ export const receiveErrors = (errors) => ({
 })
 
 export const fetchTags = () => dispatch => {
-    dispatch(loadBooks('loading'))
     return APIUtil.fetchTags()
     .then(tags => {
         
