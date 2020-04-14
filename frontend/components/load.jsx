@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 
 function Load({ load }) {
+    debugger
 
     if (!load) {
         return null;
@@ -10,13 +11,14 @@ function Load({ load }) {
     return (
         <div className="load-background">
             <div className="load-child" onClick={e => e.stopPropagation()}>
-
+                <p>Loading</p>
             </div>
         </div>
     );
 }
 
 const mapStateToProps = (state, ownProps) => {
+    debugger
     return {
         load: state.ui.load
     };

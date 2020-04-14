@@ -5,9 +5,10 @@ import { RECEIVE_BOOK, RECEIVE_BOOKS } from '../actions/book_action'
 
 export default (state = {}, action) => {
     Object.freeze(state)
-    let newState
+    let newState = Object.assign({}, state)
     switch (action.type) {
         case START_LOADING_BOOKS:
+            
             newState.load = action.load
             return newState
         case RECEIVE_BOOK:

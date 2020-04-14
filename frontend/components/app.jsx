@@ -18,6 +18,7 @@ import GreetingPage from './greeting-page'
 import TagShelfContainer from './tags/tag_shelf_container'
 import Footer from './footer'
 import BrowseContainer from './books/browse_container'
+import Load from './load'
 
 const App = () => (
     <div className="bg">
@@ -36,6 +37,7 @@ const App = () => (
             }/>
             <Route path="/" component={NavBarContainer}/>
         </Switch>
+        <Load />
 
         <Switch>
             {/* <Switch> */}

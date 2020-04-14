@@ -15,7 +15,10 @@ class BookIndex extends React.Component {
 
     componentDidMount() {
         // if (this.props.books.length === 0)
-         {this.props.fetchBookIndex()}
+         { 
+            //  this.props.loadBooks()
+             
+            this.props.fetchBookIndex()}
     }
 
     render() {

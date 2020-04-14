@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {fetchBooks} from '../../actions/book_action'
 import BookIndex from './book_index'
-
+import { loadBooks } from '../../actions/load_action'
 const ms = state => 
 { 
 return ({
@@ -12,7 +12,8 @@ return ({
 const md = dispatch => {
 
 return ({
-    fetchBookIndex: () => dispatch(fetchBooks())
+    fetchBookIndex: () => dispatch(fetchBooks()),
+    loadBooks: () => dispatch(loadBooks('loadbooks'))
 })
 }
 export default connect(ms, md)(BookIndex)

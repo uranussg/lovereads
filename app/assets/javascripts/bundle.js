@@ -105,6 +105,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchBook", function() { return fetchBook; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "browseBooks", function() { return browseBooks; });
 /* harmony import */ var _utils_book_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/book_util */ "./frontend/utils/book_util.js");
+/* harmony import */ var _load_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./load_action */ "./frontend/actions/load_action.js");
+
 
 var RECEIVE_BOOKS = "RECEIVE_BOOKS";
 var RECEIVE_BOOK = "RECEIVE_BOOK";
@@ -129,6 +131,7 @@ var receiveErrors = function receiveErrors(errors) {
 };
 var fetchBooks = function fetchBooks(user) {
   return function (dispatch) {
+    dispatch(Object(_load_action__WEBPACK_IMPORTED_MODULE_1__["loadBooks"])('loading'));
     return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["fetchBooks"](user).then(function (books) {
       return dispatch(receiveBooks(books));
     }, function (errors) {
@@ -138,6 +141,7 @@ var fetchBooks = function fetchBooks(user) {
 };
 var fetchBook = function fetchBook(bookId) {
   return function (dispatch) {
+    dispatch(_load_action__WEBPACK_IMPORTED_MODULE_1__["loadBooks"]);
     return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["fetchBook"](bookId).then(function (book) {
       return dispatch(receiveBook(book));
     }, function (errors) {
@@ -147,6 +151,7 @@ var fetchBook = function fetchBook(bookId) {
 };
 var browseBooks = function browseBooks(type) {
   return function (dispatch) {
+    dispatch(_load_action__WEBPACK_IMPORTED_MODULE_1__["loadBooks"]);
     return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["browseBooks"](type).then(function (books) {
       return dispatch(receiveBooks(books));
     }, function (errors) {
@@ -774,6 +779,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tags_tag_shelf_container__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./tags/tag_shelf_container */ "./frontend/components/tags/tag_shelf_container.js");
 /* harmony import */ var _footer__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./footer */ "./frontend/components/footer.jsx");
 /* harmony import */ var _books_browse_container__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./books/browse_container */ "./frontend/components/books/browse_container.js");
+/* harmony import */ var _load__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./load */ "./frontend/components/load.jsx");
+
 
 
 
@@ -817,7 +824,7 @@ var App = function App() {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/",
     component: _nav_bar_container__WEBPACK_IMPORTED_MODULE_1__["default"]
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_load__WEBPACK_IMPORTED_MODULE_20__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Switch"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     exact: true,
     path: "/",
     component: _home_page_container__WEBPACK_IMPORTED_MODULE_15__["default"]
@@ -931,6 +938,7 @@ var BookIndex = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       // if (this.props.books.length === 0)
       {
+        //  this.props.loadBooks()
         this.props.fetchBookIndex();
       }
     }
@@ -968,6 +976,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/book_action */ "./frontend/actions/book_action.js");
 /* harmony import */ var _book_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./book_index */ "./frontend/components/books/book_index.jsx");
+/* harmony import */ var _actions_load_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/load_action */ "./frontend/actions/load_action.js");
+
 
 
 
@@ -982,6 +992,9 @@ var md = function md(dispatch) {
   return {
     fetchBookIndex: function fetchBookIndex() {
       return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_1__["fetchBooks"])());
+    },
+    loadBooks: function loadBooks() {
+      return dispatch(Object(_actions_load_action__WEBPACK_IMPORTED_MODULE_3__["loadBooks"])('loadbooks'));
     }
   };
 };
@@ -2164,6 +2177,50 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProp, mapDispatchToProps)(_home_page__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/load.jsx":
+/*!**************************************!*\
+  !*** ./frontend/components/load.jsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+function Load(_ref) {
+  var load = _ref.load;
+  debugger;
+
+  if (!load) {
+    return null;
+  }
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "load-background"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "load-child",
+    onClick: function onClick(e) {
+      return e.stopPropagation();
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading")));
+}
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  debugger;
+  return {
+    load: state.ui.load
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Load));
 
 /***/ }),
 
@@ -5069,7 +5126,7 @@ __webpack_require__.r(__webpack_exports__);
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
-  var newState;
+  var newState = Object.assign({}, state);
 
   switch (action.type) {
     case _actions_load_action__WEBPACK_IMPORTED_MODULE_0__["START_LOADING_BOOKS"]:
