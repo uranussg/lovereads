@@ -328,6 +328,27 @@ var deleteComment = function deleteComment(commentId) {
 
 /***/ }),
 
+/***/ "./frontend/actions/load_action.js":
+/*!*****************************************!*\
+  !*** ./frontend/actions/load_action.js ***!
+  \*****************************************/
+/*! exports provided: START_LOADING_BOOKS, loadBooks */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "START_LOADING_BOOKS", function() { return START_LOADING_BOOKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadBooks", function() { return loadBooks; });
+var START_LOADING_BOOKS = 'START_LOADING_BOOKS';
+var loadBooks = function loadBooks(load) {
+  return {
+    type: START_LOADING_BOOKS,
+    load: load
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/review_actions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/review_actions.js ***!
@@ -4830,6 +4851,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
 /* harmony import */ var _errors_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./errors_reducer */ "./frontend/reducers/errors_reducer.js");
+/* harmony import */ var _ui_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./ui_reducer */ "./frontend/reducers/ui_reducer.js");
+
 
 
 
@@ -4837,7 +4860,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  errors: _errors_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  ui: _ui_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 }));
 
 /***/ }),
@@ -5020,6 +5044,43 @@ __webpack_require__.r(__webpack_exports__);
     //     const newState = Object.assign({}, state)
     //     newState[action.tag.id] = action.id
     //     return newState
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./frontend/reducers/ui_reducer.js":
+/*!*****************************************!*\
+  !*** ./frontend/reducers/ui_reducer.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_load_action__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/load_action */ "./frontend/actions/load_action.js");
+/* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/book_action */ "./frontend/actions/book_action.js");
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState;
+
+  switch (action.type) {
+    case _actions_load_action__WEBPACK_IMPORTED_MODULE_0__["START_LOADING_BOOKS"]:
+      newState.load = action.load;
+      return newState;
+
+    case _actions_book_action__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOOK"]:
+      return {};
+
+    case _actions_book_action__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_BOOKS"]:
+      return {};
 
     default:
       return state;
