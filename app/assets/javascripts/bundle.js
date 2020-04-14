@@ -654,7 +654,6 @@ var receiveErrors = function receiveErrors(errors) {
 };
 var fetchTags = function fetchTags() {
   return function (dispatch) {
-    dispatch(Object(_load_action__WEBPACK_IMPORTED_MODULE_2__["loadBooks"])('loading'));
     return _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__["fetchTags"]().then(function (tags) {
       return dispatch(receiveTags(tags));
     }, function (errors) {
@@ -1879,6 +1878,7 @@ var CommentIndex = /*#__PURE__*/function (_React$Component) {
     value: function handleCreate(e) {
       var _this3 = this;
 
+      e.preventDefault();
       Object(_utils_comment_util__WEBPACK_IMPORTED_MODULE_2__["createComment"])(this.props.reviewId, this.state["new"]).then(function (comment) {
         return _this3.setState({
           comments: Object.assign(_this3.state.comments, _defineProperty({}, comment.id, comment)),
