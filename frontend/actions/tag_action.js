@@ -1,5 +1,6 @@
 import * as APIUtil from '../utils/tag_utils'
 import {RECEIVE_BOOKS, receiveBooks} from '../actions/book_action'
+import { loadBooks } from './load_action'
 
 export const RECEIVE_TAG = "RECEIVE_TAG"
 export const RECEIVE_TAGS = "RECEIVE_TAGS"
@@ -35,7 +36,7 @@ export const receiveErrors = (errors) => ({
 })
 
 export const fetchTags = () => dispatch => {
-    
+    dispatch(loadBooks('loading'))
     return APIUtil.fetchTags()
     .then(tags => {
         
@@ -44,7 +45,7 @@ export const fetchTags = () => dispatch => {
 }
 
 export const fetchTag = (name) => dispatch => {
-    
+    dispatch(loadBooks('loading'))
     return APIUtil.fetchTag(name)
     .then(books => dispatch(receiveBooks(books)),
     errors => dispatch(receiveErrors(errors.responseJSON)) )

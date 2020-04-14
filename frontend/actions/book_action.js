@@ -30,7 +30,7 @@ export const fetchBooks = (user) => dispatch => {
 
 
 export const fetchBook = (bookId) => dispatch => {
-    dispatch(loadBooks)
+    // dispatch(loadBooks('loading'))
     return APIUtil.fetchBook(bookId)
     .then(book => dispatch(receiveBook(book)),
     errors => dispatch(receiveErrors(errors.responseJSON)) )
@@ -38,7 +38,7 @@ export const fetchBook = (bookId) => dispatch => {
 
 
 export const browseBooks = (type) => dispatch => {
-    dispatch(loadBooks)
+    dispatch(loadBooks('loading'))
     return APIUtil.browseBooks(type)
     .then(books => dispatch(receiveBooks(books)),
     errors => dispatch(receiveErrors(errors.responseJSON)) )

@@ -40,8 +40,6 @@ const App = () => (
         <Load />
 
         <Switch>
-            {/* <Switch> */}
-            {/* </Switch> */}
             <Route exact path="/" component={HomePageContainer}/>
 
             <ProtectedRoute exact path='/books/:bookId' component={BookShowContainer}/>

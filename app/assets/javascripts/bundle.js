@@ -141,7 +141,7 @@ var fetchBooks = function fetchBooks(user) {
 };
 var fetchBook = function fetchBook(bookId) {
   return function (dispatch) {
-    dispatch(_load_action__WEBPACK_IMPORTED_MODULE_1__["loadBooks"]);
+    // dispatch(loadBooks('loading'))
     return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["fetchBook"](bookId).then(function (book) {
       return dispatch(receiveBook(book));
     }, function (errors) {
@@ -151,7 +151,7 @@ var fetchBook = function fetchBook(bookId) {
 };
 var browseBooks = function browseBooks(type) {
   return function (dispatch) {
-    dispatch(_load_action__WEBPACK_IMPORTED_MODULE_1__["loadBooks"]);
+    dispatch(Object(_load_action__WEBPACK_IMPORTED_MODULE_1__["loadBooks"])('loading'));
     return _utils_book_util__WEBPACK_IMPORTED_MODULE_0__["browseBooks"](type).then(function (books) {
       return dispatch(receiveBooks(books));
     }, function (errors) {
@@ -613,6 +613,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserTag", function() { return fetchUserTag; });
 /* harmony import */ var _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/tag_utils */ "./frontend/utils/tag_utils.js");
 /* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/book_action */ "./frontend/actions/book_action.js");
+/* harmony import */ var _load_action__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./load_action */ "./frontend/actions/load_action.js");
+
 
 
 var RECEIVE_TAG = "RECEIVE_TAG";
@@ -652,6 +654,7 @@ var receiveErrors = function receiveErrors(errors) {
 };
 var fetchTags = function fetchTags() {
   return function (dispatch) {
+    dispatch(Object(_load_action__WEBPACK_IMPORTED_MODULE_2__["loadBooks"])('loading'));
     return _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__["fetchTags"]().then(function (tags) {
       return dispatch(receiveTags(tags));
     }, function (errors) {
@@ -661,6 +664,7 @@ var fetchTags = function fetchTags() {
 };
 var fetchTag = function fetchTag(name) {
   return function (dispatch) {
+    dispatch(Object(_load_action__WEBPACK_IMPORTED_MODULE_2__["loadBooks"])('loading'));
     return _utils_tag_utils__WEBPACK_IMPORTED_MODULE_0__["fetchTag"](name).then(function (books) {
       return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_1__["receiveBooks"])(books));
     }, function (errors) {
@@ -976,8 +980,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_book_action__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/book_action */ "./frontend/actions/book_action.js");
 /* harmony import */ var _book_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./book_index */ "./frontend/components/books/book_index.jsx");
-/* harmony import */ var _actions_load_action__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/load_action */ "./frontend/actions/load_action.js");
-
 
 
 
@@ -992,9 +994,6 @@ var md = function md(dispatch) {
   return {
     fetchBookIndex: function fetchBookIndex() {
       return dispatch(Object(_actions_book_action__WEBPACK_IMPORTED_MODULE_1__["fetchBooks"])());
-    },
-    loadBooks: function loadBooks() {
-      return dispatch(Object(_actions_load_action__WEBPACK_IMPORTED_MODULE_3__["loadBooks"])('loadbooks'));
     }
   };
 };
@@ -2197,7 +2196,6 @@ __webpack_require__.r(__webpack_exports__);
 
 function Load(_ref) {
   var load = _ref.load;
-  debugger;
 
   if (!load) {
     return null;
@@ -2206,15 +2204,22 @@ function Load(_ref) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "load-background"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "load-child",
+    className: "load",
     onClick: function onClick(e) {
       return e.stopPropagation();
     }
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading")));
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Loading"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "load-dots"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    id: "load-dot1"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    id: "load-dot2"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    id: "load-dot3"
+  }))));
 }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-  debugger;
   return {
     load: state.ui.load
   };

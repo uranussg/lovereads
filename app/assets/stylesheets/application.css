@@ -29,6 +29,7 @@
  *= require './search_result.scss'
  *= require './footer.scss'
  *= require './comment.scss'
+ *= require './load.scss'
  *= require_tree .
  *= require_self
  */
