@@ -179,18 +179,21 @@ nav strong {
     color:#333333;
     font-size: 14px;
     line-height: 32px;
-    cursor: pointer;
+    cursor: default;
     overflow: hidden;
 }
 
-.user-profile ul li:hover {
+.user-profile ul li:last-child:hover {
     background-color: #382110;
     color: white;
 }
 
+
+
 .user-profile ul li:last-child {
     padding-bottom: 6px;
     border-top: 1px solid #D8D8D8;
+    cursor: pointer;
 }
 
 
