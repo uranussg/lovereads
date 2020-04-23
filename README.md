@@ -1,5 +1,5 @@
 
-# Project Name
+# LoveReads
 GoodReads clone website
 
 ## Table of contents
