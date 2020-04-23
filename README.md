@@ -26,8 +26,12 @@ link: https://lovereads.herokuapp.com/#/
 * AWS
 
 ## Code Examples
-Show examples of usage:
-`put-your-code-here`
+Render Comment Form:
+`     getComments(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        this.setState({comments: <CommentIndex reviewId={this.props.review.id}/> })
+     }`
 
 ## Features
 List of features ready and TODOs for future development
