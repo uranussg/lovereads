@@ -27,11 +27,14 @@ link: https://lovereads.herokuapp.com/#/
 
 ## Code Examples
 Render Comment Form:
-`     getComments(e) {
+```
+getComments(e) {
         e.preventDefault()
         e.stopPropagation()
         this.setState({comments: <CommentIndex reviewId={this.props.review.id}/> })
-     }`
+}
+     
+```
 
 ## Features
 List of features ready and TODOs for future development
